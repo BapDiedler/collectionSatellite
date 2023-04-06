@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+[Scene] -- [BorderPane]
+[BorderPane] --"gauche" [MenuBar]
+[BorderPane] --"haut" [ImageView]
+[BorderPane] --"bas 2" [Button]
+[BorderPane] --"centre" [ScrollPane]
+
+@enduml
