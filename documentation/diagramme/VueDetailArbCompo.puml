@@ -3,8 +3,13 @@
 
 [Scene] -- [BorderPane]
 [BorderPane] --"gauche" [MenuBar]
+[MenuBar] -- "2" [Menu]
+[Menu] -- [MenuItem]
 [BorderPane] --"haut" [ImageView]
 [BorderPane] --"bas 2" [Button]
 [BorderPane] --"centre" [ScrollPane]
+[ScrollPane] -- [VBox]
+[HBox] -- [Label]
+
 
 @enduml
