@@ -8,7 +8,14 @@
 [Menu] -- [MenuItem]
 
 [BorderPane] --"centre" [ScrollPane]
+[ScrollPane] -- [GridPane]
+[GridPane] --"*" [VBox]
+[VBox] -- [ImageView]
+[VBox] -- [Label]
 
 [BorderPane] --"bas" [HBox]
+[HBox] -- [Button]
+[HBox] -- [MenuButton]
+[MenuButton] --"*" [MenuItm]
 
 @enduml
