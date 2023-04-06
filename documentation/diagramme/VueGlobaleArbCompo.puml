@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+[Scene] -- [BorderPane]
+
+[BorderPane] --"gauche" [MenuBar]
+[MenuBar] --"*" [Menu]
+[Menu] -- [MenuItem]
+
+[BorderPane] --"centre" [ScrollPane]
+
+[BorderPane] --"bas" [HBox]
+
+@enduml
