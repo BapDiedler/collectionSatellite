@@ -1,6 +1,24 @@
 @startuml
 'https://plantuml.com/class-diagram
 
+class CollectionSatellites extends SujetObserve{
+    CollectionSatellites()
+}
+class Satellite{
+    String nom
+    String identifiant
+    Satellite(String nom)
+}
+class SujetObserve{
+    void notifierObservateurs()
+    void ajouterObservateur()
+}
+Interface Observateur{
+    void reagir()
+}
+
+SujetObserve --"*" Observateur
+CollectionSatellites --"*" Satellite
 
 
 @enduml
