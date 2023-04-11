@@ -1,24 +1,41 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class CollectionSatellites extends SujetObserve{
-    CollectionSatellites()
-}
-class Satellite{
-    String nom
-    String identifiant
-    Satellite(String nom)
-}
-class SujetObserve{
-    void notifierObservateurs()
-    void ajouterObservateur()
-}
-interface Observateur{
-    void reagir()
+interface Iterable #aliceblue;line:blue;line.dotted;text:blue
+
+
+package model{
+
+    class Model extends SujetObserve{
+        Model()
+    }
+
+    class Satellite implements Iterable{
+        String nom
+        String identifiant
+        Satellite(String nom)
+    }
+
+    class SujetObserve{
+        void notifierObservateurs()
+        void ajouterObservateur(Observateur... obs)
+    }
+
+    interface Observateur{
+        void reagir()
+    }
+
+    class FabriqueIdentifiants<<(S,#FF7788)>>{
+       int identifiant
+       String getIdentifiant()
+       void reset()
+    }
+
 }
 
+FabriqueIdentifiants --"1" FabriqueIdentifiants
 SujetObserve --"*" Observateur
-CollectionSatellites --"*" Satellite
+Model --"*" Satellite
 
 
 @enduml

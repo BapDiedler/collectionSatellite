@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package controleur{
+    abstract Controleur implements Observateur{
+        Controleur()
+        setModel(Model model)
+    }
+
+    interface Observateur{
+        void reagir
+    }
+
+    class Model
+    class PanneauCentral extends Controleur{
+        void ajouterInformation(PanneauInformations info)
+    }
+
+    class PanneauInformation extends Controleur{
+        String titre
+        String texte
+        void modifierTitre(String newTitre)
+        void modifierTexte(String newTexte)
+        String getTitre()
+        String getTexte
+    }
+
+    class PanneauMenu extends Controleur{
+
+    }
+
+    class PanneauBottom extends Controleur{
+        void panneauGauche()
+        void panneauDroite()
+    }
+}
+
+
+Model "1"--left Controleur
+PanneauCentral -right-"*" PanneauInformation
+
+@enduml
