@@ -14,9 +14,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(
                 getClass().getResource("stamp.fxml")));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Collection de satellites");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
+        primaryStage.setFullScreen(true);
     }
 
 

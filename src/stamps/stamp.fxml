@@ -5,4 +5,10 @@
 <?import javafx.scene.control.Label?>
 <GridPane fx:controller="stamps.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+    <Button alignment="center" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        nouveau bouton
+    </Button>
+    <Label alignment="center" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        Un monde virtuel
+    </Label>
 </GridPane>
