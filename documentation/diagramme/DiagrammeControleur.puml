@@ -8,11 +8,15 @@ package controleur{
     }
 
     interface Observateur{
-        void reagir
+        void reagir()
+    }
+
+    class PanneauGlobale extends Controleur{
+        void vueDetail(String identifiant)
     }
 
     class Model
-    class PanneauCentral extends Controleur{
+    class PanneauDetail extends Controleur{
         void ajouterInformation(PanneauInformations info)
     }
 
@@ -26,7 +30,16 @@ package controleur{
     }
 
     class PanneauMenu extends Controleur{
+        void quitter()
+        void sauvegarder()
+        void importerDonnee(String dossier)
+        void recherche(String valeur)
+    }
 
+    class PanneauOutils extends Controleur{
+        void vueGlobale()
+        void sauvegarder()
+        void changerDonnee()
     }
 
     class PanneauBottom extends Controleur{
@@ -37,6 +50,8 @@ package controleur{
 
 
 Model "1"--left Controleur
-PanneauCentral -right-"*" PanneauInformation
+PanneauDetail -right-"*" PanneauInformation
+PanneauDetail --"1" Satellite
+PanneauInformation --"1" Information
 
 @enduml

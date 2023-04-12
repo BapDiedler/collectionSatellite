@@ -8,9 +8,18 @@ package model{
 
     class Model extends SujetObserve{
         Model()
+        void ajouter()
     }
 
-    class Satellite implements Iterable{
+    class GestionnaireObjets implements Iterable{
+        gestionnaireObjets()
+        void ajouter()
+        void trierApparition()
+        void trierDate()
+        void trierNom()
+    }
+
+    class Satellite{
         String nom
         String identifiant
         Satellite(String nom)
@@ -31,11 +40,27 @@ package model{
        void reset()
     }
 
+    class Information {
+        String titre
+        ArrayList<String> texte
+        void setTitre(String titre)
+        void setTexte(String texte)
+        String getTitre()
+        String getTexte()
+    }
+
+    class MotsClef {
+        String valeur
+    }
+
 }
 
 FabriqueIdentifiants --"1" FabriqueIdentifiants
-SujetObserve --"*" Observateur
-Model --"*" Satellite
+SujetObserve -right-"*" Observateur
+Model -left-"1" GestionnaireObjets
+GestionnaireObjets --"*" Satellite
+Satellite --"*" Information
+Satellite --"*" MotsClef
 
 
 @enduml
