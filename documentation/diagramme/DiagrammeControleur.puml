@@ -11,6 +11,7 @@ package controleur{
         void reagir()
     }
 
+
     class PanneauGlobale extends Controleur{
         void vueDetail(String identifiant)
     }
@@ -18,15 +19,6 @@ package controleur{
     class Model
     class PanneauDetail extends Controleur{
         void ajouterInformation(PanneauInformations info)
-    }
-
-    class PanneauInformation extends Controleur{
-        String titre
-        String texte
-        void modifierTitre(String newTitre)
-        void modifierTexte(String newTexte)
-        String getTitre()
-        String getTexte
     }
 
     class PanneauMenu extends Controleur{
@@ -46,12 +38,33 @@ package controleur{
         void panneauGauche()
         void panneauDroite()
     }
+
+
+    class PanneauInformation extends Controleur{
+        void modifierTitre(String newTitre)
+        void modifierTexte(String newTexte)
+        String getTitre()
+        String getTexte()
+    }
 }
 
+class ImageView #aliceblue;line:blue;line.dotted;text:blue
+class TextArea #aliceblue;line:blue;line.dotted;text:blue
+class Menu #aliceblue;line:blue;line.dotted;text:blue
+class Button #aliceblue;line:blue;line.dotted;text:blue
+class TextField #aliceblue;line:blue;line.dotted;text:blue
 
 Model "1"--left Controleur
 PanneauDetail -right-"*" PanneauInformation
 PanneauDetail --"1" Satellite
 PanneauInformation --"1" Information
+PanneauInformation --"2" TextArea
+PanneauDetail --"1" ImageView
+PanneauGlobale -left-"*" ImageView
+PanneauOutils --"3" Button
+PanneauBottom --"2" Button
+PanneauMenu --"2" Menu
+PanneauMenu --"2" TextField
+
 
 @enduml

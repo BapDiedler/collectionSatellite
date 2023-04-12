@@ -55,7 +55,7 @@ package model{
 
 }
 
-FabriqueIdentifiants --"1" FabriqueIdentifiants
+FabriqueIdentifiants --"1" FabriqueIdentifiants : static
 SujetObserve -right-"*" Observateur
 Model -left-"1" GestionnaireObjets
 GestionnaireObjets --"*" Satellite
