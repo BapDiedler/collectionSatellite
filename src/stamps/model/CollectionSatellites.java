@@ -47,6 +47,9 @@ public class CollectionSatellites implements Iterable<Satellite>{
         satellites.sort(Comparator.comparing(Satellite::getIdentifiant));
     }
 
+    /**
+     * méthode qui permet de trier les satellites en fonction de leur nom
+     */
     public void trierNom(){
         satellites.sort(Comparator.comparing(Satellite::getNom));
     }
@@ -54,5 +57,37 @@ public class CollectionSatellites implements Iterable<Satellite>{
     @Override
     public Iterator<Satellite> iterator() {
         return satellites.iterator();
+    }
+
+    /**
+     * getter sur le nombre d'éléments dans la collection
+     *
+     * @return le nombre de satellites dans la collection
+     */
+    public int nbSatellites(){
+        return satellites.size();
+    }
+
+    /**
+     * getter sur la collection de satellites qui permet de récupérer le satellite en fonction de sa position dans arrayList
+     *
+     * @param pos position du satellite dans arrayList
+     * @return le satellite correspondant à la position
+     */
+    public Satellite getSatellite(int pos){
+        return satellites.get(pos);
+    }
+
+    /**
+     * le toString de la classe permet de voir les satellites dans l'ordre de la collection
+     *
+     * @return collection des satellites
+     */
+    public String toString(){
+        StringBuilder affichage = new StringBuilder();
+        for (Satellite satellite: satellites){
+            affichage.append(satellite.getNom()).append("-");
+        }
+        return affichage.toString();
     }
 }
