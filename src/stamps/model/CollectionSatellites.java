@@ -8,7 +8,7 @@ import java.util.*;
  *
  * @author baptistedie
  */
-public class CollectionSatellites implements Iterable<Satellite>{
+public class CollectionSatellites extends SujetObserve implements Iterable<Satellite>{
 
     /**
      * collection de satellites référencée par leur identifiant unique
@@ -20,6 +20,7 @@ public class CollectionSatellites implements Iterable<Satellite>{
      * constructeur principal de la classe
      */
     public CollectionSatellites(){
+        super();
         satellites = new ArrayList<>(10);
     }
 
