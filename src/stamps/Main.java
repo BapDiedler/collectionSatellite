@@ -12,12 +12,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(
-                getClass().getResource("stamp.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("stamp.fxml")));
         primaryStage.setTitle("Collection de satellites");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 603, 434));
         primaryStage.show();
-        primaryStage.setFullScreen(true);
     }
 
 
