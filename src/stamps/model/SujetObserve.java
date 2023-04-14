@@ -24,6 +24,7 @@ public class SujetObserve {
 
     /**
      * méthode qui permet d'ajouter un observateur à la collection
+     *
      * @param obs observateur ajouté
      */
     public void ajouterObservateur(Obervateur obs){
