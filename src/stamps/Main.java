@@ -1,20 +1,45 @@
 package stamps;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import stamps.controleur.PanneauCentral;
+import stamps.controleur.PanneauGlobal;
+import stamps.controleur.PanneauMenu;
+import stamps.controleur.PanneauOutils;
+import stamps.model.CollectionSatellites;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("stamp.fxml")));
         primaryStage.setTitle("Collection de satellites");
-        primaryStage.setScene(new Scene(root, 603, 434));
+
+        CollectionSatellites collectionSatellites = new CollectionSatellites() ;
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("vue/PanneauGlobal.fxml"));
+        PanneauGlobal global = new PanneauGlobal(collectionSatellites);
+        PanneauMenu menu = new PanneauMenu(collectionSatellites);
+        PanneauCentral central = new PanneauCentral(collectionSatellites);
+        PanneauOutils outils = new PanneauOutils(collectionSatellites,central);
+        loader.setControllerFactory(ic -> {
+            if (ic.equals(stamps.controleur.PanneauMenu.class)) return menu;
+            else if (ic.equals(stamps.controleur.PanneauOutils.class)) return outils;
+            else if (ic.equals(stamps.controleur.PanneauCentral.class)) return central;
+            return global;
+        });
+        Scene root = loader.load();
+        primaryStage.setScene(root);
         primaryStage.show();
     }
 

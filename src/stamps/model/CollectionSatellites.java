@@ -32,6 +32,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
     public void ajouter(String nom){
         Satellite satellite = new Satellite(nom);
         satellites.add(satellite);
+        notifierObservateurs();
     }
 
     /**

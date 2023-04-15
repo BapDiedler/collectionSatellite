@@ -1,6 +1,7 @@
 package stamps.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * classe qui permet la manipulation des Observateurs
@@ -27,7 +28,17 @@ public class SujetObserve {
      *
      * @param obs observateur ajouté
      */
-    public void ajouterObservateur(Obervateur obs){
-        obervateurs.add(obs);
+    public void ajouterObservateur(Obervateur... obs){
+        obervateurs.addAll(List.of(obs));
+    }
+
+
+    /**
+     * méthode qui fait réagir les observateurs
+     */
+    public void notifierObservateurs(){
+        for(int i=0; i< obervateurs.size(); i++){
+            obervateurs.get(i).reagir();
+        }
     }
 }
