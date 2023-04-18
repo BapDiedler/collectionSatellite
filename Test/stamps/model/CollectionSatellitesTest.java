@@ -72,6 +72,9 @@ class CollectionSatellitesTest {
         collectionSatellites.getSatellite(1).setMotsClefs("tata");
         assertEquals(1,collectionSatellites.getSatellites("toto").size());
         assertEquals(collectionSatellites.getSatellite(0),collectionSatellites.getSatellites("toto").get(0));
+        collectionSatellites.getSatellite(1).setMotsClefs("toto");
+        assertEquals(2,collectionSatellites.getSatellites("toto","tata").size());
+        assertEquals(collectionSatellites.getSatellite(1),collectionSatellites.getSatellites("toto","tata").get(0));
         FabriqueIdentifiants.getInstance().reset();
     }
 }

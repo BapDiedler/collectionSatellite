@@ -87,14 +87,34 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      * @param motClef mot clef testé
      * @return la collection de satellites valident
      */
-    public ArrayList<Satellite> getSatellites(String motClef){
-        ArrayList<Satellite> satellitesValides = new ArrayList<>(10);
+    public ArrayList<Satellite> getSatellites(String... motClef){
+        HashMap<Integer,Satellite> satellitesValides = new HashMap<>(10);
+        int val=0;
         for (Satellite satellite: satellites){
-            if (satellite.getMotsClefs(motClef)){
-                satellitesValides.add(satellite);
+            val = satellite.getMotsClefs(motClef);
+            if (val!=0){
+                satellitesValides.put(val,satellite);
             }
         }
-        return satellitesValides;
+        return trierSatelliteMotClef(satellitesValides);
+    }
+
+    /**
+     * méthode qui permet de trier une hashMap de satellite
+     *
+     * @param satellitesValides la collection de satellites que l'on doit trier
+     * @return une ArrayList de satellites
+     */
+    private ArrayList<Satellite> trierSatelliteMotClef(
+            HashMap<Integer,Satellite> satellitesValides){
+        ArrayList<Map.Entry<Integer,Satellite>> arrayList = new ArrayList<>(satellitesValides.entrySet());
+        arrayList.sort((o1, o2) -> o2.getKey().compareTo(o1.getKey()));
+        int size = arrayList.size();
+        ArrayList<Satellite> newArray = new ArrayList<>(size);
+        for(Map.Entry<Integer,Satellite> sat : arrayList){
+            newArray.add(sat.getValue());
+        }
+        return newArray;
     }
 
     /**

@@ -114,10 +114,14 @@ public class Satellite {
     /**
      * méthode qui permet dde savoir si notre satellite contient le mot clef
      *
-     * @param motClef mot clef testé
-     * @return true si le mot clef est tenu par le satellite, false sinon
+     * @param motClef mots clefs testés
+     * @return le nombre de mots en correspondance avec les mots clefs du satellite
      */
-    public boolean getMotsClefs(String motClef) {
-        return motsClefs.contains(motClef);
+    public int getMotsClefs(String... motClef) {
+        int cpt=0;
+        for(String val: motClef) {
+            cpt = motsClefs.contains(val) ? cpt+1 : cpt;
+        }
+        return cpt;
     }
 }
