@@ -124,4 +124,9 @@ public class Satellite {
         }
         return cpt;
     }
+
+    @Override
+    public String toString() {
+        return nom+identifiant;
+    }
 }

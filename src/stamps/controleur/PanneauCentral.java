@@ -32,7 +32,7 @@ public class PanneauCentral extends Controleur{
 
     @FXML
     void ajouter(){
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Sputnik_asm.jpg")), 200, 200, true, true) ;
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Sputnik_asm.jpg")), 300, 300, true, true) ;
         ImageView imageView = new ImageView(image);
         Label label = new Label(collectionSatellites.getSatellite(collectionSatellites.nbSatellites()-1).toString());
         HBox hbox = new HBox(imageView,label);
