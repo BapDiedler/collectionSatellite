@@ -80,6 +80,23 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         return satellites.get(pos);
     }
 
+
+    /**
+     * getter sur les satellites qui possèdent le mot clef
+     *
+     * @param motClef mot clef testé
+     * @return la collection de satellites valident
+     */
+    public ArrayList<Satellite> getSatellites(String motClef){
+        ArrayList<Satellite> satellitesValides = new ArrayList<>(10);
+        for (Satellite satellite: satellites){
+            if (satellite.getMotsClefs(motClef)){
+                satellitesValides.add(satellite);
+            }
+        }
+        return satellitesValides;
+    }
+
     /**
      * le toString de la classe permet de voir les satellites dans l'ordre de la collection
      *

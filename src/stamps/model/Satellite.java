@@ -1,5 +1,7 @@
 package stamps.model;
 
+import java.util.*;
+
 /**
  * classe représentant l'objet de collection qui est un satellite
  *
@@ -10,7 +12,13 @@ public class Satellite {
     /**
      * identifiant unique du satellite
      */
-    private String identifiant;
+    private final String identifiant;
+
+    /**
+     * collection de string qui représente les mots clefs du satellite
+     * utilisation d'ensemble pour éviter les répétitions
+     */
+    private Set<String> motsClefs;
 
     /**
      * nom du satellite
@@ -37,6 +45,16 @@ public class Satellite {
     public Satellite(String nom){
         this.identifiant = FabriqueIdentifiants.getInstance().getIdentifiant();
         this.nom = nom;
+        this.motsClefs = new HashSet<>(10);
+    }
+
+    /**
+     * setter de mots clefs dans notre satellite
+     *
+     * @param motsClefs mots clefs ajoutés
+     */
+    public void setMotsClefs(String... motsClefs){
+        this.motsClefs.addAll(List.of(motsClefs));
     }
 
     /**
@@ -91,5 +109,15 @@ public class Satellite {
      */
     public int getDate() {
         return date;
+    }
+
+    /**
+     * méthode qui permet dde savoir si notre satellite contient le mot clef
+     *
+     * @param motClef mot clef testé
+     * @return true si le mot clef est tenu par le satellite, false sinon
+     */
+    public boolean getMotsClefs(String motClef) {
+        return motsClefs.contains(motClef);
     }
 }
