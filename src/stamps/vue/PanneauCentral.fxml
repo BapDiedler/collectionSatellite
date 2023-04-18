@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
 
-<VBox fx:id="vbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauCentral">
-   <children>
-      <Circle fill="DODGERBLUE" radius="47.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" radius="48.0" stroke="BLACK" strokeType="INSIDE" />
-   </children>
+<VBox fx:id="vbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauCentral">
    <cursor>
       <Cursor fx:constant="DEFAULT" />
    </cursor>
+   <padding>
+      <Insets bottom="10.0" />
+   </padding>
 </VBox>

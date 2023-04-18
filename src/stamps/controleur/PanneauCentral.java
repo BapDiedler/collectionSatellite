@@ -1,9 +1,17 @@
 package stamps.controleur;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import stamps.model.CollectionSatellites;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Objects;
 
 /**
  * classe permettant de gérer la collection
@@ -24,8 +32,11 @@ public class PanneauCentral extends Controleur{
 
     @FXML
     void ajouter(){
-        Label label = new Label("Nouvel élément");
-        vbox.getChildren().add(label);
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Sputnik_asm.jpg")), 200, 200, true, true) ;
+        ImageView imageView = new ImageView(image);
+        Label label = new Label(collectionSatellites.getSatellite(collectionSatellites.nbSatellites()-1).toString());
+        HBox hbox = new HBox(imageView,label);
+        vbox.getChildren().add(hbox);
         vbox.getScene().getRoot().layout();
     }
 
