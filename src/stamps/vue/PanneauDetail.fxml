@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="stamps.controleur.PanneauDetail"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<Scene xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane prefHeight="1000.0" prefWidth="1000.0">
+      <children>
+         <BorderPane prefHeight="1000.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <bottom>
+               <ButtonBar prefHeight="40.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+                 <buttons>
+                     <Button alignment="CENTER" minWidth="0.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="precedant">
+                        <cursor>
+                           <Cursor fx:constant="OPEN_HAND" />
+                        </cursor></Button>
+                     <Label alignment="CENTER" contentDisplay="CENTER" text="date" />
+                   <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="suivant">
+                        <cursor>
+                           <Cursor fx:constant="CLOSED_HAND" />
+                        </cursor></Button>
+                 </buttons>
+               </ButtonBar>
+            </bottom>
+         </BorderPane>
+      </children></AnchorPane>
+   <fill>
+      <LinearGradient endX="1.0" endY="1.0">
+         <stops>
+            <Stop>
+               <color>
+                  <Color />
+               </color>
+            </Stop>
+            <Stop offset="1.0">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </Stop>
+         </stops>
+      </LinearGradient>
+   </fill>
+</Scene>
