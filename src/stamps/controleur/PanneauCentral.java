@@ -3,11 +3,13 @@ package stamps.controleur;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import stamps.model.CollectionSatellites;
+import stamps.model.Satellite;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,10 +33,12 @@ public class PanneauCentral extends Controleur{
     }
 
     @FXML
-    void ajouter(){
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Sputnik_asm.jpg")), 300, 300, true, true) ;
+    void ajouter(Satellite satellite){
+        String url = satellite.getUrl();
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(url)),
+                300, 300, true, true) ;
         ImageView imageView = new ImageView(image);
-        Label label = new Label(collectionSatellites.getSatellite(collectionSatellites.nbSatellites()-1).toString());
+        Label label = new Label(satellite.getNom());
         HBox hbox = new HBox(imageView,label);
         vbox.getChildren().add(hbox);
         vbox.getScene().getRoot().layout();

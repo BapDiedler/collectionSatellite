@@ -18,7 +18,12 @@ public class Satellite {
      * collection de string qui représente les mots clefs du satellite
      * utilisation d'ensemble pour éviter les répétitions
      */
-    private Set<String> motsClefs;
+    private final Set<String> motsClefs;
+
+    /**
+     * information sur le satellite
+     */
+    private ArrayList<Information> informations;
 
     /**
      * nom du satellite
@@ -31,10 +36,15 @@ public class Satellite {
     private int date;
 
     /**
+     * lien de l'image pour le satellite
+     */
+    private String url;
+
+    /**
      * constructeur vide de la classe
      */
     public Satellite(){
-        this("satellite");
+        this("satellite","/pasImage.jpeg");
     }
 
     /**
@@ -42,10 +52,12 @@ public class Satellite {
      *
      * @param nom nom du satellite
      */
-    public Satellite(String nom){
+    public Satellite(String nom, String url){
         this.identifiant = FabriqueIdentifiants.getInstance().getIdentifiant();
         this.nom = nom;
         this.motsClefs = new HashSet<>(10);
+        this.informations = new ArrayList<>(10);
+        this.url = url;
     }
 
     /**
@@ -123,6 +135,15 @@ public class Satellite {
             cpt = motsClefs.contains(val) ? cpt+1 : cpt;
         }
         return cpt;
+    }
+
+    /**
+     * méthode qui permet de connaitre l'url pour l'image du satellite
+     *
+     * @return url de l'image
+     */
+    public String getUrl() {
+        return url;
     }
 
     @Override

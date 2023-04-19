@@ -2,8 +2,8 @@
 
 <?import javafx.scene.control.*?>
 
-<ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="stamps.controleur.PanneauOutils">
+<ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauOutils">
   <buttons>
-    <Button mnemonicParsing="false" onAction="#ajouter" text="ajouter" />
+    <Button alignment="CENTER" mnemonicParsing="false" onAction="#ajouter" text="ajouter" />
   </buttons>
 </ButtonBar>
