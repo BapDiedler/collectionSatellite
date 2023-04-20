@@ -2,6 +2,7 @@
 
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
@@ -24,6 +25,14 @@
                  </buttons>
                </ButtonBar>
             </bottom>
+            <center>
+               <HBox alignment="CENTER" prefHeight="800.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+                  <children>
+                     <ImageView fitHeight="500.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" />
+                     <VBox alignment="CENTER_RIGHT" prefHeight="800.0" prefWidth="500.0" />
+                  </children>
+               </HBox>
+            </center>
          </BorderPane>
       </children></AnchorPane>
    <fill>
