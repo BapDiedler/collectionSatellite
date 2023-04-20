@@ -58,6 +58,7 @@ public class Satellite {
         this.motsClefs = new HashSet<>(10);
         this.informations = new ArrayList<>(10);
         this.url = url;
+        this.date = Integer.MAX_VALUE;
     }
 
     /**
