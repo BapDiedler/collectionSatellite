@@ -10,10 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import stamps.controleur.PanneauCentral;
-import stamps.controleur.PanneauGlobal;
-import stamps.controleur.PanneauMenu;
-import stamps.controleur.PanneauOutils;
+import stamps.controleur.*;
 import stamps.model.CollectionSatellites;
 
 import java.io.IOException;
@@ -25,7 +22,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("Collection de satellites");
 
-        CollectionSatellites collectionSatellites = new CollectionSatellites() ;
+        /**CollectionSatellites collectionSatellites = new CollectionSatellites() ;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("vue/PanneauGlobal.fxml"));
         PanneauGlobal global = new PanneauGlobal(collectionSatellites);
@@ -38,6 +35,17 @@ public class Main extends Application {
             else if (ic.equals(stamps.controleur.PanneauCentral.class)) return central;
             return global;
         });
+        Scene root = loader.load();
+        primaryStage.setScene(root);
+        primaryStage.show();*/
+
+        CollectionSatellites collectionSatellites = new CollectionSatellites();
+        collectionSatellites.ajouter("A");
+        collectionSatellites.ajouter("B");
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("vue/PanneauDetail.fxml"));
+        PanneauDetail detail = new PanneauDetail(collectionSatellites);
+        loader.setControllerFactory(ic ->detail);
         Scene root = loader.load();
         primaryStage.setScene(root);
         primaryStage.show();
