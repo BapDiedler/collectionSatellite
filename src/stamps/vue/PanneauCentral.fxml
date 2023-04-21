@@ -3,8 +3,9 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-
+<?import javafx.scene.text.*?>
 
 <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauCentral">
    <content>
@@ -15,6 +16,18 @@
          <padding>
             <Insets bottom="10.0" />
          </padding>
+         <children>
+            <HBox fx:id="hbox" onMouseClicked="#changerDetail" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="6.0" prefHeight="16.0" prefWidth="258.0" text="Label">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
       </VBox>
    </content>
 </ScrollPane>
