@@ -13,7 +13,10 @@
             <center>
                <HBox fx:id="hbox" alignment="CENTER" prefHeight="800.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                   <children>
-                     <ImageView fitHeight="500.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" />
+                     <ImageView fitHeight="500.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@/pasImage.jpeg" />
+                        </image></ImageView>
                      <VBox alignment="CENTER_RIGHT" prefHeight="800.0" prefWidth="500.0" />
                   </children>
                </HBox>
@@ -23,7 +26,7 @@
                   <children>
                      <Button mnemonicParsing="false" onAction="#changerGlobal" prefHeight="25.0" prefWidth="93.0" text="global" />
                      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="sauvegarde" />
-                     <Label fx:id="labelTitre" alignment="CENTER" prefHeight="24.0" prefWidth="823.0" text="Label" />
+                     <Label fx:id="labelTitre" alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="823.0" text="Label" />
                   </children>
                </HBox>
             </top>

@@ -13,7 +13,6 @@ import stamps.model.CollectionSatellites;
 import stamps.model.Satellite;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Objects;
 
 public class PanneauDetail extends Controleur{
@@ -64,7 +63,8 @@ public class PanneauDetail extends Controleur{
                 300, 300, true, true) ;
         ImageView imageView = new ImageView(image);
         hbox.getChildren().set(0,imageView);
-        Label label1 = new Label(satellite.getInformations(0).getTexte());
+
+        Label label1 = new Label(satellite.getInformations(0).getTitre());
         hbox.getChildren().set(1,label1);
         date.setText(String.valueOf(satellite.getDate()));
         labelTitre.setText(satellite.getNom());
@@ -77,7 +77,6 @@ public class PanneauDetail extends Controleur{
 
     @FXML
     void changerGlobal() throws IOException {
-        CollectionSatellites collectionSatellites = new CollectionSatellites() ;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../vue/PanneauGlobal.fxml"));
         PanneauGlobal global = new PanneauGlobal(collectionSatellites);

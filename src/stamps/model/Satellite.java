@@ -150,7 +150,7 @@ public class Satellite {
     public Information getInformations(int pos) {
         if(pos< informations.size())
             return informations.get(pos);
-        return null;
+        return new Information();
     }
 
     /**

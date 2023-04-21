@@ -52,7 +52,6 @@ public class PanneauCentral extends Controleur{
 
     @FXML
     void changerDetail() throws IOException {
-        CollectionSatellites collectionSatellites = new CollectionSatellites();
         collectionSatellites.ajouter("A");
         collectionSatellites.ajouter("B");
         Information info = new Information("info1");
