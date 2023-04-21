@@ -62,6 +62,15 @@ public class Satellite {
     }
 
     /**
+     * méthode qui permet d'ajouter des informations
+     *
+     * @param informations nouvelles informations
+     */
+    public void setInformations(Information... informations){
+        this.informations.addAll(List.of(informations));
+    }
+
+    /**
      * setter de mots clefs dans notre satellite
      *
      * @param motsClefs mots clefs ajoutés
@@ -136,6 +145,12 @@ public class Satellite {
             cpt = motsClefs.contains(val) ? cpt+1 : cpt;
         }
         return cpt;
+    }
+
+    public Information getInformations(int pos) {
+        if(pos< informations.size())
+            return informations.get(pos);
+        return null;
     }
 
     /**

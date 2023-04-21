@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import stamps.controleur.*;
 import stamps.model.CollectionSatellites;
+import stamps.model.Information;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -42,6 +43,10 @@ public class Main extends Application {
         CollectionSatellites collectionSatellites = new CollectionSatellites();
         collectionSatellites.ajouter("A");
         collectionSatellites.ajouter("B");
+        Information info = new Information("info1");
+        info.setTexte("azertyhjnbvfds");
+        collectionSatellites.getSatellite(0).setInformations(info);
+        collectionSatellites.getSatellite(1).setInformations(info);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("vue/PanneauDetail.fxml"));
         PanneauDetail detail = new PanneauDetail(collectionSatellites);

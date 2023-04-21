@@ -30,7 +30,21 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      * @param nom nom donné au nouveau satellite
      */
     public void ajouter(String nom){
-        Satellite satellite = new Satellite();
+        ajouter(nom,null);
+    }
+
+
+    /**
+     * méthode qui permet l'ajout de satellite dans la collection
+     *
+     * @param nom nom donné au nouveau satellite
+     * @param url url de l'image du satellite
+     */
+    public void ajouter(String nom, String url){
+        if(url == null){
+            url = "/pasImage.jpeg";
+        }
+        Satellite satellite = new Satellite(nom,url);
         satellites.add(satellite);
         notifierObservateurs();
     }
