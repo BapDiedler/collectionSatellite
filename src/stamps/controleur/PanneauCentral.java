@@ -1,14 +1,18 @@
 package stamps.controleur;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import stamps.model.CollectionSatellites;
+import stamps.model.Information;
 import stamps.model.Satellite;
 
 import java.io.IOException;
@@ -22,6 +26,8 @@ public class PanneauCentral extends Controleur{
 
     @FXML
     private VBox vbox;
+    @FXML
+    private HBox hbox;
 
     /**
      * constructeur principal de la classe
@@ -42,6 +48,28 @@ public class PanneauCentral extends Controleur{
         HBox hbox = new HBox(imageView,label);
         vbox.getChildren().add(hbox);
         vbox.getScene().getRoot().layout();
+    }
+
+    @FXML
+    void changerDetail() throws IOException {
+        CollectionSatellites collectionSatellites = new CollectionSatellites();
+        collectionSatellites.ajouter("A");
+        collectionSatellites.ajouter("B");
+        Information info = new Information("info1");
+        info.setTexte("azertyhjnbvfds");
+        collectionSatellites.getSatellite(0).setInformations(info);
+        collectionSatellites.getSatellite(1).setInformations(info);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../vue/PanneauDetail.fxml"));
+        PanneauDetail detail = new PanneauDetail(collectionSatellites);
+        loader.setControllerFactory(ic ->detail);
+        Scene root = loader.load();
+        // Récupérer la référence de la stage actuelle
+        Stage stage = (Stage) hbox.getScene().getWindow();
+
+        // Changer la scène de la stage actuelle
+        stage.setScene(root);
+        stage.show();
     }
 
     /**
