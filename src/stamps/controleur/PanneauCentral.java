@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,9 +26,9 @@ import java.util.Objects;
 public class PanneauCentral extends Controleur{
 
     @FXML
-    private VBox vbox;
+    private ScrollPane scrollPane;
     @FXML
-    private HBox hbox;
+    private VBox vbox;
 
     /**
      * constructeur principal de la classe
@@ -40,6 +41,8 @@ public class PanneauCentral extends Controleur{
 
     @FXML
     void initialize(){
+        scrollPane.setContent(vbox);
+        vbox.setPrefHeight(scrollPane.getPrefHeight());
         for(Satellite satellite : collectionSatellites){
             ajouter(satellite);
         }
