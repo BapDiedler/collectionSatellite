@@ -39,6 +39,13 @@ public class PanneauCentral extends Controleur{
     }
 
     @FXML
+    void initialize(){
+        for(Satellite satellite : collectionSatellites){
+            ajouter(satellite);
+        }
+    }
+
+    @FXML
     void ajouter(Satellite satellite){
         String url = satellite.getUrl();
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(url)),
@@ -47,24 +54,17 @@ public class PanneauCentral extends Controleur{
         Label label = new Label(satellite.getNom());
         HBox hbox = new HBox(imageView,label);
         vbox.getChildren().add(hbox);
-        vbox.getScene().getRoot().layout();
     }
 
     @FXML
     void changerDetail() throws IOException {
-        collectionSatellites.ajouter("A");
-        collectionSatellites.ajouter("B");
-        Information info = new Information("info1");
-        info.setTexte("azertyhjnbvfds");
-        collectionSatellites.getSatellite(0).setInformations(info);
-        collectionSatellites.getSatellite(1).setInformations(info);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../vue/PanneauDetail.fxml"));
         PanneauDetail detail = new PanneauDetail(collectionSatellites);
         loader.setControllerFactory(ic ->detail);
         Scene root = loader.load();
         // Récupérer la référence de la stage actuelle
-        Stage stage = (Stage) hbox.getScene().getWindow();
+        Stage stage = (Stage) vbox.getScene().getWindow();
 
         // Changer la scène de la stage actuelle
         stage.setScene(root);
