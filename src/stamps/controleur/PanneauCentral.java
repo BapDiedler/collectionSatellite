@@ -62,9 +62,16 @@ public class PanneauCentral extends Controleur{
     @FXML
     void changerDetail() throws IOException {
         FXMLLoader loader = new FXMLLoader();
+
+
         loader.setLocation(getClass().getResource("../vue/PanneauDetail.fxml"));
-        PanneauDetail detail = new PanneauDetail(collectionSatellites);
-        loader.setControllerFactory(ic ->detail);
+        PanneauInformation information = new PanneauInformation(collectionSatellites,collectionSatellites.getSatellite(0));
+        PanneauDetail detail = new PanneauDetail(collectionSatellites, information);
+        loader.setControllerFactory(ic -> {
+            if (ic.equals(stamps.controleur.PanneauInformation.class)) return information;
+            return detail;
+        });
+
         Scene root = loader.load();
         // Récupérer la référence de la stage actuelle
         Stage stage = (Stage) vbox.getScene().getWindow();

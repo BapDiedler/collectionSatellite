@@ -7,7 +7,7 @@ import java.util.*;
  *
  * @author baptistedie
  */
-public class Satellite {
+public class Satellite implements Iterable<Information>{
 
     /**
      * identifiant unique du satellite
@@ -97,6 +97,10 @@ public class Satellite {
         this.date = date;
     }
 
+    public void ajoutInfo(){
+        informations.add(new Information());
+    }
+
     /**
      * getter sur l'identifiant
      *
@@ -153,6 +157,10 @@ public class Satellite {
         return new Information();
     }
 
+    public int nbInformations(){
+        return informations.size();
+    }
+
     /**
      * méthode qui permet de connaitre l'url pour l'image du satellite
      *
@@ -165,5 +173,10 @@ public class Satellite {
     @Override
     public String toString() {
         return nom+identifiant;
+    }
+
+    @Override
+    public Iterator<Information> iterator() {
+        return informations.iterator();
     }
 }
