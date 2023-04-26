@@ -4,10 +4,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import stamps.model.CollectionSatellites;
 import stamps.model.Satellite;
@@ -18,20 +21,34 @@ import java.util.Objects;
 public class PanneauDetail extends Controleur{
 
     public Label labelTitre;
+    public VBox PanneauInformation;
     @FXML
     private HBox hbox;
     @FXML
     private Label date;
+    @FXML
+    private ImageView image;
     private int posSatellite;
+
+    @FXML
+    private Button ajoutInfo;
+
+    private PanneauInformation informations;
 
     /**
      * constructeur principal de la classe
      *
      * @param collectionSatellites collection manipulée par la classe
      */
-    public PanneauDetail(CollectionSatellites collectionSatellites) {
+    public PanneauDetail(CollectionSatellites collectionSatellites, PanneauInformation informations) {
         super(collectionSatellites);
         posSatellite = 0;
+        this.informations = informations;
+    }
+
+    @FXML
+    void initialize(){
+        appliquerInformation();
     }
 
     /**
@@ -59,15 +76,16 @@ public class PanneauDetail extends Controleur{
      */
     private void appliquerInformation(){
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(satellite.getUrl())),
+        Image im = new Image(Objects.requireNonNull(getClass().getResourceAsStream(satellite.getUrl())),
                 300, 300, true, true) ;
-        ImageView imageView = new ImageView(image);
-        hbox.getChildren().set(0,imageView);
-
-        Label label1 = new Label(satellite.getInformations(0).getTitre());
-        hbox.getChildren().set(1,label1);
+        image = new ImageView(im);
         date.setText(String.valueOf(satellite.getDate()));
         labelTitre.setText(satellite.getNom());
+    }
+
+    @FXML
+    private void ajouterInfo(){
+        informations.ajouterInfo();
     }
 
     @FXML

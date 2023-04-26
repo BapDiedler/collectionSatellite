@@ -49,8 +49,12 @@ public class Main extends Application {
         collectionSatellites.getSatellite(1).setInformations(info);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("vue/PanneauDetail.fxml"));
-        PanneauDetail detail = new PanneauDetail(collectionSatellites);
-        loader.setControllerFactory(ic ->detail);
+        PanneauInformation information = new PanneauInformation(collectionSatellites,collectionSatellites.getSatellite(0));
+        PanneauDetail detail = new PanneauDetail(collectionSatellites, information);
+        loader.setControllerFactory(ic -> {
+            if (ic.equals(stamps.controleur.PanneauInformation.class)) return information;
+            return detail;
+        });
         Scene root = loader.load();
         primaryStage.setScene(root);
         primaryStage.show();

@@ -6,15 +6,15 @@
 <Scene xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauGlobal">
     <AnchorPane prefHeight="1000.0">
         <children>
-                <BorderPane layoutX="-2.0" layoutY="-2.0" prefHeight="1000.0" prefWidth="1000.0">
+                <BorderPane layoutX="-2.0" layoutY="-2.0" prefHeight="1000.0" prefWidth="1000.0" styleClass="background" stylesheets="@/styleSheet.css">
                 <top>
-                   <fx:include fx:id="PanneauMenu" source="PanneauMenu.fxml"/>
+                   <fx:include fx:id="PanneauMenu" source="PanneauMenu.fxml" />
                 </top>
                     <center>
-                        <fx:include fx:id="PanneauCentre" source="PanneauCentral.fxml"/>
+                        <fx:include fx:id="PanneauCentre" source="PanneauCentral.fxml" />
                     </center>
                 <bottom>
-                    <fx:include fx:id="PanneauOutils" source="PanneauOutils.fxml"/>
+                    <fx:include fx:id="PanneauOutils" source="PanneauOutils.fxml" />
                 </bottom>
             </BorderPane>
         </children></AnchorPane>
