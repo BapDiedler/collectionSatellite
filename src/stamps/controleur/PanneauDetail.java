@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,14 +17,16 @@ import stamps.model.CollectionSatellites;
 import stamps.model.Satellite;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class PanneauDetail extends Controleur{
 
     public Label labelTitre;
     public VBox PanneauInformation;
+    public ScrollPane scrollPane;
     @FXML
-    private HBox hbox;
+    private VBox vbox;
     @FXML
     private Label date;
     @FXML
@@ -33,7 +36,7 @@ public class PanneauDetail extends Controleur{
     @FXML
     private Button ajoutInfo;
 
-    private PanneauInformation informations;
+    private ArrayList<PanneauInformation> informations;
 
     /**
      * constructeur principal de la classe
@@ -43,11 +46,14 @@ public class PanneauDetail extends Controleur{
     public PanneauDetail(CollectionSatellites collectionSatellites, PanneauInformation informations) {
         super(collectionSatellites);
         posSatellite = 0;
-        this.informations = informations;
+        this.informations = new ArrayList<>(10);
+        this.informations.add(informations);
     }
 
     @FXML
     void initialize(){
+        scrollPane.setContent(vbox);
+        vbox.setPrefHeight(scrollPane.getPrefHeight());
         appliquerInformation();
     }
 
@@ -85,7 +91,20 @@ public class PanneauDetail extends Controleur{
 
     @FXML
     private void ajouterInfo(){
-        informations.ajouterInfo();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
+        PanneauInformation information = new PanneauInformation(collectionSatellites,collectionSatellites.getSatellite(posSatellite));
+        informations.add(information);
+        PanneauDetail detail = new PanneauDetail(collectionSatellites, information);
+        loader.setControllerFactory(ic -> {
+            if (ic.equals(stamps.controleur.PanneauInformation.class)) return information;
+            return detail;
+        });
+        try {
+            vbox.getChildren().add(loader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -109,7 +128,7 @@ public class PanneauDetail extends Controleur{
         });
         Scene root = loader.load();
         // Récupérer la référence de la stage actuelle
-        Stage stage = (Stage) hbox.getScene().getWindow();
+        Stage stage = (Stage) vbox.getScene().getWindow();
 
         // Changer la scène de la stage actuelle
         stage.setScene(root);

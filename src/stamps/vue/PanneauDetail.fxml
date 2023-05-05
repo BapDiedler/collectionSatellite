@@ -11,10 +11,13 @@
       <children>
          <BorderPane prefHeight="1000.0" prefWidth="1000.0" styleClass="background" stylesheets="@/styleSheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
-               <HBox fx:id="hbox" alignment="CENTER" prefHeight="800.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
-                  <children>
-                     <fx:include fx:id="PanneauInformation" source="PanneauInformation.fxml" />
-                  </children></HBox>
+               <ScrollPane fx:id="scrollPane">
+                  <VBox fx:id="vbox" alignment="CENTER" prefHeight="-Infinity" prefWidth="-Infinity" BorderPane.alignment="CENTER">
+                     <children>
+                        <fx:include fx:id="PanneauInformation" source="PanneauInformation.fxml" />
+                     </children>
+                  </VBox>
+               </ScrollPane>
 
             </center>
             <top>
