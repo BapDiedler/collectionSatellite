@@ -26,11 +26,7 @@
             <center>
                <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" BorderPane.alignment="CENTER_RIGHT">
                   <content>
-                  <VBox fx:id="vbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" BorderPane.alignment="CENTER">
-                     <children>
-                        <fx:include fx:id="PanneauInformation" source="PanneauInformation.fxml" />
-                     </children>
-                  </VBox>
+                  <VBox fx:id="vbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" BorderPane.alignment="CENTER" />
                   </content>
                </ScrollPane>
 
@@ -50,13 +46,13 @@
                                  <KeyCodeCombination alt="UP" code="S" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                               </accelerator>
                            </MenuItem>
+                           <MenuItem mnemonicParsing="false" onAction="#ajouterInfo" text="ajout info" />
                        </items>
                         <font>
                            <Font size="15.0" />
                         </font>
                      </SplitMenuButton>
-                     <Label fx:id="labelTitre" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="680.0" text="Label" />
-                     <Button fx:id="ajoutInfo" mnemonicParsing="false" onAction="#ajouterInfo" prefHeight="25.0" prefWidth="125.0" text="ajouter info" />
+                     <Label fx:id="labelTitre" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="680.0" textAlignment="CENTER" textFill="WHITE" />
                   </children>
                </HBox>
             </top>
@@ -64,7 +60,7 @@
                <Pane prefHeight="40.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                   <children>
                      <Button layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#precedent" prefWidth="100.0" text="precedent" />
-                     <Label fx:id="date" alignment="CENTER" layoutX="393.0" layoutY="1.0" prefHeight="38.0" prefWidth="214.0" text="Label" textFill="WHITE" />
+                     <Label fx:id="date" alignment="CENTER" layoutX="393.0" layoutY="1.0" prefHeight="38.0" prefWidth="214.0" textFill="WHITE" />
                      <Button layoutX="886.0" layoutY="8.0" mnemonicParsing="false" onAction="#suivant" prefHeight="25.0" prefWidth="100.0" text="suivant" />
                   </children>
                </Pane>

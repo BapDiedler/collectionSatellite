@@ -2,16 +2,10 @@ package stamps.controleur;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import stamps.model.CollectionSatellites;
 import stamps.model.Information;
-import stamps.model.Satellite;
 
-import java.beans.EventHandler;
 
 public class PanneauInformation extends Controleur{
 
@@ -42,8 +36,6 @@ public class PanneauInformation extends Controleur{
 
     @FXML
     void initialize(){
-        titre = new TextArea();
-        info = new TextArea();
         changerTitre();
         changerInfo();
     }
@@ -71,7 +63,5 @@ public class PanneauInformation extends Controleur{
      */
     @Override
     public void reagir() {
-
-
     }
 }

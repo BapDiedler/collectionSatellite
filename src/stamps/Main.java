@@ -42,11 +42,7 @@ public class Main extends Application {
 
         CollectionSatellites collectionSatellites = new CollectionSatellites();
         collectionSatellites.ajouter("A");
-        collectionSatellites.ajouter("B");
-        Information info = new Information("info1");
-        info.setTexte("azertyhjnbvfds");
-        collectionSatellites.getSatellite(0).setInformations(info);
-        collectionSatellites.getSatellite(1).setInformations(info);
+        //collectionSatellites.ajouter("B");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("vue/PanneauDetail.fxml"));
         PanneauDetail detail = new PanneauDetail(collectionSatellites,0);

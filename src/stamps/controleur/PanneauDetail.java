@@ -35,18 +35,13 @@ public class PanneauDetail extends Controleur{
     @FXML
     private final ArrayList<PanneauInformation> informations;
 
-    @FXML
-    private Button ajoutInfo;
-
     /**
      * constructeur principal de la classe
      *
      * @param collectionSatellites collection manipulée par la classe
      */
     public PanneauDetail(CollectionSatellites collectionSatellites) {
-        super(collectionSatellites);
-        posSatellite = 0;
-        this.informations = new ArrayList<>(10);
+        this(collectionSatellites,0);
     }
 
     /**
@@ -79,7 +74,6 @@ public class PanneauDetail extends Controleur{
             posSatellite += 1;
             appliquerInformation();
         }
-        System.out.println(posSatellite);
     }
 
     /**
@@ -91,7 +85,6 @@ public class PanneauDetail extends Controleur{
             posSatellite -= 1;
             appliquerInformation();
         }
-        System.out.println(posSatellite);
     }
 
     /**
@@ -102,6 +95,8 @@ public class PanneauDetail extends Controleur{
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
         appliquerImage();
         vbox.getChildren().clear();
+        date.setText(String.valueOf(satellite.getDate()));
+        labelTitre.setText(satellite.getNom());
         for(Information information: satellite){
             PanneauInformation panneauInformation = new PanneauInformation(collectionSatellites,information);
             informations.add(panneauInformation);
@@ -134,14 +129,9 @@ public class PanneauDetail extends Controleur{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
         PanneauInformation panneauInfo = new PanneauInformation(collectionSatellites,info);
-        PanneauDetail detail = new PanneauDetail(collectionSatellites,posSatellite);
+        //PanneauDetail detail = new PanneauDetail(collectionSatellites,posSatellite);
         informations.add(panneauInfo);
-        loader.setControllerFactory(ic -> {
-            if(ic.equals(stamps.controleur.PanneauInformation.class))
-                return panneauInfo;
-            else
-                return detail;
-        });
+        loader.setControllerFactory(ic -> panneauInfo);
         try {
             vbox.getChildren().add(loader.load());
         } catch (IOException e) {

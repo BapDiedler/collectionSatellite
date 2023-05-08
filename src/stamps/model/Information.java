@@ -52,10 +52,18 @@ public class Information {
         this.titre = titre;
     }
 
+    /**
+     * méthode qui permet de récupérer le texte de l'information
+     * @return les informations
+     */
     public String getTexte() {
         return texte;
     }
 
+    /**
+     * méthode qui permet d'obtenir le titre de l'information
+     * @return le titre de l'information
+     */
     public String getTitre() {
         return titre;
     }
