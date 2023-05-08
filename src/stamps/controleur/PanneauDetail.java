@@ -2,18 +2,17 @@ package stamps.controleur;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import stamps.model.CollectionSatellites;
+import stamps.model.Information;
 import stamps.model.Satellite;
 
 import java.io.IOException;
@@ -34,27 +33,41 @@ public class PanneauDetail extends Controleur{
     private int posSatellite;
 
     @FXML
-    private Button ajoutInfo;
+    private final ArrayList<PanneauInformation> informations;
 
-    private ArrayList<PanneauInformation> informations;
+    @FXML
+    private Button ajoutInfo;
 
     /**
      * constructeur principal de la classe
      *
      * @param collectionSatellites collection manipulée par la classe
      */
-    public PanneauDetail(CollectionSatellites collectionSatellites, PanneauInformation informations) {
+    public PanneauDetail(CollectionSatellites collectionSatellites) {
         super(collectionSatellites);
         posSatellite = 0;
         this.informations = new ArrayList<>(10);
-        this.informations.add(informations);
     }
 
+    /**
+     * constructeur principal de la classe
+     *
+     * @param posSatellite position du satellite
+     * @param collectionSatellites collection manipulée par la classe
+     */
+    public PanneauDetail(CollectionSatellites collectionSatellites, int posSatellite) {
+        super(collectionSatellites);
+        this.posSatellite = posSatellite;
+        this.informations = new ArrayList<>(10);
+    }
+
+    /**
+     * initialisation des éléments sur l'affichage
+     */
     @FXML
     void initialize(){
-        scrollPane.setContent(vbox);
-        vbox.setPrefHeight(scrollPane.getPrefHeight());
         appliquerInformation();
+        vbox.setPrefHeight(scrollPane.getPrefHeight());
     }
 
     /**
@@ -62,9 +75,11 @@ public class PanneauDetail extends Controleur{
      */
     @FXML
     void suivant(){
-        if(posSatellite!=collectionSatellites.nbSatellites()-1)
-            posSatellite+=1;
-        appliquerInformation();
+        if(posSatellite!=collectionSatellites.nbSatellites()-1) {
+            posSatellite += 1;
+            appliquerInformation();
+        }
+        System.out.println(posSatellite);
     }
 
     /**
@@ -72,33 +87,60 @@ public class PanneauDetail extends Controleur{
      */
     @FXML
     void precedent(){
-        if(posSatellite!=0)
-            posSatellite-=1;
-        appliquerInformation();
+        if(posSatellite!=0) {
+            posSatellite -= 1;
+            appliquerInformation();
+        }
+        System.out.println(posSatellite);
     }
 
     /**
      * méthode qui permet de placer les éléments sur la fenêtre
      */
+    @FXML
     private void appliquerInformation(){
+        Satellite satellite = collectionSatellites.getSatellite(posSatellite);
+        appliquerImage();
+        vbox.getChildren().clear();
+        for(Information information: satellite){
+            PanneauInformation panneauInformation = new PanneauInformation(collectionSatellites,information);
+            informations.add(panneauInformation);
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
+            loader.setControllerFactory(ic ->panneauInformation);
+            try {
+                vbox.getChildren().add(loader.load());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    /**
+     * méthode qui ajout l'image sur l'affichage
+     */
+    private void appliquerImage(){
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
         Image im = new Image(Objects.requireNonNull(getClass().getResourceAsStream(satellite.getUrl())),
                 300, 300, true, true) ;
         image = new ImageView(im);
-        date.setText(String.valueOf(satellite.getDate()));
-        labelTitre.setText(satellite.getNom());
     }
+
 
     @FXML
     private void ajouterInfo(){
+        Information info = new Information();
+        collectionSatellites.getSatellite(posSatellite).setInformations(info);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
-        PanneauInformation information = new PanneauInformation(collectionSatellites,collectionSatellites.getSatellite(posSatellite));
-        informations.add(information);
-        PanneauDetail detail = new PanneauDetail(collectionSatellites, information);
+        PanneauInformation panneauInfo = new PanneauInformation(collectionSatellites,info);
+        PanneauDetail detail = new PanneauDetail(collectionSatellites,posSatellite);
+        informations.add(panneauInfo);
         loader.setControllerFactory(ic -> {
-            if (ic.equals(stamps.controleur.PanneauInformation.class)) return information;
-            return detail;
+            if(ic.equals(stamps.controleur.PanneauInformation.class))
+                return panneauInfo;
+            else
+                return detail;
         });
         try {
             vbox.getChildren().add(loader.load());
@@ -109,7 +151,10 @@ public class PanneauDetail extends Controleur{
 
     @FXML
     void sauvegarde(){
-
+        System.out.println(informations.size());
+        for(PanneauInformation information: informations){
+            information.sauvegardeInformation();
+        }
     }
 
     @FXML

@@ -65,12 +65,10 @@ public class PanneauCentral extends Controleur{
 
 
         loader.setLocation(getClass().getResource("../vue/PanneauDetail.fxml"));
-        PanneauInformation information = new PanneauInformation(collectionSatellites,collectionSatellites.getSatellite(0));
-        PanneauDetail detail = new PanneauDetail(collectionSatellites, information);
-        loader.setControllerFactory(ic -> {
-            if (ic.equals(stamps.controleur.PanneauInformation.class)) return information;
-            return detail;
-        });
+        PanneauDetail detail = new PanneauDetail(collectionSatellites);
+        loader.setControllerFactory(ic ->
+            detail
+        );
 
         Scene root = loader.load();
         // Récupérer la référence de la stage actuelle

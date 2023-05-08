@@ -21,7 +21,7 @@ public class Information {
      * constructeur principal de la classe
      */
     public Information(){
-        this(null);
+        this("titre");
     }
 
     /**
@@ -31,6 +31,7 @@ public class Information {
      */
     public Information(String titre){
         this.titre = titre;
+        this.texte = "zone de texte";
     }
 
     /**
