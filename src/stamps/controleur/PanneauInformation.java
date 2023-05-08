@@ -3,6 +3,7 @@ package stamps.controleur;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import stamps.model.CollectionSatellites;
 import stamps.model.Information;
 
@@ -56,6 +57,19 @@ public class PanneauInformation extends Controleur{
     public void sauvegardeInformation(){
         informationSatellite.setTexte(info.getText());
         informationSatellite.setTitre(titre.getText());
+    }
+
+    public void setDisable(boolean dis){
+        titre.setDisable(dis);
+        info.setDisable(dis);
+        if(dis){
+            titre.setOpacity(3);
+            info.setOpacity(3);
+        }
+    }
+
+    public boolean getDisable(){
+        return titre.isDisable();
     }
 
     /**

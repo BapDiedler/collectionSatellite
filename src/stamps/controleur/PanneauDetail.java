@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
@@ -21,7 +22,7 @@ import java.util.Objects;
 
 public class PanneauDetail extends Controleur{
 
-    public Label labelTitre;
+    public TextArea labelTitre;
     public VBox PanneauInformation;
     public ScrollPane scrollPane;
     @FXML
@@ -141,9 +142,11 @@ public class PanneauDetail extends Controleur{
 
     @FXML
     void sauvegarde(){
-        System.out.println(informations.size());
+        labelTitre.setDisable(!labelTitre.isDisable());
+        scrollPane.setDisable(!scrollPane.isDisabled());
         for(PanneauInformation information: informations){
             information.sauvegardeInformation();
+            information.setDisable(!information.getDisable());
         }
     }
 
