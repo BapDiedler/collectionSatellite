@@ -58,7 +58,7 @@ public class Satellite implements Iterable<Information>{
         this.motsClefs = new HashSet<>(10);
         this.informations = new ArrayList<>(10);
         this.informations.add(new Information());
-        this.url = url;
+        this.url = Objects.requireNonNullElse(url, "/pasImage.jpeg");
         this.date = 2000;
     }
 

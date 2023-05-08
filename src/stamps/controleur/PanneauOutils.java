@@ -33,10 +33,7 @@ public class PanneauOutils extends Controleur{
     @FXML
     void ajouter(){
         collectionSatellites.ajouter("satellite");
-        int placeSatellite = collectionSatellites.nbSatellites()-1;
-        Satellite lastSatellite = collectionSatellites.getSatellite(placeSatellite);
-        centre.ajouter(lastSatellite);
-        System.out.println(collectionSatellites.nbSatellites());
+        centre.ajouter();
     }
 
     /**

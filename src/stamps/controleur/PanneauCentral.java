@@ -18,6 +18,7 @@ import stamps.model.Satellite;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -30,6 +31,9 @@ public class PanneauCentral extends Controleur{
     @FXML
     private VBox vbox;
 
+    @FXML
+    private ArrayList<PanneauSatellite> satellites;
+
     /**
      * constructeur principal de la classe
      *
@@ -37,28 +41,40 @@ public class PanneauCentral extends Controleur{
      */
     public PanneauCentral(CollectionSatellites collectionSatellites) {
         super(collectionSatellites);
+        satellites = new ArrayList<>(10);
     }
 
     @FXML
     void initialize(){
         scrollPane.setContent(vbox);
         vbox.setPrefHeight(scrollPane.getPrefHeight());
-        for(Satellite satellite : collectionSatellites){
-            ajouter(satellite);
+        for(int i=0; i<collectionSatellites.nbSatellites(); i++){
+            ajouter();
         }
     }
 
+    /**
+     * méthode qui permet d'ajouter un satellite à la collection
+     */
     @FXML
-    void ajouter(Satellite satellite){
-        String url = satellite.getUrl();
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(url)),
-                300, 300, true, true) ;
-        ImageView imageView = new ImageView(image);
-        Label label = new Label(satellite.getNom());
-        HBox hbox = new HBox(imageView,label);
-        vbox.getChildren().add(hbox);
+    void ajouter(){
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../vue/PanneauSatellite.fxml"));
+        PanneauSatellite panneauSat = new PanneauSatellite(collectionSatellites,collectionSatellites.nbSatellites()-1);
+        satellites.add(panneauSat);
+        loader.setControllerFactory(ic -> panneauSat);
+        try {
+            vbox.getChildren().add(loader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
+    /**
+     * méthode qui permet d'aller sur la vue détaillée d'un satellite
+     *
+     * @throws IOException
+     */
     @FXML
     void changerDetail() throws IOException {
         FXMLLoader loader = new FXMLLoader();
