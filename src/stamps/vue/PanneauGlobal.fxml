@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Scene?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
 <Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauGlobal">
-    <AnchorPane prefHeight="1000.0">
-        <children>
-                <BorderPane layoutX="-2.0" layoutY="-2.0" prefHeight="1000.0" prefWidth="1000.0" styleClass="background" stylesheets="@/styleSheet.css">
-                <top>
-                   <fx:include fx:id="PanneauMenu" source="PanneauMenu.fxml" />
-                </top>
-                <bottom>
-                    <fx:include fx:id="PanneauOutils" source="PanneauOutils.fxml" />
-                </bottom>
-            <center>
-               <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" styleClass="background" stylesheets="@/styleSheet.css">
-                  <fx:include fx:id="PanneauCentre" source="PanneauCentral.fxml"/>
-               </Pane>
-            </center>
-            </BorderPane>
-        </children></AnchorPane>
+          <BorderPane prefHeight="1000.0" prefWidth="1000.0" styleClass="background" stylesheets="@/styleSheet.css">
+          <top>
+             <fx:include fx:id="PanneauMenu" source="PanneauMenu.fxml" />
+          </top>
+          <bottom>
+              <fx:include fx:id="PanneauOutils" source="PanneauOutils.fxml" />
+          </bottom>
+      <center>
+         <Pane styleClass="background" stylesheets="@/styleSheet.css" BorderPane.alignment="CENTER">
+            <fx:include fx:id="PanneauCentre" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="940.0" prefWidth="1000.0" source="PanneauCentral.fxml" />
+         </Pane>
+      </center>
+      </BorderPane>
 </Scene>
