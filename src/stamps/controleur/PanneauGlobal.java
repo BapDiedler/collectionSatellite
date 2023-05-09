@@ -3,6 +3,7 @@ package stamps.controleur;
 import javafx.fxml.FXML;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import stamps.model.CollectionSatellites;
 

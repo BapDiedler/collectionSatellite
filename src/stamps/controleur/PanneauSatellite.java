@@ -12,7 +12,6 @@ import java.util.Objects;
 public class PanneauSatellite extends Controleur{
     public ImageView image;
     public Label nom;
-
     private int posSatellite;
 
     /**
@@ -30,7 +29,7 @@ public class PanneauSatellite extends Controleur{
         String url = collectionSatellites.getSatellite(posSatellite).getUrl();
         Image imageUrl = new Image(Objects.requireNonNull(getClass().getResourceAsStream(url)),
                 300, 300, true, true) ;
-        image = new ImageView(imageUrl);
+        image.setImage(imageUrl);
         nom.setText(collectionSatellites.getSatellite(posSatellite).getNom());
     }
 
