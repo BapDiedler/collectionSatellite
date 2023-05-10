@@ -1,3 +1,11 @@
 .background {
     -fx-background-color: #323232
 }
+
+.backgroundSat {
+    -fx-background-color: #282828
+}
+
+.backgroundList {
+    -fx-background-color: #323232
+}
