@@ -7,7 +7,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,7 +23,7 @@
       <children>
          <BorderPane prefHeight="1000.0" prefWidth="1000.0" styleClass="background" stylesheets="@/styleSheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
-               <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" BorderPane.alignment="CENTER_RIGHT">
+               <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER_RIGHT">
                   <content>
                   <VBox fx:id="vbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" BorderPane.alignment="CENTER" />
                   </content>
@@ -66,11 +65,7 @@
                </Pane>
             </bottom>
             <left>
-               <ImageView fx:id="image" fitHeight="392.0" fitWidth="415.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                  <image>
-                     <Image url="@/pasImage.jpeg" />
-                  </image>
-               </ImageView>
+               <ImageView fx:id="image" fitHeight="379.0" fitWidth="388.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
             </left>
          </BorderPane>
       </children></AnchorPane>

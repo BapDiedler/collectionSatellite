@@ -44,7 +44,7 @@ public class Satellite implements Iterable<Information>{
      * constructeur vide de la classe
      */
     public Satellite(){
-        this("satellite","/pasImage.jpeg");
+        this("satellite","/Sputnik_asm.jpg");
     }
 
     /**
@@ -58,7 +58,7 @@ public class Satellite implements Iterable<Information>{
         this.motsClefs = new HashSet<>(10);
         this.informations = new ArrayList<>(10);
         this.informations.add(new Information());
-        this.url = Objects.requireNonNullElse(url, "/pasImage.jpeg");
+        this.url = Objects.requireNonNullElse(url, "/Sputnik_asm.jpg");
         this.date = 2000;
     }
 

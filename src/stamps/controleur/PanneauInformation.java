@@ -57,6 +57,7 @@ public class PanneauInformation extends Controleur{
     public void sauvegardeInformation(){
         informationSatellite.setTexte(info.getText());
         informationSatellite.setTitre(titre.getText());
+        collectionSatellites.notifierObservateurs();
     }
 
     public void setDisable(boolean dis){

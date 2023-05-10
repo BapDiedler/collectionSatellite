@@ -1,5 +1,6 @@
 package stamps.controleur;
 
+import javafx.animation.ScaleTransition;
 import javafx.collections.ObservableArray;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,7 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import stamps.model.CollectionSatellites;
 import stamps.model.Satellite;
 
@@ -17,7 +21,10 @@ import java.util.Objects;
 public class PanneauSatellite extends Controleur {
     public ImageView image;
     public Label nom;
+    public HBox hbox;
     private int posSatellite;
+
+    private ScaleTransition scale;
 
     /**
      * constructeur de la classe
@@ -65,6 +72,22 @@ public class PanneauSatellite extends Controleur {
 
     public String getNom() {
         return collectionSatellites.getSatellite(posSatellite).getNom();
+    }
+
+    @FXML
+    void appliquerAnimation(){
+        scale = new ScaleTransition();
+        scale.setDuration(Duration.millis(50));
+        scale.setByZ(2);
+        scale.setCycleCount(5);
+        scale.setAutoReverse(false);
+        scale.setNode(hbox);
+        scale.play();
+    }
+
+    @FXML
+    void supprimerAnimation(){
+        scale.stop();
     }
 
     /**

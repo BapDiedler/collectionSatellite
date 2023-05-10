@@ -13,7 +13,12 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
     /**
      * collection de satellites référencée par leur identifiant unique
      */
-    ArrayList<Satellite> satellites;
+    private ArrayList<Satellite> satellites;
+
+    /**
+     * champ qui nous permet de savoir si la vue est en mode consultation ou non
+     */
+    private boolean estConsulte;
 
 
     /**
@@ -22,6 +27,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
     public CollectionSatellites(){
         super();
         satellites = new ArrayList<>(10);
+        estConsulte=true;
     }
 
     /**
@@ -42,7 +48,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      */
     public void ajouter(String nom, String url){
         if(url == null){
-            url = "/pasImage.jpeg";
+            url = "/Sputnik_asm.jpg";
         }
         Satellite satellite = new Satellite(nom,url);
         satellites.add(satellite);
@@ -50,10 +56,18 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
     }
 
     /**
+     * méthode pour changer de mode de consultation
+     */
+    public void setEstConsulte() {
+        estConsulte = !estConsulte;
+    }
+
+    /**
      * méthode qui permet de trier les satellites en fonction de leur date de création
      */
     public void trierDate(){
         satellites.sort(Comparator.comparingInt(Satellite::getDate));
+        notifierObservateurs();
     }
 
     /**
@@ -61,6 +75,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      */
     public void trierApparition(){
         satellites.sort(Comparator.comparing(Satellite::getIdentifiant));
+        notifierObservateurs();
     }
 
     /**
@@ -68,6 +83,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      */
     public void trierNom(){
         satellites.sort(Comparator.comparing(Satellite::getNom));
+        notifierObservateurs();
     }
 
     @Override
@@ -129,6 +145,15 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
             newArray.add(sat.getValue());
         }
         return newArray;
+    }
+
+    /**
+     * méthode pour connaitre le mode de vue
+     *
+     * @return true on est en mode consultation
+     */
+    public boolean isEstConsulte() {
+        return estConsulte;
     }
 
     /**
