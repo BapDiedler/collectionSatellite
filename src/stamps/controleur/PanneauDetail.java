@@ -3,10 +3,7 @@ package stamps.controleur;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
@@ -30,6 +27,9 @@ public class PanneauDetail extends Controleur{
     private Label date;
     @FXML
     private ImageView image;
+
+    @FXML
+    private MenuItem ajout;
     private int posSatellite;
 
     private final ArrayList<PanneauInformation> informations;
@@ -96,6 +96,7 @@ public class PanneauDetail extends Controleur{
         date.setText(String.valueOf(satellite.getDate()));
         labelTitre.setText(satellite.getNom());
         if(!collectionSatellites.isEstConsulte()) {
+            ajout.setDisable(false);
             for (Information information : satellite) {
                 PanneauInformation panneauInformation = new PanneauInformation(collectionSatellites, information);
                 informations.add(panneauInformation);
@@ -109,6 +110,7 @@ public class PanneauDetail extends Controleur{
                 }
             }
         }else{
+            ajout.setDisable(true);
             informations.clear();
             for(Information information : satellite) {
                 PanneauInformationConsultation informationConsultation = new PanneauInformationConsultation(information);
@@ -137,17 +139,19 @@ public class PanneauDetail extends Controleur{
 
     @FXML
     private void ajouterInfo(){
-        Information info = new Information();
-        collectionSatellites.getSatellite(posSatellite).setInformations(info);
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
-        PanneauInformation panneauInfo = new PanneauInformation(collectionSatellites,info);
-        informations.add(panneauInfo);
-        loader.setControllerFactory(ic -> panneauInfo);
-        try {
-            vbox.getChildren().add(loader.load());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if(!collectionSatellites.isEstConsulte()) {
+            Information info = new Information();
+            collectionSatellites.getSatellite(posSatellite).setInformations(info);
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
+            PanneauInformation panneauInfo = new PanneauInformation(collectionSatellites, info);
+            informations.add(panneauInfo);
+            loader.setControllerFactory(ic -> panneauInfo);
+            try {
+                vbox.getChildren().add(loader.load());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

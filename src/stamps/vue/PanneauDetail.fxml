@@ -45,7 +45,10 @@
                                  <KeyCodeCombination alt="UP" code="S" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                               </accelerator>
                            </MenuItem>
-                           <MenuItem mnemonicParsing="false" onAction="#ajouterInfo" text="ajout info" />
+                           <MenuItem fx:id="ajout" mnemonicParsing="false" onAction="#ajouterInfo" text="ajout info">
+                              <accelerator>
+                                 <KeyCodeCombination alt="UP" code="C" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                              </accelerator></MenuItem>
                        </items>
                         <font>
                            <Font size="15.0" />

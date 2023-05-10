@@ -14,7 +14,7 @@
           </bottom>
       <center>
          <Pane styleClass="background" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER">
-            <fx:include fx:id="PanneauCentre" layoutX="100.0" layoutY="200.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="600.0" source="PanneauCentral.fxml" />
+            <fx:include fx:id="PanneauCentre" layoutX="100.0" layoutY="200.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="610.0" source="PanneauCentral.fxml" />
          </Pane>
       </center>
       </BorderPane>

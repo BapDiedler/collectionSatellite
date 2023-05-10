@@ -76,18 +76,10 @@ public class PanneauSatellite extends Controleur {
 
     @FXML
     void appliquerAnimation(){
-        scale = new ScaleTransition();
-        scale.setDuration(Duration.millis(50));
-        scale.setByZ(2);
-        scale.setCycleCount(5);
-        scale.setAutoReverse(false);
-        scale.setNode(hbox);
-        scale.play();
     }
 
     @FXML
     void supprimerAnimation(){
-        scale.stop();
     }
 
     /**

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.text.Font?>
 
-<ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauMenu">
+<ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauMenu">
   <buttons>
-    <Button mnemonicParsing="false" onAction="#quitter" text="quitter" />
+    <Button mnemonicParsing="false" onAction="#quitter" prefHeight="43.0" prefWidth="183.0" text="quitter" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
   </buttons>
 </ButtonBar>
