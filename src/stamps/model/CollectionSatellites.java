@@ -39,6 +39,15 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         ajouter(nom,null);
     }
 
+    /**
+     * méthode qui permet d'ajouter un satellite qui existe déjà
+     *
+     * @param satellite satellite ajouté
+     */
+    public void ajouter(Satellite satellite){
+        satellites.add(satellite);
+    }
+
 
     /**
      * méthode qui permet l'ajout de satellite dans la collection
