@@ -23,7 +23,6 @@ import java.util.Objects;
 public class PanneauDetail extends Controleur{
 
     public TextArea labelTitre;
-    public VBox PanneauInformation;
     public ScrollPane scrollPane;
     @FXML
     private VBox vbox;
@@ -96,7 +95,6 @@ public class PanneauDetail extends Controleur{
         vbox.getChildren().clear();
         date.setText(String.valueOf(satellite.getDate()));
         labelTitre.setText(satellite.getNom());
-        informations.clear();
         if(!collectionSatellites.isEstConsulte()) {
             for (Information information : satellite) {
                 PanneauInformation panneauInformation = new PanneauInformation(collectionSatellites, information);
@@ -111,8 +109,9 @@ public class PanneauDetail extends Controleur{
                 }
             }
         }else{
+            informations.clear();
             for(Information information : satellite) {
-                PanneauInformationConsultation informationConsultation = new PanneauInformationConsultation(satellite,information);
+                PanneauInformationConsultation informationConsultation = new PanneauInformationConsultation(information);
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("../vue/PanneauInformationConsultation.fxml"));
                 loader.setControllerFactory(ic -> informationConsultation);

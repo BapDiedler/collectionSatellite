@@ -12,19 +12,26 @@ public class PanneauInformationConsultation {
     @FXML
     private VBox vbox;
 
-    private Satellite satellite;
+    @FXML
+    private Label info;
+
+    @FXML
+    private Label titre;
 
     private Information information;
 
-    public PanneauInformationConsultation(Satellite satellite, Information information){
-        this.satellite = satellite;
+    /**
+     * constructeur de la classe
+     *
+     * @param information information
+     */
+    public PanneauInformationConsultation(Information information){
         this.information = information;
     }
 
     @FXML
     void initialize(){
-            Label titre = new Label(information.getTitre());
-            Label info = new Label(information.getTexte());
-            vbox.getChildren().addAll(titre,info);
+            titre.setText(information.getTitre());
+            info.setText(information.getTexte());
     }
 }

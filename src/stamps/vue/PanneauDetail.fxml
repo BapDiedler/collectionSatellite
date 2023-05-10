@@ -25,7 +25,7 @@
             <center>
                <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER_RIGHT">
                   <content>
-                  <VBox fx:id="vbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" BorderPane.alignment="CENTER" />
+                  <VBox fx:id="vbox" alignment="CENTER" maxHeight="600.0" maxWidth="600.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER" />
                   </content>
                </ScrollPane>
 

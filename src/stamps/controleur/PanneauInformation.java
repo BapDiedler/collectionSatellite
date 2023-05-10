@@ -11,18 +11,12 @@ import stamps.model.Information;
 public class PanneauInformation extends Controleur{
 
     @FXML
-    private VBox vbox;
-
-    @FXML
     private TextArea titre;
 
     @FXML
     private TextArea info;
 
     private final Information informationSatellite;
-
-    @FXML
-    private VBox informations;
 
 
     /**
@@ -57,20 +51,6 @@ public class PanneauInformation extends Controleur{
     public void sauvegardeInformation(){
         informationSatellite.setTexte(info.getText());
         informationSatellite.setTitre(titre.getText());
-        collectionSatellites.notifierObservateurs();
-    }
-
-    public void setDisable(boolean dis){
-        titre.setDisable(dis);
-        info.setDisable(dis);
-        if(dis){
-            titre.setOpacity(3);
-            info.setOpacity(3);
-        }
-    }
-
-    public boolean getDisable(){
-        return titre.isDisable();
     }
 
     /**

@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 
-<VBox fx:id="vbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauInformationConsultation" />
+<Pane prefHeight="172.0" prefWidth="600.0" styleClass="backgroundSat" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauInformationConsultation">
+   <children>
+      <Label fx:id="titre" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" prefHeight="77.0" prefWidth="592.0" styleClass="backgroundSat" stylesheets="@../../ressource/styleSheet.css" text="Label" textFill="WHITE" underline="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="info" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="-4.0" layoutY="86.0" prefHeight="71.0" prefWidth="600.0" styleClass="backgroundSat" text="Label" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
