@@ -1,5 +1,6 @@
 package stamps.controleur;
 
+import com.google.gson.Gson;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import stamps.model.CollectionSatellites;
 import stamps.model.Information;
 import stamps.model.Satellite;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -160,6 +162,13 @@ public class PanneauDetail extends Controleur{
         if(!collectionSatellites.isEstConsulte()){
             Satellite satellite = collectionSatellites.getSatellite(posSatellite);
             satellite.setNom(labelTitre.getText());
+            Gson gson = new Gson();
+            String json = gson.toJson(satellite);
+            try (FileWriter writer = new FileWriter("src/ressource/sauvegarde/sat"+posSatellite+".json")) {
+                writer.write(json);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             for(PanneauInformation information: informations){
                 information.sauvegardeInformation();
             }
