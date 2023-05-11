@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -11,6 +13,13 @@
          <font>
             <Font size="20.0" />
          </font>
+         <contextMenu>
+            <ContextMenu fx:id="menuContext">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
       </Label>
       <ImageView fx:id="image" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
    </children>
