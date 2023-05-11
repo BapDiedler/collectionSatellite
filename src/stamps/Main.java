@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import stamps.controleur.*;
 import stamps.model.CollectionSatellites;
+import stamps.model.Compteur;
 import stamps.model.Information;
 import stamps.model.Satellite;
 
@@ -48,7 +49,8 @@ public class Main extends Application {
         
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("vue/PanneauGlobal.fxml"));
-        PanneauGlobal global = new PanneauGlobal(collectionSatellites);
+        Compteur compteur = new Compteur();
+        PanneauGlobal global = new PanneauGlobal(collectionSatellites,compteur);
         PanneauMenu menu = new PanneauMenu(collectionSatellites);
         PanneauCentral central = new PanneauCentral(collectionSatellites);
         PanneauOutils outils = new PanneauOutils(collectionSatellites,central);

@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 <Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauGlobal">
-          <BorderPane prefHeight="1000.0" prefWidth="1000.0" styleClass="background" stylesheets="@/styleSheet.css">
+          <BorderPane prefHeight="1000.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css">
           <top>
              <fx:include fx:id="PanneauMenu" source="PanneauMenu.fxml" />
           </top>
@@ -24,5 +24,12 @@
             </Label>
          </Pane>
       </center>
+      <right>
+         <Label fx:id="compte" prefHeight="82.0" prefWidth="149.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" text="Label" textFill="WHITE" BorderPane.alignment="CENTER">
+            <font>
+               <Font name="System Italic" size="25.0" />
+            </font>
+         </Label>
+      </right>
       </BorderPane>
 </Scene>
