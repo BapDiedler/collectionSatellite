@@ -98,6 +98,10 @@ public class Satellite implements Iterable<Information>{
         this.date = date;
     }
 
+    public void setUrl(String url){
+        this.url = url;
+    }
+
     public void ajoutInfo(){
         informations.add(new Information());
     }

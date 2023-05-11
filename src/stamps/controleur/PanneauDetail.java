@@ -9,11 +9,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import stamps.model.CollectionSatellites;
 import stamps.model.Information;
 import stamps.model.Satellite;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class PanneauDetail extends Controleur{
 
     public TextArea labelTitre;
     public ScrollPane scrollPane;
+
     @FXML
     private VBox vbox;
     @FXML
@@ -111,6 +114,7 @@ public class PanneauDetail extends Controleur{
                     throw new RuntimeException(e);
                 }
             }
+            vbox.setPrefHeight(scrollPane.getPrefHeight());
         }else{
             ajout.setDisable(true);
             informations.clear();
@@ -125,6 +129,7 @@ public class PanneauDetail extends Controleur{
                     throw new RuntimeException(e);
                 }
             }
+            vbox.setPrefHeight(scrollPane.getPrefHeight());
         }
     }
 
@@ -151,6 +156,7 @@ public class PanneauDetail extends Controleur{
             loader.setControllerFactory(ic -> panneauInfo);
             try {
                 vbox.getChildren().add(loader.load());
+                vbox.setPrefHeight(scrollPane.getPrefHeight());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -198,6 +204,25 @@ public class PanneauDetail extends Controleur{
         // Changer la scène de la stage actuelle
         stage.setScene(root);
         stage.show();
+    }
+
+    @FXML
+    void chercheImage(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Sélectionner une image");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg"));
+
+        File initialDirectory = new File("src/ressource/");
+        fileChooser.setInitialDirectory(initialDirectory);
+
+        Stage stage = (Stage) vbox.getScene().getWindow();
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        if (selectedFile != null) {
+            String imagePath = '/'+selectedFile.getName();
+            collectionSatellites.getSatellite(posSatellite).setUrl(imagePath);
+        }
+        collectionSatellites.notifierObservateurs();
     }
 
     /**

@@ -1,6 +1,7 @@
 package stamps.controleur;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
 import stamps.model.CollectionSatellites;
 
 /**
@@ -9,6 +10,10 @@ import stamps.model.CollectionSatellites;
  * @author baptistedie
  */
 public class PanneauMenu extends Controleur{
+
+    public MenuItem ajout;
+    @FXML
+    MenuItem edition;
 
     /**
      * constructeur principal de la classe
@@ -20,8 +25,45 @@ public class PanneauMenu extends Controleur{
     }
 
     @FXML
+    void initialize(){
+        reagir();
+    }
+
+    @FXML
     void quitter(){
         System.exit(0);
+    }
+
+    @FXML
+    void trierNom(){
+        collectionSatellites.trierNom();
+        collectionSatellites.notifierObservateurs();
+    }
+
+    @FXML
+    void trierDate(){
+        collectionSatellites.trierDate();
+        collectionSatellites.notifierObservateurs();
+    }
+
+    @FXML
+    void trierApparition(){
+        collectionSatellites.trierApparition();
+        collectionSatellites.notifierObservateurs();
+    }
+
+    @FXML
+    void changeEdition(){
+        collectionSatellites.setEstConsulte();
+        collectionSatellites.notifierObservateurs();
+    }
+
+    /**
+     * méthode qui permet d'ajouter des éléments à la collection
+     */
+    @FXML
+    void ajouter(){
+        collectionSatellites.ajouter("satellite");
     }
 
     /**
@@ -29,6 +71,12 @@ public class PanneauMenu extends Controleur{
      */
     @Override
     public void reagir() {
-
+        if(collectionSatellites.isEstConsulte()){
+            edition.setText("édition");
+            ajout.setDisable(true);
+        }else{
+            edition.setText("consultation");
+            ajout.setDisable(false);
+        }
     }
 }

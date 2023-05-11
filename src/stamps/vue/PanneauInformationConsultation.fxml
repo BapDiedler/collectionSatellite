@@ -4,8 +4,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane prefHeight="172.0" prefWidth="600.0" styleClass="backgroundSat" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauInformationConsultation">
+<Pane minHeight="172.0" minWidth="600.0" prefHeight="172.0" prefWidth="600.0" styleClass="backgroundSat" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauInformationConsultation">
    <children>
       <Label fx:id="titre" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" prefHeight="77.0" prefWidth="592.0" styleClass="backgroundSat" stylesheets="@../../ressource/styleSheet.css" text="Label" textFill="WHITE" underline="true">
          <font>

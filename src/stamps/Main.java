@@ -24,10 +24,7 @@ import java.util.Objects;
 
 public class Main extends Application {
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        primaryStage.setTitle("Collection de satellites");
-
+    private CollectionSatellites recuperationDonnees(){
         CollectionSatellites collectionSatellites = new CollectionSatellites();
         Gson gson = new Gson();
         File directory = new File("src/ressource/sauvegarde");
@@ -40,6 +37,15 @@ public class Main extends Application {
                 e.printStackTrace();
             }
         }
+        return collectionSatellites;
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        primaryStage.setTitle("Collection de satellites");
+
+        CollectionSatellites collectionSatellites = recuperationDonnees();
+        
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("vue/PanneauGlobal.fxml"));
         PanneauGlobal global = new PanneauGlobal(collectionSatellites);

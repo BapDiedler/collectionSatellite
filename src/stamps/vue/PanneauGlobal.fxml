@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauGlobal">
           <BorderPane prefHeight="1000.0" prefWidth="1000.0" styleClass="background" stylesheets="@/styleSheet.css">
@@ -15,6 +17,11 @@
       <center>
          <Pane styleClass="background" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER">
             <fx:include fx:id="PanneauCentre" layoutX="100.0" layoutY="200.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="610.0" source="PanneauCentral.fxml" />
+            <Label alignment="CENTER" layoutX="3.0" layoutY="50.0" prefHeight="98.0" prefWidth="1000.0" text="collection de satellites" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="28.0" />
+               </font>
+            </Label>
          </Pane>
       </center>
       </BorderPane>

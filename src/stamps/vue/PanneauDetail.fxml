@@ -68,7 +68,7 @@
                </Pane>
             </bottom>
             <left>
-               <ImageView fx:id="image" fitHeight="379.0" fitWidth="388.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+               <ImageView fx:id="image" fitHeight="379.0" fitWidth="388.0" onMouseClicked="#chercheImage" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
             </left>
          </BorderPane>
       </children></AnchorPane>

@@ -65,6 +65,15 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
     }
 
     /**
+     * suppression d'un satellite
+     *
+     * @param satellite satellite supprimer
+     */
+    public void supprimer(Satellite satellite){
+        satellites.remove(satellite);
+    }
+
+    /**
      * méthode pour changer de mode de consultation
      */
     public void setEstConsulte() {

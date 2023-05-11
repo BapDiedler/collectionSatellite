@@ -8,12 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import stamps.model.CollectionSatellites;
-import stamps.model.Satellite;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -48,26 +47,29 @@ public class PanneauSatellite extends Controleur {
     /**
      * méthode qui permet d'aller sur la vue détaillée d'un satellite
      *
-     * @throws IOException
+     * @throws IOException exception liée au chargement de fichier
      */
     @FXML
-    void changerDetail() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-
-
-        loader.setLocation(getClass().getResource("../vue/PanneauDetail.fxml"));
-        PanneauDetail detail = new PanneauDetail(collectionSatellites);
-        loader.setControllerFactory(ic ->
-                detail
-        );
-
-        Scene root = loader.load();
-        // Récupérer la référence de la stage actuelle
-        Stage stage = (Stage) image.getScene().getWindow();
-
-        // Changer la scène de la stage actuelle
-        stage.setScene(root);
-        stage.show();
+    void changerDetail(MouseEvent event) throws IOException {
+        if(event.getButton() == MouseButton.SECONDARY) {
+            if(!collectionSatellites.isEstConsulte()) {
+                collectionSatellites.supprimer(collectionSatellites.getSatellite(posSatellite));
+                collectionSatellites.notifierObservateurs();
+            }
+        }else {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../vue/PanneauDetail.fxml"));
+            PanneauDetail detail = new PanneauDetail(collectionSatellites);
+            loader.setControllerFactory(ic ->
+                    detail
+            );
+            Scene root = loader.load();
+            // Récupérer la référence de la stage actuelle
+            Stage stage = (Stage) image.getScene().getWindow();
+            // Changer la scène de la stage actuelle
+            stage.setScene(root);
+            stage.show();
+        }
     }
 
     public String getNom() {
@@ -76,10 +78,12 @@ public class PanneauSatellite extends Controleur {
 
     @FXML
     void appliquerAnimation(){
+        nom.setStyle("-fx-background-color: #112155");
     }
 
     @FXML
     void supprimerAnimation(){
+        nom.setStyle("-fx-background-color: #323232");
     }
 
     /**

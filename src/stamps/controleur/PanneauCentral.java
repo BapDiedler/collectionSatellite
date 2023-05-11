@@ -52,6 +52,11 @@ public class PanneauCentral extends Controleur{
         }
     }
 
+    /**
+     * méthode qui ajout un satellite
+     *
+     * @param ind position du satellite
+     */
     void ajouter(int ind){
         PanneauSatellite panneauSat = new PanneauSatellite(collectionSatellites,ind);
         FXMLLoader loader = new FXMLLoader();
