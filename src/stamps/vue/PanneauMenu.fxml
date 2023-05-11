@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.text.Font?>
 
-<ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauMenu">
+<ButtonBar fx:id="buttonBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauMenu">
   <buttons>
+      <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="44.0" prefWidth="183.0" text="Trier">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#trierNom" text="nom" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#trierDate" text="date" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#trierApparition" text="apparition" />
+        </items>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </MenuButton>
       <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="44.0" prefWidth="183.0" text="Menu" textAlignment="CENTER">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#quitter" text="quitter" />
-            <Menu mnemonicParsing="false" text="trier">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#trierNom" text="nom" />
-                  <MenuItem mnemonicParsing="false" onAction="#trierDate" text="date" />
-                  <MenuItem mnemonicParsing="false" onAction="#trierApparition" text="apparition" />
-              </items>
-            </Menu>
             <SeparatorMenuItem mnemonicParsing="false" />
           <MenuItem fx:id="edition" mnemonicParsing="false" onAction="#changeEdition" text="edition" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="ajout" mnemonicParsing="false" onAction="#ajouter" text="ajouter" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#sauvegarder" text="sauvegarder" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#chercheDonnee" text="récupDonnée" />
         </items>
          <font>
             <Font size="20.0" />

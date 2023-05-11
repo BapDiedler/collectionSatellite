@@ -1,16 +1,23 @@
 package stamps.controleur;
 
 import com.google.gson.Gson;
+import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import stamps.model.CollectionSatellites;
 import stamps.model.Information;
 import stamps.model.Satellite;
@@ -25,6 +32,7 @@ public class PanneauDetail extends Controleur{
 
     public TextArea labelTitre;
     public ScrollPane scrollPane;
+    public BorderPane borderPane;
 
     @FXML
     private VBox vbox;
@@ -163,6 +171,9 @@ public class PanneauDetail extends Controleur{
         }
     }
 
+    /**
+     * méthode qui permet de sauvegarder les données
+     */
     @FXML
     void sauvegarde(){
         if(!collectionSatellites.isEstConsulte()){
@@ -183,8 +194,40 @@ public class PanneauDetail extends Controleur{
         collectionSatellites.notifierObservateurs();
     }
 
+    /**
+     * méthode qui permet de faire la transition entre la vue détaillé et la vue global
+     */
     @FXML
-    void changerGlobal() throws IOException {
+    void changerGlobal() {
+
+        ProgressBar progressBar = new ProgressBar();
+        progressBar.setPrefWidth(600);
+        progressBar.setStyle("-fx-background-color: red");
+
+        Pane pane = new Pane(progressBar);
+
+        // Ajouter la barre de chargement à la première scène
+        vbox.getChildren().add(pane);
+
+        // Créer l'animation de la barre de chargement
+        Timeline timeline = new Timeline();
+        KeyFrame startFrame = new KeyFrame(Duration.ZERO, new KeyValue(progressBar.progressProperty(), 0));
+        KeyFrame endFrame = new KeyFrame(Duration.seconds(2), new KeyValue(progressBar.progressProperty(), 1));
+        timeline.getKeyFrames().addAll(startFrame, endFrame);
+        timeline.setOnFinished(e -> {
+            changerVue();
+            // Supprimer la barre de chargement de la première scène
+            borderPane.getChildren().remove(pane);
+        });
+        timeline.play();
+
+    }
+
+
+    /**
+     * méthode qui permet de changer de vue
+     */
+    private void changerVue(){
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../vue/PanneauGlobal.fxml"));
         PanneauGlobal global = new PanneauGlobal(collectionSatellites);
@@ -197,7 +240,12 @@ public class PanneauDetail extends Controleur{
             else if (ic.equals(stamps.controleur.PanneauCentral.class)) return central;
             return global;
         });
-        Scene root = loader.load();
+        Scene root = null;
+        try {
+            root = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
         // Récupérer la référence de la stage actuelle
         Stage stage = (Stage) vbox.getScene().getWindow();
 

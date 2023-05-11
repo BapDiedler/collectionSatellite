@@ -21,7 +21,7 @@ public class PanneauSatellite extends Controleur {
     public ImageView image;
     public Label nom;
     public HBox hbox;
-    private int posSatellite;
+    private final int posSatellite;
 
     private ScaleTransition scale;
 
@@ -78,11 +78,13 @@ public class PanneauSatellite extends Controleur {
 
     @FXML
     void appliquerAnimation(){
+        hbox.setStyle("-fx-background-color: #112155");
         nom.setStyle("-fx-background-color: #112155");
     }
 
     @FXML
     void supprimerAnimation(){
+        hbox.setStyle("-fx-background-color: #323232");
         nom.setStyle("-fx-background-color: #323232");
     }
 
