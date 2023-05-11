@@ -117,14 +117,14 @@ public class PanneauSatellite extends Controleur {
 
     @FXML
     void appliquerAnimation(){
-        hbox.setStyle("-fx-background-color: #112155");
-        nom.setStyle("-fx-background-color: #112155");
+        hbox.setStyle("-fx-background-color: #1d8dd7");
+        nom.setStyle("-fx-background-color: #1d8dd7");
     }
 
     @FXML
     void supprimerAnimation(){
-        hbox.setStyle("-fx-background-color: #323232");
-        nom.setStyle("-fx-background-color: #323232");
+        hbox.setStyle("-fx-background-color: #181818");
+        nom.setStyle("-fx-background-color: #181818");
     }
 
     /**
