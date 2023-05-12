@@ -57,7 +57,7 @@ public class PanneauSatellite extends Controleur {
             collectionSatellites.clear();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../vue/PanneauDetail.fxml"));
-            PanneauDetail detail = new PanneauDetail(collectionSatellites);
+            PanneauDetail detail = new PanneauDetail(collectionSatellites,posSatellite);
             loader.setControllerFactory(ic ->
                     detail
             );
