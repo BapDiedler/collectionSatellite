@@ -11,6 +11,8 @@ import stamps.model.CollectionSatellites;
 import stamps.model.Satellite;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * classe qui permet de manipuler les composants de menu dans la vue principale
@@ -77,9 +79,17 @@ public class PanneauMenu extends Controleur{
 
     @FXML
     void sauvegarder(){
+        File selectedDirectory = new File("src/ressource/sauvegarde/");
+        Path directoryPath = selectedDirectory.toPath();
+        long nombreElements = 0;
+        try {
+            nombreElements = Files.list(directoryPath).count();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(collectionSatellites,CollectionSatellites.class);
-        try (FileWriter writer = new FileWriter("src/ressource/sauvegarde/collection1.json")) {
+        try (FileWriter writer = new FileWriter("src/ressource/sauvegarde/collection"+(nombreElements)+".json")) {
             writer.write(json);
         } catch (IOException e) {
             e.printStackTrace();
@@ -105,7 +115,7 @@ public class PanneauMenu extends Controleur{
         File selectedFile = fileChooser.showOpenDialog(stage);
         if (selectedFile != null) {
             File fichier = selectedFile.getAbsoluteFile();
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
             FileReader fileReader = null;
             try {
                 fileReader = new FileReader(fichier);
@@ -113,7 +123,7 @@ public class PanneauMenu extends Controleur{
                 throw new RuntimeException(e);
             }
             BufferedReader reader = new BufferedReader(fileReader);
-            collectionSatellites  = gson.fromJson(reader,CollectionSatellites.class);
+            collectionSatellites.copieCollectionSatellites(gson.fromJson(reader,CollectionSatellites.class));
         }
         collectionSatellites.notifierObservateurs();
     }

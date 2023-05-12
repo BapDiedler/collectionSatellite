@@ -31,6 +31,14 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
     }
 
     /**
+     * constructeur principal de la classe
+     */
+    public void copieCollectionSatellites(CollectionSatellites collectionSatellites){
+        satellites = collectionSatellites.getSatellites();
+        estConsulte= true;
+    }
+
+    /**
      * méthode qui permet l'ajout de satellite dans la collection
      *
      * @param nom nom donné au nouveau satellite
