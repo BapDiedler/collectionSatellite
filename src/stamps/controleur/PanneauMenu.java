@@ -21,10 +21,20 @@ import java.nio.file.Path;
  */
 public class PanneauMenu extends Controleur{
 
+    /**
+     * bouton qui permet d'ajouter un élément
+     */
     public MenuItem ajout;
+
+    /**
+     * bar contenant les boutons
+     */
     public ButtonBar buttonBar;
-    @FXML
-    MenuItem edition;
+
+    /**
+     *
+     */
+    public MenuItem edition;
 
     /**
      * constructeur principal de la classe
@@ -40,29 +50,44 @@ public class PanneauMenu extends Controleur{
         reagir();
     }
 
+    /**
+     * méthode qui ferme la fenêtre
+     */
     @FXML
     void quitter(){
         System.exit(0);
     }
 
+    /**
+     * méthode qui permet de trier les satellites par leur nom
+     */
     @FXML
     void trierNom(){
         collectionSatellites.trierNom();
         collectionSatellites.notifierObservateurs();
     }
 
+    /**
+     * méthode qui permet de trier les satellites par leur date
+     */
     @FXML
     void trierDate(){
         collectionSatellites.trierDate();
         collectionSatellites.notifierObservateurs();
     }
 
+    /**
+     * méthode qui permet de trier par apparition dans la collection
+     */
     @FXML
     void trierApparition(){
         collectionSatellites.trierApparition();
         collectionSatellites.notifierObservateurs();
     }
 
+    /**
+     * méthode qui change le mode de consultation
+     */
     @FXML
     void changeEdition(){
         collectionSatellites.setEstConsulte();
@@ -77,6 +102,10 @@ public class PanneauMenu extends Controleur{
         collectionSatellites.ajouter("satellite");
     }
 
+
+    /**
+     * méthode qui permet de sauvegarder la collection de satellites en format Json
+     */
     @FXML
     void sauvegarder(){
         File selectedDirectory = new File("src/ressource/sauvegarde/");

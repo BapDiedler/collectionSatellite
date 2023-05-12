@@ -34,7 +34,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      * constructeur principal de la classe
      */
     public void copieCollectionSatellites(CollectionSatellites collectionSatellites){
-        satellites = collectionSatellites.getSatellites();
+        satellites = collectionSatellites.satellites;
         estConsulte= true;
     }
 
@@ -208,10 +208,5 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
             affichage.append(satellite.getNom()).append("-");
         }
         return affichage.toString();
-    }
-
-
-    public ArrayList<Satellite> getSatellites() {
-        return satellites;
     }
 }

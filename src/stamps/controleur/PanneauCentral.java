@@ -61,6 +61,8 @@ public class PanneauCentral extends Controleur{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        //listView.setCellFactory(listView -> new ListCell<>());
     }
 
     /**
