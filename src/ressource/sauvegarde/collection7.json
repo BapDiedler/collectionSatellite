@@ -1,0 +1,18 @@
+{
+  "satellites": [
+    {
+      "identifiant": "0",
+      "motsClefs": [],
+      "informations": [
+        {
+          "titre": "titre",
+          "texte": "zone de texte"
+        }
+      ],
+      "nom": "Satellite",
+      "date": 2000,
+      "url": "/pasImage.jpeg"
+    }
+  ],
+  "estConsulte": false
+}

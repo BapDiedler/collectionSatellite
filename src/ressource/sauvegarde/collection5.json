@@ -1,0 +1,31 @@
+{
+  "satellites": [
+    {
+      "identifiant": "0",
+      "motsClefs": [],
+      "informations": [
+        {
+          "titre": "titre",
+          "texte": "zone de texte"
+        }
+      ],
+      "nom": "satellite",
+      "date": 2000,
+      "url": "/Telstar.jpg"
+    },
+    {
+      "identifiant": "1",
+      "motsClefs": [],
+      "informations": [
+        {
+          "titre": "titre",
+          "texte": "mlkjhgfdrtyuiklkjhgfhjktrtryu"
+        }
+      ],
+      "nom": "satellite",
+      "date": 2000,
+      "url": "/Sputnik_asm.jpg"
+    }
+  ],
+  "estConsulte": false
+}

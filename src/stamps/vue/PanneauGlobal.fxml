@@ -22,7 +22,7 @@
                   <Font name="System Italic" size="56.0" />
                </font>
             </Label>
-            <ListView fx:id="listView" layoutX="192.0" layoutY="168.0" prefHeight="800.0" prefWidth="1250.0" />
+            <ListView fx:id="listView" layoutX="192.0" layoutY="168.0" prefHeight="800.0" prefWidth="1250.0" styleClass="listView" />
          </Pane>
       </center>
       <right>

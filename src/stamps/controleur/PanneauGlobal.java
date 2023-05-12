@@ -59,7 +59,6 @@ public class PanneauGlobal extends Controleur{
     @FXML
     void initialize(){
         listView.setCellFactory(listView-> new CustomListCell());
-        listView.setStyle("-fx-control-inner-background: transparent; -fx-border-color: #3d9dca; -fx-border-width: 7px;");
         compte.textProperty().bind(compteur.getPropertyValue().asString());
     }
 

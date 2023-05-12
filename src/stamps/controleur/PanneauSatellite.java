@@ -91,10 +91,8 @@ public class PanneauSatellite extends Controleur {
      */
     @FXML
     void appliquerAnimation(){
-        hbox.setStyle("-fx-background-color: #3d9dca");
-        nom.setStyle("-fx-background-color: #3d9dca");
-        hbox.setStyle("-fx-background-radius : 20px;");
-        nom.setStyle("-fx-background-radius : 20px;");
+        hbox.setStyle("-fx-background-radius : 20px; -fx-background-color: #3d9dca");
+        nom.setStyle("-fx-background-radius : 20px; -fx-background-color: #3d9dca");
     }
 
     /**
@@ -102,10 +100,8 @@ public class PanneauSatellite extends Controleur {
      */
     @FXML
     void supprimerAnimation(){
-        hbox.setStyle("-fx-background-color: #181818");
-        nom.setStyle("-fx-background-color: #181818");
-        hbox.setStyle("-fx-background-radius : 20px;");
-        nom.setStyle("-fx-background-radius : 20px;");
+        hbox.setStyle("-fx-background-radius : 20px; -fx-background-color: #181818");
+        nom.setStyle("-fx-background-radius : 20px; -fx-background-color: #181818");
     }
 
     /**

@@ -8,12 +8,38 @@
 
 .backgroundSat {
     -fx-background-color: #181818
+
 }
 
 .button {
     -fx-background-radius: 20px;
 }
 
+.infoBack {
+    -fx-background : transparent;
+}
+
+.textArea{
+    -fx-background-radius: 20px;
+    -fx-background-color: white;
+    -fx-border-radius: 20px;
+    -fx-padding: 5px;
+}
+
 .backgroundList {
     -fx-background-color: #323232
+    color: black;
+}
+
+.vueDetail {
+    -fx-background-color: #323232
+}
+
+.listView {
+    -fx-control-inner-background: transparent;
+    -fx-border-color: #3d9dca;
+    -fx-border-width: 7px;
+    -fx-background-image: url("background1.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
