@@ -145,6 +145,15 @@ public class Satellite implements Iterable<Information>{
     }
 
     /**
+     * getter sur la date de création du satellite
+     *
+     * @return la date du satellite
+     */
+    public String getDateString() {
+        return String.valueOf(date);
+    }
+
+    /**
      * méthode qui permet dde savoir si notre satellite contient le mot clef
      *
      * @param motClef mots clefs testés
@@ -212,5 +221,9 @@ public class Satellite implements Iterable<Information>{
     @Override
     public Iterator<Information> iterator() {
         return informations.iterator();
+    }
+
+    public void setDateString(String text) {
+        date = Integer.parseInt(text);
     }
 }

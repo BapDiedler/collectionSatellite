@@ -33,6 +33,8 @@ public class PanneauDetail extends Controleur{
     public BorderPane borderPane;
     public Pane paneBottom;
     public MenuItem sauvegarder;
+    public TextArea zoneDate;
+    public TextArea titre;
 
     @FXML
     private VBox vbox;
@@ -182,6 +184,9 @@ public class PanneauDetail extends Controleur{
     @FXML
     void sauvegarde(){
         if(!collectionSatellites.isEstConsulte()){
+            Satellite satellite = collectionSatellites.getSatellite(posSatellite);
+            satellite.setNom(titre.getText());
+            satellite.setDateString(zoneDate.getText());
             for(PanneauInformation information: informations){
                 information.sauvegardeInformation();
             }
@@ -276,8 +281,14 @@ public class PanneauDetail extends Controleur{
     public void reagir() {
         if(collectionSatellites.isEstConsulte()){
             sauvegarder.setText("édition");
+            zoneDate.setVisible(false);
+            titre.setVisible(false);
         }else{
             sauvegarder.setText("sauvegarde");
+            zoneDate.setVisible(true);
+            titre.setVisible(true);
+            titre.setText(collectionSatellites.getSatellite(posSatellite).getNom());
+            zoneDate.setText(collectionSatellites.getSatellite(posSatellite).getDateString());
         }
         appliquerInformation();
         vbox.setPrefHeight(scrollPane.getPrefHeight());
