@@ -39,7 +39,7 @@ public class PanneauSatellite extends Controleur {
     void initialize(){
         String url = collectionSatellites.getSatellite(posSatellite).getUrl();
         Image imageUrl = new Image(Objects.requireNonNull(getClass().getResourceAsStream(url)),
-                50, 50, true, true) ;
+                200, 200, true, true) ;
         image.setImage(imageUrl);
         nom.setText(collectionSatellites.getSatellite(posSatellite).getNom());
     }

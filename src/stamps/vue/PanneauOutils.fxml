@@ -5,14 +5,14 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.text.Font?>
 
-<ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="77.0" prefWidth="2000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauOutils">
+<ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="94.0" prefWidth="2000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauOutils">
   <buttons>
-    <Button fx:id="ajout" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouter" prefHeight="40.0" prefWidth="180.0" stylesheets="@../../ressource/styleSheet.css" textAlignment="CENTER">
+    <Button fx:id="ajout" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouter" prefHeight="45.0" prefWidth="180.0" stylesheets="@../../ressource/styleSheet.css" textAlignment="CENTER">
          <font>
             <Font size="33.0" />
          </font></Button>
   </buttons>
    <padding>
-      <Insets right="20.0" />
+      <Insets bottom="20.0" right="20.0" />
    </padding>
 </ButtonBar>

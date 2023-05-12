@@ -35,6 +35,7 @@ public class PanneauDetail extends Controleur{
     public MenuItem sauvegarder;
     public TextArea zoneDate;
     public TextArea titre;
+    public Pane paneImage;
 
     @FXML
     private VBox vbox;
@@ -152,7 +153,6 @@ public class PanneauDetail extends Controleur{
         Image im = new Image(Objects.requireNonNull(getClass().getResourceAsStream(satellite.getUrl())),
                 700, 700, true, true) ;
         image.setImage(im);
-        image.setLayoutY(200);
     }
 
 

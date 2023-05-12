@@ -60,8 +60,8 @@ public class PanneauGlobal extends Controleur{
 
     @FXML
     void initialize(){
-        compte.textProperty()
-                .bind(compteur.getPropertyValue().asString());
+        listView.setStyle("-fx-border-color: #3d9dca; -fx-border-width: 5px;");
+        compte.textProperty().bind(compteur.getPropertyValue().asString());
     }
 
     @FXML
