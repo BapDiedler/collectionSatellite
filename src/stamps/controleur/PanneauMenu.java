@@ -127,7 +127,6 @@ public class PanneauMenu extends Controleur{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        collectionSatellites.setEstConsulte();
         collectionSatellites.notifierObservateurs();
     }
 

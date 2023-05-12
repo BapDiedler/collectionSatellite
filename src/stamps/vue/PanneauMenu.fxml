@@ -5,6 +5,7 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.text.Font?>
 
 <ButtonBar fx:id="buttonBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="2000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauMenu">
@@ -23,15 +24,27 @@
       </MenuButton>
       <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" text="Menu" textAlignment="CENTER">
         <items>
-          <MenuItem mnemonicParsing="false" onAction="#quitter" text="quitter" />
+          <MenuItem mnemonicParsing="false" onAction="#quitter" text="quitter">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="Q" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator></MenuItem>
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem fx:id="edition" mnemonicParsing="false" onAction="#changeEdition" text="edition" />
+            <MenuItem fx:id="edition" mnemonicParsing="false" onAction="#changeEdition" text="edition">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="C" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator></MenuItem>
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="ajout" mnemonicParsing="false" onAction="#ajouter" text="ajouter" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" onAction="#sauvegarder" text="sauvegarder" />
+            <MenuItem mnemonicParsing="false" onAction="#sauvegarder" text="sauvegarder">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="S" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator></MenuItem>
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" onAction="#chercheDonnee" text="récupDonnée" />
+            <MenuItem mnemonicParsing="false" onAction="#chercheDonnee" text="récupDonnée">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="N" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator></MenuItem>
         </items>
          <font>
             <Font size="33.0" />

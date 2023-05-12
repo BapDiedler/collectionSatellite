@@ -45,14 +45,14 @@
                            <KeyCodeCombination alt="UP" code="G" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                      </MenuItem>
-                   <MenuItem mnemonicParsing="false" onAction="#sauvegarde" text="sauvegarder">
+                   <MenuItem fx:id="sauvegarder" mnemonicParsing="false" onAction="#sauvegarde" text="sauvegarder">
                         <accelerator>
                            <KeyCodeCombination alt="UP" code="S" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                      </MenuItem>
                      <MenuItem fx:id="ajout" mnemonicParsing="false" onAction="#ajouterInfo" text="ajout info">
                         <accelerator>
-                           <KeyCodeCombination alt="UP" code="C" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                           <KeyCodeCombination alt="UP" code="N" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                      </MenuItem>
                  </items>
