@@ -41,4 +41,8 @@ public class SujetObserve {
             obervateurs.get(i).reagir();
         }
     }
+
+    public void clear(){
+        obervateurs.clear();
+    }
 }

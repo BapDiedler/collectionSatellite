@@ -193,7 +193,6 @@ public class PanneauDetail extends Controleur{
      */
     @FXML
     void changerGlobal() {
-
         ProgressBar progressBar = new ProgressBar();
         progressBar.setPrefWidth(600);
         progressBar.setStyle("-fx-background-color: red");
@@ -221,6 +220,8 @@ public class PanneauDetail extends Controleur{
      * méthode qui permet de changer de vue
      */
     private void changerVue(){
+
+        collectionSatellites.clear();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../vue/PanneauGlobal.fxml"));
         Compteur compteur = new Compteur();

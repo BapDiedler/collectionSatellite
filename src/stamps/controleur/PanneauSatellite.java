@@ -54,6 +54,7 @@ public class PanneauSatellite extends Controleur {
         if(event.getButton() == MouseButton.SECONDARY) {
             menuContext.show(nom, event.getScreenX(), event.getScreenY());
         }else {
+            collectionSatellites.clear();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../vue/PanneauDetail.fxml"));
             PanneauDetail detail = new PanneauDetail(collectionSatellites);
