@@ -6,6 +6,11 @@
     -fx-background-color: #181818
 }
 
+.button {
+    -fx-border-radius: 60px;
+    -fx-background-color: #323232
+}
+
 .backgroundList {
     -fx-background-color: #323232
 }

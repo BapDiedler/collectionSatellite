@@ -4,11 +4,11 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.text.Font?>
 
-<ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauOutils">
+<ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="63.0" prefWidth="2000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauOutils">
   <buttons>
-    <Button fx:id="ajout" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouter" prefHeight="40.0" prefWidth="180.0" text="ajouter">
+    <Button fx:id="ajout" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouter" prefHeight="40.0" prefWidth="180.0" stylesheets="@../../ressource/styleSheet.css" text="ajouter" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font size="33.0" />
          </font></Button>
   </buttons>
 </ButtonBar>

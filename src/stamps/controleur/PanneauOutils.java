@@ -2,21 +2,13 @@ package stamps.controleur;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import stamps.model.CollectionSatellites;
-import stamps.model.Satellite;
 
 /**
  * classe qui permet de gérer les actions des boutons
  */
 public class PanneauOutils extends Controleur{
 
-    /**
-     * panneau où se trouve la collection
-     */
-    private final PanneauCentral centre;
     public Button ajout;
 
     /**
@@ -24,13 +16,12 @@ public class PanneauOutils extends Controleur{
      *
      * @param collectionSatellites collection manipulée par la classe
      */
-    public PanneauOutils(CollectionSatellites collectionSatellites, PanneauCentral centre) {
+    public PanneauOutils(CollectionSatellites collectionSatellites) {
         super(collectionSatellites);
-        this.centre = centre;
     }
 
     @FXML
-    void initialise(){
+    void initialize(){
         reagir();
     }
 
