@@ -32,7 +32,7 @@
 
       </center>
       <top>
-         <Pane BorderPane.alignment="CENTER">
+         <Pane prefHeight="64.0" BorderPane.alignment="CENTER">
             <children>
                <Label fx:id="labelTitre" alignment="CENTER" layoutX="649.0" layoutY="7.0" prefHeight="48.0" prefWidth="702.0" text="Label" textFill="WHITE">
                   <font>
@@ -71,7 +71,7 @@
       <bottom>
          <Pane fx:id="paneBottom" prefHeight="80.0" prefWidth="2000.0" BorderPane.alignment="CENTER">
             <children>
-               <Button layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#precedent" prefHeight="62.0" prefWidth="250.0" text="precedent">
+               <Button fx:id="precedent" layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#precedent" prefHeight="62.0" prefWidth="250.0">
                   <font>
                      <Font size="33.0" />
                   </font></Button>
@@ -79,7 +79,7 @@
                   <font>
                      <Font size="48.0" />
                   </font></Label>
-               <Button layoutX="1736.0" layoutY="8.0" mnemonicParsing="false" onAction="#suivant" prefHeight="62.0" prefWidth="250.0" text="suivant">
+               <Button fx:id="suivant" layoutX="1736.0" layoutY="8.0" mnemonicParsing="false" onAction="#suivant" prefHeight="62.0" prefWidth="250.0">
                   <font>
                      <Font size="33.0" />
                   </font></Button>

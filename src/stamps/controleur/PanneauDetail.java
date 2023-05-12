@@ -46,6 +46,12 @@ public class PanneauDetail extends Controleur{
 
     @FXML
     private MenuItem ajout;
+
+    @FXML
+    private Button precedent;
+
+    @FXML
+    private Button suivant;
     private int posSatellite;
 
     private final ArrayList<PanneauInformation> informations;
@@ -76,8 +82,20 @@ public class PanneauDetail extends Controleur{
      */
     @FXML
     void initialize(){
-        scrollPane.setStyle("-fx-border-color: white; -fx-border-width: 2px;");
+        scrollPane.setStyle("-fx-border-color: #3d9dca; -fx-border-width: 2px;");
+        appliquerImageFleche();
         reagir();
+    }
+
+    /**
+     * méthode qui permet de mettre sur les flèches pour passer au suivant ou au précédent
+     */
+    private void appliquerImageFleche(){
+        Image image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/fleche.png")),50,50,true,true);
+        precedent.setGraphic(new ImageView(image1));
+        ImageView imageView = new ImageView(image1);
+        imageView.setRotate(180);
+        suivant.setGraphic(imageView);
     }
 
     /**
@@ -87,7 +105,7 @@ public class PanneauDetail extends Controleur{
     void suivant(){
         if(posSatellite!=collectionSatellites.nbSatellites()-1) {
             posSatellite += 1;
-            appliquerInformation();
+            collectionSatellites.notifierObservateurs();
         }
     }
 
@@ -99,6 +117,7 @@ public class PanneauDetail extends Controleur{
         if(posSatellite!=0) {
             posSatellite -= 1;
             appliquerInformation();
+            collectionSatellites.notifierObservateurs();
         }
     }
 
@@ -153,6 +172,7 @@ public class PanneauDetail extends Controleur{
         Image im = new Image(Objects.requireNonNull(getClass().getResourceAsStream(satellite.getUrl())),
                 700, 700, true, true) ;
         image.setImage(im);
+        image.setLayoutY(180);
     }
 
 
@@ -289,6 +309,17 @@ public class PanneauDetail extends Controleur{
             titre.setVisible(true);
             titre.setText(collectionSatellites.getSatellite(posSatellite).getNom());
             zoneDate.setText(collectionSatellites.getSatellite(posSatellite).getDateString());
+        }
+
+        if(posSatellite==0){
+            precedent.setVisible(false);
+        }else{
+            precedent.setVisible(true);
+        }
+        if(posSatellite == collectionSatellites.nbSatellites()-1){
+            suivant.setVisible(false);
+        }else{
+            suivant.setVisible(true);
         }
         appliquerInformation();
         vbox.setPrefHeight(scrollPane.getPrefHeight());

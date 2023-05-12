@@ -10,7 +10,7 @@
 
 <ButtonBar fx:id="buttonBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="2000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauMenu">
   <buttons>
-      <MenuButton fx:id="trierMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" text="Trier">
+      <MenuButton fx:id="trierMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" styleClass="button" text="Trier">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#trierNom" text="nom" />
             <SeparatorMenuItem mnemonicParsing="false" />
@@ -22,7 +22,7 @@
             <Font size="33.0" />
          </font>
       </MenuButton>
-      <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" text="Menu" textAlignment="CENTER">
+      <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" styleClass="button" stylesheets="@../../ressource/styleSheet.css" text="Menu" textAlignment="CENTER">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#quitter" text="quitter">
                <accelerator>
