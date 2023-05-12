@@ -4,13 +4,11 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import stamps.model.CollectionSatellites;
 import stamps.model.Compteur;
 
@@ -60,7 +58,8 @@ public class PanneauGlobal extends Controleur{
 
     @FXML
     void initialize(){
-        listView.setStyle("-fx-border-color: #3d9dca; -fx-border-width: 7px;");
+        listView.setCellFactory(listView-> new CustomListCell());
+        listView.setStyle("-fx-control-inner-background: transparent; -fx-border-color: #3d9dca; -fx-border-width: 7px;");
         compte.textProperty().bind(compteur.getPropertyValue().asString());
     }
 
@@ -84,8 +83,6 @@ public class PanneauGlobal extends Controleur{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        //listView.setCellFactory(listView -> new ListCell<>());
     }
 
     /**

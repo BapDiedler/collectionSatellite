@@ -37,6 +37,8 @@ public class PanneauSatellite extends Controleur {
 
     @FXML
     void initialize(){
+        hbox.setStyle("-fx-background-radius : 20px;");
+        nom.setStyle("-fx-background-radius : 20px;");
         String url = collectionSatellites.getSatellite(posSatellite).getUrl();
         Image imageUrl = new Image(Objects.requireNonNull(getClass().getResourceAsStream(url)),
                 200, 200, true, true) ;
@@ -91,6 +93,8 @@ public class PanneauSatellite extends Controleur {
     void appliquerAnimation(){
         hbox.setStyle("-fx-background-color: #3d9dca");
         nom.setStyle("-fx-background-color: #3d9dca");
+        hbox.setStyle("-fx-background-radius : 20px;");
+        nom.setStyle("-fx-background-radius : 20px;");
     }
 
     /**
@@ -100,6 +104,8 @@ public class PanneauSatellite extends Controleur {
     void supprimerAnimation(){
         hbox.setStyle("-fx-background-color: #181818");
         nom.setStyle("-fx-background-color: #181818");
+        hbox.setStyle("-fx-background-radius : 20px;");
+        nom.setStyle("-fx-background-radius : 20px;");
     }
 
     /**
