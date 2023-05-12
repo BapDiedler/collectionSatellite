@@ -1,6 +1,7 @@
 package stamps.controleur;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -16,6 +17,7 @@ public class PanneauOutils extends Controleur{
      * panneau où se trouve la collection
      */
     private final PanneauCentral centre;
+    public Button ajout;
 
     /**
      * constructeur principal de la classe
@@ -25,6 +27,11 @@ public class PanneauOutils extends Controleur{
     public PanneauOutils(CollectionSatellites collectionSatellites, PanneauCentral centre) {
         super(collectionSatellites);
         this.centre = centre;
+    }
+
+    @FXML
+    void initialise(){
+        reagir();
     }
 
     /**
@@ -40,6 +47,6 @@ public class PanneauOutils extends Controleur{
      */
     @Override
     public void reagir() {
-
+        ajout.setVisible(!collectionSatellites.isEstConsulte());
     }
 }
