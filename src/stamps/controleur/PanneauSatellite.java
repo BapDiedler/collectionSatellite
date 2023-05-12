@@ -79,27 +79,23 @@ public class PanneauSatellite extends Controleur {
         collectionSatellites.notifierObservateurs();
     }
 
-    /**
-     * méthode qui affiche un message d'alerte
-     */
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 
     public String getNom() {
         return collectionSatellites.getSatellite(posSatellite).getNom();
     }
 
+    /**
+     * méthode qui permet d'appliquer un nouveau style sur  l'élément
+     */
     @FXML
     void appliquerAnimation(){
         hbox.setStyle("-fx-background-color: #3d9dca");
         nom.setStyle("-fx-background-color: #3d9dca");
     }
 
+    /**
+     * méthode qui permet de retirer le style de l'élément
+     */
     @FXML
     void supprimerAnimation(){
         hbox.setStyle("-fx-background-color: #181818");

@@ -3,6 +3,8 @@ package stamps.controleur;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.MenuItem;
 import javafx.stage.FileChooser;

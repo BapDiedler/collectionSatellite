@@ -4,16 +4,16 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane minHeight="172.0" minWidth="600.0" prefHeight="172.0" prefWidth="600.0" styleClass="backgroundSat" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauInformationConsultation">
+<Pane minHeight="172.0" minWidth="600.0" prefHeight="240.0" prefWidth="900.0" styleClass="backgroundSat" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauInformationConsultation">
    <children>
-      <Label fx:id="titre" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" prefHeight="77.0" prefWidth="592.0" styleClass="backgroundSat" stylesheets="@../../ressource/styleSheet.css" text="Label" textFill="WHITE" underline="true">
+      <Label fx:id="titre" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" prefHeight="80.0" prefWidth="900.0" styleClass="backgroundSat" stylesheets="@../../ressource/styleSheet.css" text="Label" textAlignment="CENTER" textFill="WHITE" underline="true">
          <font>
-            <Font size="18.0" />
+            <Font size="33.0" />
          </font>
       </Label>
-      <Label fx:id="info" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="-4.0" layoutY="86.0" prefHeight="71.0" prefWidth="600.0" styleClass="backgroundSat" text="Label" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="info" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="-4.0" layoutY="86.0" prefHeight="150.0" prefWidth="900.0" styleClass="backgroundSat" stylesheets="@../../ressource/styleSheet.css" text="Label" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font size="14.0" />
+            <Font size="25.0" />
          </font>
       </Label>
    </children>

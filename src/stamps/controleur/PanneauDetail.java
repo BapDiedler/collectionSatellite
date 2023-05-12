@@ -31,9 +31,10 @@ import java.util.Objects;
 
 public class PanneauDetail extends Controleur{
 
-    public TextArea labelTitre;
+    public Label labelTitre;
     public ScrollPane scrollPane;
     public BorderPane borderPane;
+    public Pane paneBottom;
 
     @FXML
     private VBox vbox;
@@ -108,7 +109,7 @@ public class PanneauDetail extends Controleur{
         appliquerImage();
         vbox.getChildren().clear();
         date.setText(String.valueOf(satellite.getDate()));
-        labelTitre.setText(satellite.getNom());
+        //labelTitre.setText(satellite.getNom());
         if(!collectionSatellites.isEstConsulte()) {
             ajout.setDisable(false);
             for (Information information : satellite) {
@@ -148,7 +149,7 @@ public class PanneauDetail extends Controleur{
     private void appliquerImage(){
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
         Image im = new Image(Objects.requireNonNull(getClass().getResourceAsStream(satellite.getUrl())),
-                300, 300, true, true) ;
+                500, 500, true, true) ;
         image.setImage(im);
     }
 
@@ -179,7 +180,7 @@ public class PanneauDetail extends Controleur{
     void sauvegarde(){
         if(!collectionSatellites.isEstConsulte()){
             Satellite satellite = collectionSatellites.getSatellite(posSatellite);
-            satellite.setNom(labelTitre.getText());
+            //satellite.setNom(labelTitre.getText());
             for(PanneauInformation information: informations){
                 information.sauvegardeInformation();
             }
@@ -194,13 +195,11 @@ public class PanneauDetail extends Controleur{
     @FXML
     void changerGlobal() {
         ProgressBar progressBar = new ProgressBar();
-        progressBar.setPrefWidth(600);
-        progressBar.setStyle("-fx-background-color: red");
-
-        Pane pane = new Pane(progressBar);
+        progressBar.setPrefWidth(vbox.getPrefWidth());
+        progressBar.setLayoutX(paneBottom.getPrefWidth()/2-progressBar.getPrefWidth()/2);
 
         // Ajouter la barre de chargement à la première scène
-        vbox.getChildren().add(pane);
+        paneBottom.getChildren().add(progressBar);
 
         // Créer l'animation de la barre de chargement
         Timeline timeline = new Timeline();
@@ -210,7 +209,7 @@ public class PanneauDetail extends Controleur{
         timeline.setOnFinished(e -> {
             changerVue();
             // Supprimer la barre de chargement de la première scène
-            borderPane.getChildren().remove(pane);
+            borderPane.getChildren().remove(progressBar);
         });
         timeline.play();
     }
@@ -251,21 +250,23 @@ public class PanneauDetail extends Controleur{
 
     @FXML
     void chercheImage(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Sélectionner une image");
-        fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg"));
+        if(!collectionSatellites.isEstConsulte()) {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Sélectionner une image");
+            fileChooser.getExtensionFilters().add(
+                    new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg"));
 
-        File initialDirectory = new File("src/ressource/");
-        fileChooser.setInitialDirectory(initialDirectory);
+            File initialDirectory = new File("src/ressource/");
+            fileChooser.setInitialDirectory(initialDirectory);
 
-        Stage stage = (Stage) vbox.getScene().getWindow();
-        File selectedFile = fileChooser.showOpenDialog(stage);
-        if (selectedFile != null) {
-            String imagePath = '/'+selectedFile.getName();
-            collectionSatellites.getSatellite(posSatellite).setUrl(imagePath);
+            Stage stage = (Stage) vbox.getScene().getWindow();
+            File selectedFile = fileChooser.showOpenDialog(stage);
+            if (selectedFile != null) {
+                String imagePath = '/' + selectedFile.getName();
+                collectionSatellites.getSatellite(posSatellite).setUrl(imagePath);
+            }
+            collectionSatellites.notifierObservateurs();
         }
-        collectionSatellites.notifierObservateurs();
     }
 
     /**
