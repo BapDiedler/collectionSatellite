@@ -1,5 +1,7 @@
 package stamps.model;
 
+import com.sun.marlin.DCollinearSimplifier;
+
 import java.util.*;
 
 /**
@@ -156,12 +158,25 @@ public class Satellite implements Iterable<Information>{
         return cpt;
     }
 
+
+    /**
+     * méthode qui permet d'obtenir une information sur le satellite
+     *
+     * @param pos position de l'information
+     *
+     * @return l'information souhaitée
+     */
     public Information getInformations(int pos) {
         if(pos< informations.size())
             return informations.get(pos);
         return new Information();
     }
 
+    /**
+     * méthode pour connaitre le nombre d'informations
+     *
+     * @return le nombre d'informations
+     */
     public int nbInformations(){
         return informations.size();
     }
@@ -178,6 +193,20 @@ public class Satellite implements Iterable<Information>{
     @Override
     public String toString() {
         return nom+identifiant;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Satellite)){
+            return false;
+        }
+        Satellite satellite = (Satellite) obj;
+        if(Objects.equals(satellite.url, this.url)){
+            if (satellite.date == this.date){
+                return Objects.equals(satellite.nom, this.nom);
+            }
+        }
+        return false;
     }
 
     @Override

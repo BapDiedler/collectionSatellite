@@ -153,7 +153,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      * @param satellitesValides la collection de satellites que l'on doit trier
      * @return une ArrayList de satellites
      */
-    private ArrayList<Satellite> trierSatelliteMotClef(
+    public ArrayList<Satellite> trierSatelliteMotClef(
             HashMap<Integer,Satellite> satellitesValides){
         ArrayList<Map.Entry<Integer,Satellite>> arrayList = new ArrayList<>(satellitesValides.entrySet());
         arrayList.sort((o1, o2) -> o2.getKey().compareTo(o1.getKey()));
@@ -163,6 +163,21 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
             newArray.add(sat.getValue());
         }
         return newArray;
+    }
+
+    /**
+     * méthode qui permet de savoir si le satellite est dans la collection ou non
+     *
+     * @param satellite satellite regarder
+     * @return true s'il est dans la collection
+     */
+    public boolean contains(Satellite satellite){
+        for(Satellite satellite1: satellites){
+            if(satellite1.equals(satellite)){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -185,5 +200,10 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
             affichage.append(satellite.getNom()).append("-");
         }
         return affichage.toString();
+    }
+
+
+    public ArrayList<Satellite> getSatellites() {
+        return satellites;
     }
 }

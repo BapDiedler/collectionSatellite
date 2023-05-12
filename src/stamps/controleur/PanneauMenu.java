@@ -1,6 +1,7 @@
 package stamps.controleur;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.fxml.FXML;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.MenuItem;
@@ -76,15 +77,15 @@ public class PanneauMenu extends Controleur{
 
     @FXML
     void sauvegarder(){
-        for(Satellite satellite: collectionSatellites){
-            Gson gson = new Gson();
-            String json = gson.toJson(satellite);
-            try (FileWriter writer = new FileWriter("src/ressource/sauvegarde/sat"+satellite.getIdentifiant()+".json")) {
-                writer.write(json);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(collectionSatellites,CollectionSatellites.class);
+        try (FileWriter writer = new FileWriter("src/ressource/sauvegarde/collection1.json")) {
+            writer.write(json);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        collectionSatellites.setEstConsulte();
+        collectionSatellites.notifierObservateurs();
     }
 
     /**
@@ -112,8 +113,7 @@ public class PanneauMenu extends Controleur{
                 throw new RuntimeException(e);
             }
             BufferedReader reader = new BufferedReader(fileReader);
-            Satellite sat = gson.fromJson(reader,Satellite.class);
-            collectionSatellites.ajouter(sat);
+            collectionSatellites  = gson.fromJson(reader,CollectionSatellites.class);
         }
         collectionSatellites.notifierObservateurs();
     }

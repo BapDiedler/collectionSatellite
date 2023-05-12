@@ -74,28 +74,6 @@ public class PanneauSatellite extends Controleur {
      */
     @FXML
     void supprimer(){
-        String filePath = "src/ressource/sauvegarde/sat"+collectionSatellites.getSatellite(posSatellite).getIdentifiant()+".json";
-        // Création de l'objet File
-        File file = new File(filePath);
-
-        // Affichage de la boîte de dialogue de confirmation
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation de suppression");
-        alert.setHeaderText("Supprimer le fichier ?");
-        alert.setContentText("Êtes-vous sûr de vouloir supprimer le fichier ?");
-
-        // Attente de la réponse de l'utilisateur
-        alert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                // Suppression du fichier
-                boolean deleted = file.delete();
-                if (deleted) {
-                    showAlert(Alert.AlertType.INFORMATION, "Suppression réussie", "Le fichier a été supprimé avec succès.");
-                } else {
-                    showAlert(Alert.AlertType.ERROR, "Erreur de suppression", "La suppression du fichier a échoué.");
-                }
-            }
-        });
         collectionSatellites.supprimer(collectionSatellites.getSatellite(posSatellite));
         collectionSatellites.notifierObservateurs();
     }
@@ -117,8 +95,8 @@ public class PanneauSatellite extends Controleur {
 
     @FXML
     void appliquerAnimation(){
-        hbox.setStyle("-fx-background-color: #1d8dd7");
-        nom.setStyle("-fx-background-color: #1d8dd7");
+        hbox.setStyle("-fx-background-color: #3d9dca");
+        nom.setStyle("-fx-background-color: #3d9dca");
     }
 
     @FXML

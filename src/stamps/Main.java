@@ -45,7 +45,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("Collection de satellites");
 
-        CollectionSatellites collectionSatellites = recuperationDonnees();
+        CollectionSatellites collectionSatellites = new CollectionSatellites();
         
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("vue/PanneauGlobal.fxml"));
@@ -63,17 +63,6 @@ public class Main extends Application {
         Scene root = loader.load();
         primaryStage.setScene(root);
         primaryStage.show();
-
-        /*CollectionSatellites collectionSatellites = new CollectionSatellites();
-        collectionSatellites.ajouter("A");
-        //collectionSatellites.ajouter("B");
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("vue/PanneauDetail.fxml"));
-        PanneauDetail detail = new PanneauDetail(collectionSatellites,0);
-        loader.setControllerFactory(ic -> detail);
-        Scene root = loader.load();
-        primaryStage.setScene(root);
-        primaryStage.show();*/
     }
 
 

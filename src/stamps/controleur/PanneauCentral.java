@@ -2,17 +2,11 @@ package stamps.controleur;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import stamps.model.CollectionSatellites;
-import stamps.model.Satellite;
 
 import java.io.IOException;
-import java.util.*;
 
 /**
  * classe permettant de gérer la collection

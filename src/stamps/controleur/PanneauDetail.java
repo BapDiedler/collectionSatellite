@@ -180,16 +180,8 @@ public class PanneauDetail extends Controleur{
         if(!collectionSatellites.isEstConsulte()){
             Satellite satellite = collectionSatellites.getSatellite(posSatellite);
             satellite.setNom(labelTitre.getText());
-
             for(PanneauInformation information: informations){
                 information.sauvegardeInformation();
-            }
-            Gson gson = new Gson();
-            String json = gson.toJson(satellite);
-            try (FileWriter writer = new FileWriter("src/ressource/sauvegarde/sat"+posSatellite+".json")) {
-                writer.write(json);
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
         collectionSatellites.setEstConsulte();
@@ -222,7 +214,6 @@ public class PanneauDetail extends Controleur{
             borderPane.getChildren().remove(pane);
         });
         timeline.play();
-
     }
 
 

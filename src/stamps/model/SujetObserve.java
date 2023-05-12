@@ -13,7 +13,7 @@ public class SujetObserve {
     /**
      * collection des observateurs
      */
-    private final ArrayList<Obervateur> obervateurs;
+    private transient final ArrayList<Obervateur> obervateurs;
 
 
     /**
