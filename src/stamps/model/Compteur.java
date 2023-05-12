@@ -51,5 +51,12 @@ public class Compteur {
      * @return le nombre de satellites
      */
     public int getValue() { return valeur.intValue();}
+
+    /**
+     * méthode qui permet de retirer 1 au compteur
+     */
+    public void decrementer() {
+        valeur.setValue(valeur.intValue()-1);
+    }
 }
 

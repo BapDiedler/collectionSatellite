@@ -2,13 +2,16 @@
     -fx-background-color: #323232
 }
 
+.backgroundImage {
+    -fx-background-color: white;
+}
+
 .backgroundSat {
     -fx-background-color: #181818
 }
 
 .button {
-    -fx-border-radius: 60px;
-    -fx-background-color: #323232
+    -fx-background-radius: 20px;
 }
 
 .backgroundList {

@@ -69,5 +69,7 @@ public class PanneauGlobal extends Controleur{
     public void reagir() {
         if(nbSatellites()>compteur.getValue())
             compteur.incrementer();
+        if(nbSatellites()<compteur.getValue())
+            compteur.decrementer();
     }
 }

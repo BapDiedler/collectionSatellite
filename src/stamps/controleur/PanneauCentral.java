@@ -27,6 +27,7 @@ public class PanneauCentral extends Controleur{
 
     @FXML
     void initialize(){
+        listView.setStyle("-fx-border-color: #181818; -fx-border-width: 10px;");
         reagir();
     }
 

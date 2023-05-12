@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -37,6 +38,7 @@ public class PanneauMenu extends Controleur{
      *
      */
     public MenuItem edition;
+    public MenuButton trierMenu;
 
     /**
      * constructeur principal de la classe
@@ -167,9 +169,11 @@ public class PanneauMenu extends Controleur{
         if(collectionSatellites.isEstConsulte()){
             edition.setText("édition");
             ajout.setDisable(true);
+            trierMenu.setVisible(false);
         }else{
             edition.setText("consultation");
             ajout.setDisable(false);
+            trierMenu.setVisible(true);
         }
     }
 }

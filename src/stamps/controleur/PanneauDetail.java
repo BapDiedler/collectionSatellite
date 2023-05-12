@@ -11,10 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -35,6 +32,7 @@ public class PanneauDetail extends Controleur{
     public ScrollPane scrollPane;
     public BorderPane borderPane;
     public Pane paneBottom;
+    public Pane paneImage;
 
     @FXML
     private VBox vbox;
@@ -75,6 +73,7 @@ public class PanneauDetail extends Controleur{
      */
     @FXML
     void initialize(){
+        scrollPane.setStyle("-fx-border-color: white; -fx-border-width: 2px;");
         reagir();
     }
 
@@ -109,7 +108,7 @@ public class PanneauDetail extends Controleur{
         appliquerImage();
         vbox.getChildren().clear();
         date.setText(String.valueOf(satellite.getDate()));
-        //labelTitre.setText(satellite.getNom());
+        labelTitre.setText(satellite.getNom());
         if(!collectionSatellites.isEstConsulte()) {
             ajout.setDisable(false);
             for (Information information : satellite) {
@@ -151,6 +150,7 @@ public class PanneauDetail extends Controleur{
         Image im = new Image(Objects.requireNonNull(getClass().getResourceAsStream(satellite.getUrl())),
                 500, 500, true, true) ;
         image.setImage(im);
+        image.setLayoutY(300);
     }
 
 

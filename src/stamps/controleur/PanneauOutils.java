@@ -2,7 +2,11 @@ package stamps.controleur;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import stamps.model.CollectionSatellites;
+
+import java.util.Objects;
 
 /**
  * classe qui permet de gérer les actions des boutons
@@ -22,6 +26,8 @@ public class PanneauOutils extends Controleur{
 
     @FXML
     void initialize(){
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/ajouter.png")),50,50,true,true);
+        ajout.setGraphic(new ImageView(image));
         reagir();
     }
 
