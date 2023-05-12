@@ -36,7 +36,7 @@ public class PanneauOutils extends Controleur{
      */
     @FXML
     void ajouter(){
-        collectionSatellites.ajouter("satellite");
+        collectionSatellites.ajouter("Satellite");
     }
 
     /**

@@ -148,12 +148,15 @@ public class PanneauDetail extends Controleur{
     private void appliquerImage(){
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
         Image im = new Image(Objects.requireNonNull(getClass().getResourceAsStream(satellite.getUrl())),
-                500, 500, true, true) ;
+                700, 700, true, true) ;
         image.setImage(im);
-        image.setLayoutY(300);
+        image.setLayoutY(200);
     }
 
 
+    /**
+     * méthode qui permet d'ajouter des informations au satellite
+     */
     @FXML
     private void ajouterInfo(){
         if(!collectionSatellites.isEstConsulte()) {
@@ -226,12 +229,10 @@ public class PanneauDetail extends Controleur{
         Compteur compteur = new Compteur();
         PanneauGlobal global = new PanneauGlobal(collectionSatellites,compteur);
         PanneauMenu menu = new PanneauMenu(collectionSatellites);
-        PanneauCentral central = new PanneauCentral(collectionSatellites);
         PanneauOutils outils = new PanneauOutils(collectionSatellites);
         loader.setControllerFactory(ic -> {
             if (ic.equals(stamps.controleur.PanneauMenu.class)) return menu;
             else if (ic.equals(stamps.controleur.PanneauOutils.class)) return outils;
-            else if (ic.equals(stamps.controleur.PanneauCentral.class)) return central;
             return global;
         });
         Scene root = null;
@@ -246,6 +247,7 @@ public class PanneauDetail extends Controleur{
         // Changer la scène de la stage actuelle
         stage.setScene(root);
         stage.show();
+        collectionSatellites.notifierObservateurs();
     }
 
     @FXML

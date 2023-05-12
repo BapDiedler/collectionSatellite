@@ -46,7 +46,7 @@ public class Satellite implements Iterable<Information>{
      * constructeur vide de la classe
      */
     public Satellite(){
-        this("satellite","/pasImage.jpeg");
+        this("Satellite","/pasImage.jpeg");
     }
 
     /**

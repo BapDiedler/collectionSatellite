@@ -103,7 +103,7 @@ public class PanneauMenu extends Controleur{
      */
     @FXML
     void ajouter(){
-        collectionSatellites.ajouter("satellite");
+        collectionSatellites.ajouter("Satellite");
     }
 
 

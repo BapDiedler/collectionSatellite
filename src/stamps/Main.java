@@ -24,12 +24,10 @@ public class Main extends Application {
         Compteur compteur = new Compteur();
         PanneauGlobal global = new PanneauGlobal(collectionSatellites,compteur);
         PanneauMenu menu = new PanneauMenu(collectionSatellites);
-        PanneauCentral central = new PanneauCentral(collectionSatellites);
         PanneauOutils outils = new PanneauOutils(collectionSatellites);
         loader.setControllerFactory(ic -> {
             if (ic.equals(stamps.controleur.PanneauMenu.class)) return menu;
             else if (ic.equals(stamps.controleur.PanneauOutils.class)) return outils;
-            else if (ic.equals(stamps.controleur.PanneauCentral.class)) return central;
             return global;
         });
         Scene root = loader.load();

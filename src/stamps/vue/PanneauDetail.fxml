@@ -20,9 +20,9 @@
 <Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauDetail">
    <BorderPane fx:id="borderPane" prefHeight="1200.0" prefWidth="2000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css">
       <center>
-         <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="600.0" maxWidth="900.0" prefHeight="600.0" prefWidth="900.0" styleClass="backgroundSat" stylesheets="@../../ressource/styleSheet.css" vbarPolicy="NEVER" BorderPane.alignment="CENTER_RIGHT">
+         <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="700.0" maxWidth="1000.0" prefHeight="700.0" prefWidth="1000.0" styleClass="backgroundSat" stylesheets="@../../ressource/styleSheet.css" vbarPolicy="NEVER" BorderPane.alignment="CENTER_RIGHT">
             <content>
-            <VBox fx:id="vbox" alignment="CENTER" maxHeight="600.0" maxWidth="900.0" prefHeight="600.0" prefWidth="900.0" styleClass="backgroundSat" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER" />
+            <VBox fx:id="vbox" alignment="CENTER" maxHeight="700.0" maxWidth="1000.0" prefHeight="700.0" prefWidth="1000.0" styleClass="backgroundSat" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER" />
             </content>
             <BorderPane.margin>
                <Insets right="100.0" />
@@ -35,10 +35,10 @@
             <children>
                <Label fx:id="labelTitre" alignment="CENTER" layoutX="649.0" layoutY="7.0" prefHeight="48.0" prefWidth="702.0" text="Label" textFill="WHITE">
                   <font>
-                     <Font size="33.0" />
+                     <Font name="System Italic" size="48.0" />
                   </font>
                </Label>
-               <SplitMenuButton contentDisplay="CENTER" layoutX="14.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="216.0" text="MENU" textAlignment="CENTER">
+               <SplitMenuButton contentDisplay="CENTER" layoutX="1767.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="216.0" text="MENU" textAlignment="CENTER">
                  <items>
                    <MenuItem mnemonicParsing="false" onAction="#changerGlobal" text="global">
                         <accelerator>
@@ -72,7 +72,7 @@
                   </font></Button>
                <Label fx:id="date" alignment="CENTER" layoutX="735.0" layoutY="7.0" prefHeight="67.0" prefWidth="531.0" text="date" textFill="WHITE">
                   <font>
-                     <Font size="35.0" />
+                     <Font size="48.0" />
                   </font></Label>
                <Button layoutX="1736.0" layoutY="8.0" mnemonicParsing="false" onAction="#suivant" prefHeight="62.0" prefWidth="250.0" text="suivant">
                   <font>

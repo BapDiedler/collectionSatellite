@@ -3,14 +3,18 @@ package stamps.controleur;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import stamps.model.CollectionSatellites;
 import stamps.model.Compteur;
+
+import java.io.IOException;
 
 
 /**
@@ -19,6 +23,9 @@ import stamps.model.Compteur;
  * @author baptistedie
  */
 public class PanneauGlobal extends Controleur{
+
+    @FXML
+    private ListView<HBox> listView;
 
     /**
      * bouton des menus de la fenêtre
@@ -63,10 +70,33 @@ public class PanneauGlobal extends Controleur{
     }
 
     /**
+     * méthode qui ajout un satellite
+     *
+     * @param ind position du satellite
+     */
+    void ajouter(int ind){
+        PanneauSatellite panneauSat = new PanneauSatellite(collectionSatellites,ind);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../vue/PanneauSatellite.fxml"));
+        loader.setControllerFactory(ic -> panneauSat);
+        try {
+            listView.getItems().add(loader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        //listView.setCellFactory(listView -> new ListCell<>());
+    }
+
+    /**
      * méthode réagir qui sera activée à chaque action
      */
     @Override
     public void reagir() {
+        listView.getItems().clear();
+        for(int i=0; i<collectionSatellites.nbSatellites(); i++){
+            ajouter(i);
+        }
         if(nbSatellites()>compteur.getValue())
             compteur.incrementer();
         if(nbSatellites()<compteur.getValue())
