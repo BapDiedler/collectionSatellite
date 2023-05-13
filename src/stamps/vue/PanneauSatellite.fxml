@@ -11,7 +11,7 @@
    <children>
       <Label fx:id="nom" alignment="CENTER" contentDisplay="CENTER" prefHeight="200.0" prefWidth="960.0" styleClass="vueSatellite" stylesheets="@../../ressource/styleSheet.css" text="NOM" textFill="WHITE">
          <font>
-            <Font size="33.0" />
+            <Font size="40.0" />
          </font>
          <contextMenu>
             <ContextMenu fx:id="menuContext">

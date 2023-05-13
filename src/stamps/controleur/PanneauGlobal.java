@@ -5,14 +5,18 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import stamps.model.CollectionSatellites;
 import stamps.model.Compteur;
+import stamps.model.Satellite;
 
 import java.io.IOException;
+import java.util.Objects;
 
 
 /**
@@ -24,6 +28,9 @@ public class PanneauGlobal extends Controleur{
 
     @FXML
     private ListView<HBox> listView;
+
+    @FXML
+    private Button ajout;
 
     /**
      * bouton des menus de la fenêtre
@@ -60,11 +67,20 @@ public class PanneauGlobal extends Controleur{
     void initialize(){
         listView.setCellFactory(listView-> new CustomListCell());
         compte.textProperty().bind(compteur.getPropertyValue().asString());
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/ajouter.png")),90,90,true,true);
+        ajout.setGraphic(new ImageView(image));
+        reagir();
     }
 
     @FXML
     int nbSatellites(){
         return collectionSatellites.nbSatellites();
+    }
+
+    @FXML
+    void ajouter(){
+        collectionSatellites.ajouter(new Satellite());
+        collectionSatellites.notifierObservateurs();
     }
 
     /**
@@ -97,5 +113,9 @@ public class PanneauGlobal extends Controleur{
             compteur.incrementer();
         if(nbSatellites()<compteur.getValue())
             compteur.decrementer();
+        if(collectionSatellites.isEstConsulte())
+            ajout.setVisible(false);
+        else
+            ajout.setVisible(true);
     }
 }

@@ -16,10 +16,8 @@
     -fx-padding: 0;
 }
 
-.context-menu {
-    -fx-background-radius: 20px;
-    -fx-text-color: white;
-    -fx-padding: 0;
+.arrow-button {
+    -fx-opacity: 0;
 }
 
 .menuItem:not(:hover),
@@ -75,7 +73,7 @@
     -fx-background-color: #3d9dca;
     -fx-scale-x: 1.02;
     -fx-scale-y: 1.02;
-    -fx-translate-x: 3.5px;
+    -fx-translate-x: 3.8px;
 }
 
 .vueSatellite:not(:hover) {

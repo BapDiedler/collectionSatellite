@@ -238,10 +238,8 @@ public class PanneauDetail extends Controleur{
         Compteur compteur = new Compteur();
         PanneauGlobal global = new PanneauGlobal(collectionSatellites,compteur);
         PanneauMenu menu = new PanneauMenu(collectionSatellites);
-        PanneauOutils outils = new PanneauOutils(collectionSatellites);
         loader.setControllerFactory(ic -> {
             if (ic.equals(stamps.controleur.PanneauMenu.class)) return menu;
-            else if (ic.equals(stamps.controleur.PanneauOutils.class)) return outils;
             return global;
         });
         Scene root = null;

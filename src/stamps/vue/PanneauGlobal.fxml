@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -13,9 +14,6 @@
           <top>
              <fx:include fx:id="PanneauMenu" source="PanneauMenu.fxml" />
           </top>
-          <bottom>
-              <fx:include fx:id="PanneauOutils" source="PanneauOutils.fxml" />
-          </bottom>
       <center>
          <Pane styleClass="background" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER">
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="457.0" layoutY="24.0" prefHeight="94.0" prefWidth="723.0" text="Collection de satellites" textFill="WHITE" underline="true">
@@ -47,8 +45,12 @@
                      <Font name="System Italic" size="44.0" />
                   </font>
                </Label>
+               <Button fx:id="ajout" layoutX="142.0" layoutY="969.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="90.0" prefWidth="90.0" text="Button" />
             </children>
          </Pane>
       </right>
+      <bottom>
+         <Pane prefHeight="69.0" prefWidth="2000.0" BorderPane.alignment="CENTER" />
+      </bottom>
       </BorderPane>
 </Scene>
