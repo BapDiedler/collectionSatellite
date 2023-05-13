@@ -1,5 +1,7 @@
 package stamps.model;
 
+import stamps.exception.CollectionExceptionDate;
+
 import java.util.*;
 
 /**
@@ -221,7 +223,11 @@ public class Satellite implements Iterable<Information>{
         return informations.iterator();
     }
 
-    public void setDateString(String text) {
-        date = Integer.parseInt(text);
+    public void setDateString(String text) throws CollectionExceptionDate {
+        try {
+            date = Integer.parseInt(text);
+        }catch (NumberFormatException ex){
+            throw new CollectionExceptionDate("La date "+text+" n'est pas valide.");
+        }
     }
 }

@@ -85,8 +85,8 @@
                   <font>
                      <Font size="30.0" />
                   </font></TextArea>
-               <ImageView fx:id="suivant" fitHeight="90.0" fitWidth="90.0" layoutX="1896.0" layoutY="-24.0" onMouseClicked="#suivant" pickOnBounds="true" preserveRatio="true" />
-               <ImageView fx:id="precedent" fitHeight="90.0" fitWidth="90.0" layoutX="14.0" layoutY="-24.0" onMouseClicked="#precedent" pickOnBounds="true" preserveRatio="true" />
+               <ImageView fx:id="suivant" fitHeight="90.0" fitWidth="90.0" layoutX="1896.0" layoutY="-24.0" onMouseClicked="#suivant" pickOnBounds="true" preserveRatio="true" styleClass="button" />
+               <ImageView fx:id="precedent" fitHeight="90.0" fitWidth="90.0" layoutX="14.0" layoutY="-24.0" onMouseClicked="#precedent" pickOnBounds="true" preserveRatio="true" styleClass="button" />
             </children>
          </Pane>
       </bottom>

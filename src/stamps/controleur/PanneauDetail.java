@@ -5,6 +5,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -13,6 +14,7 @@ import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import stamps.exception.CollectionExceptionDate;
 import stamps.model.CollectionSatellites;
 import stamps.model.Compteur;
 import stamps.model.Information;
@@ -192,13 +194,30 @@ public class PanneauDetail extends Controleur{
         if(!collectionSatellites.isEstConsulte()){
             Satellite satellite = collectionSatellites.getSatellite(posSatellite);
             satellite.setNom(titre.getText());
-            satellite.setDateString(zoneDate.getText());
+            try {
+                satellite.setDateString(zoneDate.getText());
+            } catch (CollectionExceptionDate e) {
+                lancerAlerte(e.getMessage());
+            }
             for(PanneauInformation information: informations){
                 information.sauvegardeInformation();
             }
         }
         collectionSatellites.setEstConsulte();
         collectionSatellites.notifierObservateurs();
+    }
+
+    /**
+     * méthode qui permet d'afficher une alerte en cas d'erreur
+     *
+     * @param message message afficher dans l'alerte
+     */
+    private void lancerAlerte(String message){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur: ");
+        alert.setHeaderText("Une erreur vient de se produire.");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     /**
@@ -294,17 +313,8 @@ public class PanneauDetail extends Controleur{
             titre.setText(collectionSatellites.getSatellite(posSatellite).getNom());
             zoneDate.setText(collectionSatellites.getSatellite(posSatellite).getDateString());
         }
-
-        if(posSatellite==0){
-            precedent.setVisible(false);
-        }else{
-            precedent.setVisible(true);
-        }
-        if(posSatellite == collectionSatellites.nbSatellites()-1){
-            suivant.setVisible(false);
-        }else{
-            suivant.setVisible(true);
-        }
+        precedent.setVisible(posSatellite != 0);
+        suivant.setVisible(posSatellite != collectionSatellites.nbSatellites() - 1);
         appliquerInformation();
         vbox.setPrefHeight(scrollPane.getPrefHeight());
     }
