@@ -87,24 +87,6 @@ public class PanneauSatellite extends Controleur {
     }
 
     /**
-     * méthode qui permet d'appliquer un nouveau style sur  l'élément
-     */
-    @FXML
-    void appliquerAnimation(){
-        hbox.setStyle("-fx-background-radius : 20px; -fx-background-color: #3d9dca");
-        nom.setStyle("-fx-background-radius : 20px; -fx-background-color: #3d9dca");
-    }
-
-    /**
-     * méthode qui permet de retirer le style de l'élément
-     */
-    @FXML
-    void supprimerAnimation(){
-        hbox.setStyle("-fx-background-radius : 20px; -fx-background-color: #181818");
-        nom.setStyle("-fx-background-radius : 20px; -fx-background-color: #181818");
-    }
-
-    /**
      * méthode réagir qui sera activée à chaque action
      */
     @Override
