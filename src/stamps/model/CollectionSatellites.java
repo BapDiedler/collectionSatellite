@@ -65,7 +65,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      */
     public void ajouter(String nom, String url){
         if(url == null){
-            url = "/pasImage.jpeg";
+            url = "/image/pasImage.jpeg";
         }
         Satellite satellite = new Satellite(nom,url);
         satellites.add(satellite);

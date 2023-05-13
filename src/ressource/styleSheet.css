@@ -1,24 +1,41 @@
+/*FOND D ERCAN GRIS DANS LA VUE GLOBALE ET DETAIL*/
 .background {
     -fx-background-color: #323232;
 }
 
-.backgroundImage {
-    -fx-background-color: white;
-}
-
-.backgroundSat {
-    -fx-background-color: #181818
-
-}
-
+/*ZONE APPLIQUER A L APPARENCE DES BOUTONS*/
 .button {
     -fx-background-radius: 20px;
+    -fx-background-color: #323232;
+    -fx-text-color: white;
 }
 
-.infoBack {
-    -fx-background : transparent;
+.context-menu {
+    -fx-background-radius: 20px;
+    -fx-text-color: white;
+    -fx-padding: 0;
 }
 
+.context-menu {
+    -fx-background-radius: 20px;
+    -fx-text-color: white;
+    -fx-padding: 0;
+}
+
+.menuItem:not(:hover),
+.menuItem:not(:selected) {
+    -fx-background-radius: 20px;
+    -fx-background-color: #323232;
+    -fx-text-color: white;
+}
+
+.menuItem:hover,
+.menuItem:selected {
+    -fx-background-radius: 20px;
+    -fx-background-color: #3d9dca;
+    -fx-text-color: black;
+}
+/*ZONE APPLIQUER POUR LES ZONES DE TEXTE ET LES BOUTONS MENU*/
 .textArea{
     -fx-background-radius: 20px;
     -fx-background-color: white;
@@ -26,24 +43,19 @@
     -fx-padding: 5px;
 }
 
-.backgroundList {
-    -fx-background-color: #323232;
-    color: black;
-}
-
-.vueDetail {
-    -fx-background-color: #323232;
-}
-
+/*ZONE OU SE TROUVE UNE LISTE D ELEMENTS*/
 .listView {
     -fx-control-inner-background: transparent;
     -fx-border-color: #3d9dca;
     -fx-border-width: 7px;
-    -fx-background-image: url("background1.jpeg");
+    -fx-background-image: url("/image/background1.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 
+.infoBack {
+    -fx-background : transparent;
+}
 
 /* ZONE DE CSS POUR LES ELEMENTS DE LA VUE GLOBALE DANS LA LISTE (LES CELLULES)*/
 .vueSatellite {
@@ -57,7 +69,8 @@
     -fx-background-color: transparent;
 }
 
-.vueSatellite:hover {
+.vueSatellite:hover,
+ .vueSatellite:selected{
     -fx-background-radius : 60px;
     -fx-background-color: #3d9dca;
     -fx-scale-x: 1.02;

@@ -37,8 +37,6 @@ public class PanneauSatellite extends Controleur {
 
     @FXML
     void initialize(){
-        hbox.setStyle("-fx-background-radius : 20px;");
-        nom.setStyle("-fx-background-radius : 20px;");
         String url = collectionSatellites.getSatellite(posSatellite).getUrl();
         Image imageUrl = new Image(Objects.requireNonNull(getClass().getResourceAsStream(url)),
                 200, 200, true, true) ;

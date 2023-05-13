@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauGlobal">
+<Scene stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauGlobal">
           <BorderPane prefHeight="1200.0" prefWidth="2000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css">
           <top>
              <fx:include fx:id="PanneauMenu" source="PanneauMenu.fxml" />
@@ -30,7 +30,7 @@
          </Pane>
       </center>
       <right>
-         <Pane prefHeight="1043.0" prefWidth="452.0">
+         <Pane prefHeight="1043.0" prefWidth="452.0" styleClass="background">
             <children>
                <Label fx:id="compte" alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="571.0" prefHeight="71.0" prefWidth="362.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" text="Label" textAlignment="CENTER" textFill="WHITE">
                   <font>

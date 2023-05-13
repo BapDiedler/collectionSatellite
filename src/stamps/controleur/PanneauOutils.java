@@ -26,7 +26,7 @@ public class PanneauOutils extends Controleur{
 
     @FXML
     void initialize(){
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/ajouter.png")),50,50,true,true);
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/ajouter.png")),90,90,true,true);
         ajout.setGraphic(new ImageView(image));
         reagir();
     }

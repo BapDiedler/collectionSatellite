@@ -1,7 +1,5 @@
 package stamps.model;
 
-import com.sun.marlin.DCollinearSimplifier;
-
 import java.util.*;
 
 /**
@@ -46,7 +44,7 @@ public class Satellite implements Iterable<Information>{
      * constructeur vide de la classe
      */
     public Satellite(){
-        this("Satellite","/pasImage.jpeg");
+        this("Satellite", "/image/pasImage.jpeg");
     }
 
     /**
@@ -60,7 +58,7 @@ public class Satellite implements Iterable<Information>{
         this.motsClefs = new HashSet<>(10);
         this.informations = new ArrayList<>(10);
         this.informations.add(new Information());
-        this.url = Objects.requireNonNullElse(url, "/pasImage.jpeg");
+        this.url = Objects.requireNonNullElse(url, "/image/pasImage.jpeg");
         this.date = 2000;
     }
 

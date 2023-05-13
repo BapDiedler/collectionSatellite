@@ -1,7 +1,5 @@
 package stamps.controleur;
 
-import com.google.gson.Gson;
-import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -21,7 +19,6 @@ import stamps.model.Information;
 import stamps.model.Satellite;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -48,22 +45,13 @@ public class PanneauDetail extends Controleur{
     private MenuItem ajout;
 
     @FXML
-    private Button precedent;
+    private ImageView precedent;
 
     @FXML
-    private Button suivant;
+    private ImageView suivant;
     private int posSatellite;
 
     private final ArrayList<PanneauInformation> informations;
-
-    /**
-     * constructeur principal de la classe
-     *
-     * @param collectionSatellites collection manipulée par la classe
-     */
-    public PanneauDetail(CollectionSatellites collectionSatellites) {
-        this(collectionSatellites,0);
-    }
 
     /**
      * constructeur principal de la classe
@@ -82,7 +70,6 @@ public class PanneauDetail extends Controleur{
      */
     @FXML
     void initialize(){
-        scrollPane.setStyle("-fx-border-color: #3d9dca; -fx-border-width: 2px;");
         appliquerImageFleche();
         reagir();
     }
@@ -91,11 +78,10 @@ public class PanneauDetail extends Controleur{
      * méthode qui permet de mettre sur les flèches pour passer au suivant ou au précédent
      */
     private void appliquerImageFleche(){
-        Image image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/fleche.png")),50,50,true,true);
-        precedent.setGraphic(new ImageView(image1));
-        ImageView imageView = new ImageView(image1);
-        imageView.setRotate(180);
-        suivant.setGraphic(imageView);
+        Image image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/fleche.png")),90,90,true,true);
+        precedent.setImage(image1);
+        suivant.setImage(image1);
+        suivant.setRotate(180);
     }
 
     /**
@@ -281,13 +267,13 @@ public class PanneauDetail extends Controleur{
             fileChooser.getExtensionFilters().add(
                     new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg"));
 
-            File initialDirectory = new File("src/ressource/");
+            File initialDirectory = new File("src/ressource/image/");
             fileChooser.setInitialDirectory(initialDirectory);
 
             Stage stage = (Stage) vbox.getScene().getWindow();
             File selectedFile = fileChooser.showOpenDialog(stage);
             if (selectedFile != null) {
-                String imagePath = '/' + selectedFile.getName();
+                String imagePath = "/image/"+selectedFile.getName();
                 collectionSatellites.getSatellite(posSatellite).setUrl(imagePath);
             }
             collectionSatellites.notifierObservateurs();

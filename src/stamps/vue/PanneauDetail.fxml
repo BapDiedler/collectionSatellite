@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.Scene?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.input.KeyCodeCombination?>
@@ -19,11 +19,11 @@
 <?import javafx.scene.text.Font?>
 
 <Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauDetail">
-   <BorderPane fx:id="borderPane" prefHeight="1200.0" prefWidth="2000.0" styleClass="vueDetail" stylesheets="@../../ressource/styleSheet.css">
+   <BorderPane fx:id="borderPane" prefHeight="1200.0" prefWidth="2000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css">
       <center>
-         <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="700.0" maxWidth="1000.0" prefHeight="700.0" prefWidth="1000.0" styleClass="backgroundSat" stylesheets="@../../ressource/styleSheet.css" vbarPolicy="NEVER" BorderPane.alignment="CENTER_RIGHT">
+         <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutY="148.0" maxHeight="745.0" maxWidth="1000.0" prefHeight="745.0" prefWidth="1000.0" stylesheets="@../../ressource/styleSheet.css" vbarPolicy="NEVER" BorderPane.alignment="CENTER_RIGHT">
             <content>
-            <VBox fx:id="vbox" alignment="CENTER" maxHeight="700.0" maxWidth="1000.0" prefHeight="700.0" prefWidth="1000.0" styleClass="listView" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER" />
+            <VBox fx:id="vbox" alignment="CENTER" maxHeight="747.0" maxWidth="1000.0" prefHeight="747.0" prefWidth="998.0" styleClass="listView" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER" />
             </content>
             <BorderPane.margin>
                <Insets right="100.0" />
@@ -32,61 +32,61 @@
 
       </center>
       <top>
-         <Pane prefHeight="64.0" BorderPane.alignment="CENTER">
+         <Pane prefHeight="111.0" prefWidth="2000.0" BorderPane.alignment="CENTER">
             <children>
                <Label fx:id="labelTitre" alignment="CENTER" layoutX="649.0" layoutY="7.0" prefHeight="48.0" prefWidth="702.0" text="Label" textFill="WHITE">
                   <font>
                      <Font name="System Italic" size="48.0" />
                   </font>
                </Label>
-               <SplitMenuButton contentDisplay="CENTER" layoutX="1759.0" layoutY="1.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="227.0" styleClass="textArea" text="MENU" textAlignment="CENTER">
-                 <items>
-                   <MenuItem mnemonicParsing="false" onAction="#changerGlobal" text="global">
+               <MenuButton contentDisplay="CENTER" layoutX="80.0" layoutY="-3.0" mnemonicParsing="false" styleClass="button" stylesheets="@../../ressource/styleSheet.css" text="Menu" textFill="WHITE">
+                  <items>
+                   <MenuItem mnemonicParsing="false" onAction="#changerGlobal" styleClass="menuItem" text="global">
                         <accelerator>
                            <KeyCodeCombination alt="UP" code="G" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                      </MenuItem>
-                   <MenuItem fx:id="sauvegarder" mnemonicParsing="false" onAction="#sauvegarde" text="sauvegarder">
+                   <MenuItem fx:id="sauvegarder" mnemonicParsing="false" onAction="#sauvegarde" styleClass="menuItem" text="sauvegarder">
                         <accelerator>
                            <KeyCodeCombination alt="UP" code="S" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                      </MenuItem>
-                     <MenuItem fx:id="ajout" mnemonicParsing="false" onAction="#ajouterInfo" text="ajout info">
+                     <MenuItem fx:id="ajout" mnemonicParsing="false" onAction="#ajouterInfo" styleClass="menuItem" text="ajout info">
                         <accelerator>
                            <KeyCodeCombination alt="UP" code="N" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                         </accelerator>
                      </MenuItem>
-                 </items>
+                  </items>
                   <font>
-                     <Font size="33.0" />
+                     <Font size="48.0" />
                   </font>
-               </SplitMenuButton>
+                  <cursor>
+                     <Cursor fx:constant="DEFAULT" />
+                  </cursor>
+               </MenuButton>
                <TextArea fx:id="titre" layoutX="690.0" layoutY="3.0" prefHeight="64.0" prefWidth="630.0" styleClass="textArea" visible="false">
                   <font>
                      <Font size="30.0" />
                   </font></TextArea>
             </children>
+            <BorderPane.margin>
+               <Insets top="10.0" />
+            </BorderPane.margin>
          </Pane>
       </top>
       <bottom>
-         <Pane fx:id="paneBottom" prefHeight="80.0" prefWidth="2000.0" BorderPane.alignment="CENTER">
+         <Pane fx:id="paneBottom" prefHeight="103.0" prefWidth="2000.0" BorderPane.alignment="CENTER">
             <children>
-               <Button fx:id="precedent" layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#precedent" prefHeight="62.0" prefWidth="250.0">
-                  <font>
-                     <Font size="33.0" />
-                  </font></Button>
                <Label fx:id="date" alignment="CENTER" layoutX="735.0" layoutY="7.0" prefHeight="67.0" prefWidth="531.0" text="date" textAlignment="CENTER" textFill="WHITE">
                   <font>
                      <Font size="48.0" />
                   </font></Label>
-               <Button fx:id="suivant" layoutX="1736.0" layoutY="8.0" mnemonicParsing="false" onAction="#suivant" prefHeight="62.0" prefWidth="250.0">
-                  <font>
-                     <Font size="33.0" />
-                  </font></Button>
                <TextArea fx:id="zoneDate" layoutX="585.0" layoutY="7.0" prefHeight="56.0" prefWidth="762.0" styleClass="textArea" visible="false">
                   <font>
                      <Font size="30.0" />
                   </font></TextArea>
+               <ImageView fx:id="suivant" fitHeight="90.0" fitWidth="90.0" layoutX="1896.0" layoutY="-24.0" onMouseClicked="#suivant" pickOnBounds="true" preserveRatio="true" />
+               <ImageView fx:id="precedent" fitHeight="90.0" fitWidth="90.0" layoutX="14.0" layoutY="-24.0" onMouseClicked="#precedent" pickOnBounds="true" preserveRatio="true" />
             </children>
          </Pane>
       </bottom>
@@ -96,7 +96,7 @@
                <Insets left="150.0" />
             </BorderPane.margin>
             <children>
-               <ImageView fx:id="image" layoutY="279.0" onMouseClicked="#chercheImage" pickOnBounds="true" preserveRatio="true" />
+               <ImageView fx:id="image" fitHeight="700.0" fitWidth="700.0" layoutX="-2.0" layoutY="145.0" onMouseClicked="#chercheImage" pickOnBounds="true" preserveRatio="true" />
             </children>
          </Pane>
       </left>
