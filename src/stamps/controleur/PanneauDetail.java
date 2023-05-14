@@ -26,34 +26,91 @@ import java.util.Objects;
 
 public class PanneauDetail extends Controleur{
 
+    /**
+     * label contenant le nom du satellite
+     */
     public Label labelTitre;
+
+    /**
+     * scrollPane où se trouve les informations
+     */
     public ScrollPane scrollPane;
-    public BorderPane borderPane;
+
+    /**
+     * pane contenant les éléments du bottom
+     */
     public Pane paneBottom;
+
+    /**
+     * élément du menu qui permet de faire le lien entre le mode consultation et édition
+     * et sauvegarde sur le passage de l'édition à consultation
+     */
     public MenuItem sauvegarder;
+
+    /**
+     * zone de texte où rentrer la date
+     */
     public TextArea zoneDate;
+
+    /**
+     * zone de texte où l'on rentre le nom du satellite
+     */
     public TextArea titre;
-    public Pane paneImage;
+
+    /**
+     * listeView de mots clefs afficher quand l'utilisateur choisit de rentrer les mots clefs
+     */
     public ListView<Label> listMotsClefs;
+
+    /**
+     * label contenant tous les mots clefs du satellite
+     */
     public Label labelMotClef;
 
+    /**
+     * vbox contenant les informations du satellite
+     */
     @FXML
     private VBox vbox;
+
+    /**
+     * label contenant la date du satellite
+     */
     @FXML
     private Label date;
+
+    /**
+     * image du satellite
+     */
     @FXML
     private ImageView image;
 
+    /**
+     * élément du menu permettant d'ajouter une information
+     */
     @FXML
     private MenuItem ajout;
 
+    /**
+     * passage à l'élément précédent
+     */
     @FXML
     private ImageView precedent;
 
+    /**
+     * passage à l'élément suivant
+     */
     @FXML
     private ImageView suivant;
+
+    /**
+     * position du satellite observé
+     */
     private int posSatellite;
 
+    /**
+     * arrayListe des informations du satellite
+     */
     private final ArrayList<PanneauInformation> informations;
 
     /**
@@ -111,7 +168,7 @@ public class PanneauDetail extends Controleur{
     }
 
     /**
-     * méthode qui permet de placer les éléments sur la fenêtre
+     * méthode qui permet de placer les éléments sur la fenêtre en fonction du mode de lecture
      */
     @FXML
     private void appliquerInformation(){
@@ -120,36 +177,51 @@ public class PanneauDetail extends Controleur{
         vbox.getChildren().clear();
         date.setText(String.valueOf(satellite.getDate()));
         labelTitre.setText(satellite.getNom());
+        ajout.setDisable(collectionSatellites.isEstConsulte());
         if(!collectionSatellites.isEstConsulte()) {
-            ajout.setDisable(false);
-            for (Information information : satellite) {
-                PanneauInformation panneauInformation = new PanneauInformation(collectionSatellites, information);
-                informations.add(panneauInformation);
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
-                loader.setControllerFactory(ic -> panneauInformation);
-                try {
-                    vbox.getChildren().add(loader.load());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-            vbox.setPrefHeight(scrollPane.getPrefHeight());
+            appliquerInformationsEdition();
         }else{
-            ajout.setDisable(true);
-            informations.clear();
-            for(Information information : satellite) {
-                PanneauInformationConsultation informationConsultation = new PanneauInformationConsultation(information);
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("../vue/PanneauInformationConsultation.fxml"));
-                loader.setControllerFactory(ic -> informationConsultation);
-                try {
-                    vbox.getChildren().add(loader.load());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+            applicationInformationsConsultation();
+        }
+        vbox.setPrefHeight(scrollPane.getPrefHeight());
+    }
+
+
+    /**
+     * méthode appliquant les informations dans le mode édition
+     */
+    private void applicationInformationsConsultation(){
+        informations.clear();
+        Satellite satellite = collectionSatellites.getSatellite(posSatellite);
+        for(Information information : satellite) {
+            PanneauInformationConsultation informationConsultation = new PanneauInformationConsultation(information);
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../vue/PanneauInformationConsultation.fxml"));
+            loader.setControllerFactory(ic -> informationConsultation);
+            try {
+                vbox.getChildren().add(loader.load());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-            vbox.setPrefHeight(scrollPane.getPrefHeight());
+        }
+    }
+
+    /**
+     * méthode appliquant les informations dans le mode Consultation
+     */
+    private void appliquerInformationsEdition(){
+        Satellite satellite = collectionSatellites.getSatellite(posSatellite);
+        for (Information information : satellite) {
+            PanneauInformation panneauInformation = new PanneauInformation(collectionSatellites, information);
+            informations.add(panneauInformation);
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
+            loader.setControllerFactory(ic -> panneauInformation);
+            try {
+                vbox.getChildren().add(loader.load());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -170,21 +242,7 @@ public class PanneauDetail extends Controleur{
      */
     @FXML
     private void ajouterInfo(){
-        if(!collectionSatellites.isEstConsulte()) {
-            Information info = new Information();
-            collectionSatellites.getSatellite(posSatellite).setInformations(info);
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
-            PanneauInformation panneauInfo = new PanneauInformation(collectionSatellites, info);
-            informations.add(panneauInfo);
-            loader.setControllerFactory(ic -> panneauInfo);
-            try {
-                vbox.getChildren().add(loader.load());
-                vbox.setPrefHeight(scrollPane.getPrefHeight());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        appliquerInformationsEdition();
     }
 
     /**
@@ -229,7 +287,6 @@ public class PanneauDetail extends Controleur{
         ProgressBar progressBar = new ProgressBar();
         progressBar.setPrefWidth(vbox.getPrefWidth());
         progressBar.setLayoutX(paneBottom.getPrefWidth()/2-progressBar.getPrefWidth()/2);
-
         // Ajouter la barre de chargement à la première scène
         paneBottom.getChildren().add(progressBar);
 
@@ -241,7 +298,7 @@ public class PanneauDetail extends Controleur{
         timeline.setOnFinished(e -> {
             changerVue();
             // Supprimer la barre de chargement de la première scène
-            borderPane.getChildren().remove(progressBar);
+            paneBottom.getChildren().remove(progressBar);
         });
         timeline.play();
     }
@@ -251,7 +308,6 @@ public class PanneauDetail extends Controleur{
      * méthode qui permet de changer de vue
      */
     private void changerVue(){
-
         collectionSatellites.clear();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../vue/PanneauGlobal.fxml"));
@@ -277,6 +333,9 @@ public class PanneauDetail extends Controleur{
         collectionSatellites.notifierObservateurs();
     }
 
+    /**
+     * méthode qui permet de changer d'image
+     */
     @FXML
     void chercheImage(){
         if(!collectionSatellites.isEstConsulte()) {
@@ -284,7 +343,6 @@ public class PanneauDetail extends Controleur{
             fileChooser.setTitle("Sélectionner une image");
             fileChooser.getExtensionFilters().add(
                     new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg"));
-
             File initialDirectory = new File("src/ressource/image/");
             fileChooser.setInitialDirectory(initialDirectory);
 
@@ -307,6 +365,11 @@ public class PanneauDetail extends Controleur{
         }
     }
 
+    /**
+     * méthode qui permet d'ajouter des éléments dans la liste de mots clefs du satellite
+     *
+     * @return liste de mots clefs sous forme de string
+     */
     private String ajouterMotsClefs(){
         StringBuilder builder = new StringBuilder(10);
         for(Label label: listMotsClefs.getItems()){
@@ -321,25 +384,22 @@ public class PanneauDetail extends Controleur{
     @Override
     public void reagir() {
         listMotsClefs.getItems().clear();
+        boolean change = collectionSatellites.isEstConsulte();
         appliquerMotsClefs();
-        if(collectionSatellites.isEstConsulte()){
+        zoneDate.setVisible(!change);
+        titre.setVisible(!change);
+        labelMotClef.setVisible(change);
+        listMotsClefs.setVisible(!change);
+        precedent.setVisible(posSatellite != 0);
+        suivant.setVisible(posSatellite != collectionSatellites.nbSatellites() - 1);
+        if(change){
             labelMotClef.setText(ajouterMotsClefs());
-            labelMotClef.setVisible(true);
             sauvegarder.setText("édition");
-            zoneDate.setVisible(false);
-            titre.setVisible(false);
-            listMotsClefs.setVisible(false);
         }else{
-            labelMotClef.setVisible(false);
             sauvegarder.setText("sauvegarde");
-            zoneDate.setVisible(true);
-            titre.setVisible(true);
-            listMotsClefs.setVisible(true);
             titre.setText(collectionSatellites.getSatellite(posSatellite).getNom());
             zoneDate.setText(collectionSatellites.getSatellite(posSatellite).getDateString());
         }
-        precedent.setVisible(posSatellite != 0);
-        suivant.setVisible(posSatellite != collectionSatellites.nbSatellites() - 1);
         appliquerInformation();
         vbox.setPrefHeight(scrollPane.getPrefHeight());
     }

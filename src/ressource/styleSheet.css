@@ -34,27 +34,29 @@
 
 .context-menu {
     -fx-background-radius: 20px;
-    -fx-text-color: white;
+    -fx-border-radius: 20px;
     -fx-padding: 0;
+    -fx-font-size: 25px;
 }
 
 .arrow-button {
     -fx-opacity: 0;
-    -fx-background-color: transparent;
 }
 
 .menuItem:not(:hover),
 .menuItem:not(:selected) {
     -fx-background-radius: 20px;
-    -fx-background-color: #323232;
-    -fx-text-color: white;
+    -fx-border-radius: 20px;
+    -fx-background-color: #323232
+    -fx-font-size: 25x;
 }
 
 .menuItem:hover,
 .menuItem:selected {
     -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
     -fx-background-color: #3d9dca;
-    -fx-text-color: black;
+    -fx-font-size: 25px;
 }
 /*ZONE APPLIQUER POUR LES ZONES DE TEXTE ET LES BOUTONS MENU*/
 .textArea{
