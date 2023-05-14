@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
@@ -23,7 +24,7 @@
       <center>
          <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutY="148.0" maxHeight="745.0" maxWidth="1000.0" prefHeight="745.0" prefWidth="1000.0" stylesheets="@../../ressource/styleSheet.css" vbarPolicy="NEVER" BorderPane.alignment="CENTER_RIGHT">
             <content>
-            <VBox fx:id="vbox" alignment="CENTER" maxHeight="747.0" maxWidth="1000.0" prefHeight="747.0" prefWidth="998.0" styleClass="listView" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER" />
+            <VBox fx:id="vbox" alignment="CENTER" maxHeight="747.0" maxWidth="1000.0" prefHeight="743.0" prefWidth="998.0" styleClass="listView" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER" />
             </content>
             <BorderPane.margin>
                <Insets right="100.0" />
@@ -96,7 +97,13 @@
                <Insets left="150.0" />
             </BorderPane.margin>
             <children>
-               <ImageView fx:id="image" fitHeight="700.0" fitWidth="700.0" layoutX="-2.0" layoutY="145.0" onMouseClicked="#chercheImage" pickOnBounds="true" preserveRatio="true" />
+               <ImageView fx:id="image" fitHeight="600.0" fitWidth="600.0" layoutX="-2.0" layoutY="145.0" onMouseClicked="#chercheImage" pickOnBounds="true" preserveRatio="true" />
+               <Label fx:id="labelMotClef" layoutX="-126.0" layoutY="925.0" prefHeight="98.0" prefWidth="767.0" textAlignment="CENTER" textFill="WHITE">
+                  <font>
+                     <Font name="System Italic" size="33.0" />
+                  </font>
+               </Label>
+               <ListView fx:id="listMotsClefs" layoutX="65.0" layoutY="776.0" prefHeight="200.0" prefWidth="460.0" />
             </children>
          </Pane>
       </left>

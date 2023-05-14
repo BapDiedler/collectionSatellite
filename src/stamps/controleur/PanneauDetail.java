@@ -5,7 +5,6 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -35,6 +34,8 @@ public class PanneauDetail extends Controleur{
     public TextArea zoneDate;
     public TextArea titre;
     public Pane paneImage;
+    public ListView<Label> listMotsClefs;
+    public Label labelMotClef;
 
     @FXML
     private VBox vbox;
@@ -298,18 +299,42 @@ public class PanneauDetail extends Controleur{
     }
 
     /**
+     * méthode qui permet d'ajouter des mots clefs dans au satellite
+     */
+    private void appliquerMotsClefs(){
+        for(String mot: collectionSatellites.getMotsClefs("b")) {
+            listMotsClefs.getItems().add(new Label(mot));
+        }
+    }
+
+    private String ajouterMotsClefs(){
+        StringBuilder builder = new StringBuilder(10);
+        for(Label label: listMotsClefs.getItems()){
+            builder.append(label.getText());
+        }
+        return builder.toString();
+    }
+
+    /**
      * méthode réagir qui sera activée à chaque action
      */
     @Override
     public void reagir() {
+        listMotsClefs.getItems().clear();
+        appliquerMotsClefs();
         if(collectionSatellites.isEstConsulte()){
+            labelMotClef.setText(ajouterMotsClefs());
+            labelMotClef.setVisible(true);
             sauvegarder.setText("édition");
             zoneDate.setVisible(false);
             titre.setVisible(false);
+            listMotsClefs.setVisible(false);
         }else{
+            labelMotClef.setVisible(false);
             sauvegarder.setText("sauvegarde");
             zoneDate.setVisible(true);
             titre.setVisible(true);
+            listMotsClefs.setVisible(true);
             titre.setText(collectionSatellites.getSatellite(posSatellite).getNom());
             zoneDate.setText(collectionSatellites.getSatellite(posSatellite).getDateString());
         }

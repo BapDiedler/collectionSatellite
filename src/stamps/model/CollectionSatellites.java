@@ -16,6 +16,11 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
     private ArrayList<Satellite> satellites;
 
     /**
+     * ensemble des mots clefs de la collection de satellites
+     */
+    private ArrayList<String> motsClefs;
+
+    /**
      * champ qui nous permet de savoir si la vue est en mode consultation ou non
      */
     private boolean estConsulte;
@@ -27,6 +32,9 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
     public CollectionSatellites(){
         super();
         satellites = new ArrayList<>(10);
+        motsClefs = new ArrayList<>(10);
+        motsClefs.add("aaaa");
+        motsClefs.add("bbbb");
         estConsulte=true;
     }
 
@@ -86,6 +94,14 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      */
     public void setEstConsulte() {
         estConsulte = !estConsulte;
+    }
+
+    /**
+     * setter de mot clef dans le monde
+     * @param motClef nouveau mot clef
+     */
+    public void setMotsClefs(String... motClef) {
+        this.motsClefs.addAll(List.of(motClef));
     }
 
     /**
@@ -153,6 +169,22 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
             }
         }
         return trierSatelliteMotClef(satellitesValides);
+    }
+
+    /**
+     * getter de motsClefs en fonction du mot rentrée en paramètre
+     *
+     * @param mot mot dont l'on cherche la correspondance
+     * @return une arrayList de String avec les mots qui commence pareil
+     */
+    public ArrayList<String> getMotsClefs(String mot) {
+        ArrayList<String> suggestions = new ArrayList<>();
+        for (String motClef : motsClefs) {
+            if (motClef.toLowerCase().startsWith(mot.toLowerCase())) {
+                suggestions.add(motClef);
+            }
+        }
+        return suggestions;
     }
 
     /**
