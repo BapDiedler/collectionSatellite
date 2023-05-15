@@ -23,34 +23,37 @@
 <Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauDetail">
    <BorderPane prefHeight="1200.0" prefWidth="2000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css">
       <center>
-         <VBox maxHeight="1000.0" maxWidth="1000.0" prefHeight="1000.0" BorderPane.alignment="CENTER_RIGHT">
+         <VBox alignment="CENTER" maxHeight="1000.0" maxWidth="1000.0" prefHeight="1000.0" BorderPane.alignment="CENTER_RIGHT">
             <BorderPane.margin>
                <Insets right="100.0" />
             </BorderPane.margin>
             <children>
-               <Label layoutX="10.0" layoutY="654.0" prefHeight="50.0" text="Informations" textFill="WHITE">
+               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="654.0" prefHeight="50.0" text="Informations" textAlignment="CENTER" textFill="WHITE" underline="true">
                   <font>
                      <Font size="30.0" />
                   </font>
                </Label>
-               <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="652.0" maxWidth="1000.0" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../../ressource/styleSheet.css" vbarPolicy="NEVER">
+               <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="492.0" maxWidth="1000.0" prefHeight="492.0" prefWidth="1000.0" stylesheets="@../../ressource/styleSheet.css" vbarPolicy="NEVER">
                   <content>
-                  <VBox fx:id="vbox" alignment="CENTER" maxHeight="747.0" maxWidth="1000.0" prefHeight="700.0" prefWidth="998.0" styleClass="listView" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER" />
+                  <VBox fx:id="vbox" alignment="CENTER" maxHeight="490.0" maxWidth="1000.0" prefHeight="490.0" prefWidth="998.0" styleClass="listView" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER" />
                   </content>
+                  <VBox.margin>
+                     <Insets bottom="40.0" />
+                  </VBox.margin>
                </ScrollPane>
-               <Label prefHeight="50.0" text="Tags" textFill="WHITE">
+               <Label alignment="CENTER" prefHeight="50.0" text="Tags" textFill="WHITE" underline="true">
                   <font>
                      <Font size="30.0" />
                   </font>
                </Label>
-               <ListView fx:id="listeTags" prefHeight="300.0" prefWidth="1000.0" styleClass="listView" />
+               <ListView fx:id="listeTags" prefHeight="184.0" prefWidth="1000.0" styleClass="listView" />
             </children>
          </VBox>
       </center>
       <top>
-         <Pane prefHeight="111.0" prefWidth="2000.0" BorderPane.alignment="CENTER">
+         <Pane prefHeight="111.0" prefWidth="2000.0" styleClass="menuBar" BorderPane.alignment="CENTER">
             <children>
-               <MenuButton contentDisplay="CENTER" layoutX="80.0" layoutY="-3.0" mnemonicParsing="false" styleClass="button" stylesheets="@../../ressource/styleSheet.css" text="Menu" textFill="WHITE">
+               <MenuButton alignment="CENTER" contentDisplay="CENTER" layoutX="79.0" layoutY="21.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="260.0" styleClass="button" stylesheets="@../../ressource/styleSheet.css" text="Menu" textFill="WHITE">
                   <items>
                    <MenuItem mnemonicParsing="false" onAction="#changerGlobal" styleClass="menuItem" text="global">
                         <accelerator>
@@ -69,34 +72,34 @@
                      </MenuItem>
                   </items>
                   <font>
-                     <Font size="48.0" />
+                     <Font size="40.0" />
                   </font>
                   <cursor>
                      <Cursor fx:constant="DEFAULT" />
                   </cursor>
                </MenuButton>
-               <TextField fx:id="titre" alignment="CENTER" layoutX="719.0" layoutY="23.0" prefHeight="65.0" prefWidth="563.0" styleClass="textArea" text="nom">
+               <TextField fx:id="titre" alignment="CENTER" layoutX="719.0" layoutY="23.0" prefHeight="76.0" prefWidth="563.0" styleClass="textArea" text="nom">
                   <font>
                      <Font name="System Italic" size="45.0" />
                   </font>
                </TextField>
-               <Button fx:id="boutonTags" layoutX="340.0" layoutY="5.0" mnemonicParsing="false" onAction="#afficherTags" prefHeight="55.0" prefWidth="270.0" text="Tags" textAlignment="CENTER" textFill="WHITE">
+               <Button fx:id="boutonTags" alignment="CENTER" layoutX="338.0" layoutY="22.0" mnemonicParsing="false" onAction="#afficherTags" prefHeight="55.0" prefWidth="230.0" text="Tags" textAlignment="CENTER" textFill="WHITE">
                   <font>
                      <Font size="40.0" />
                   </font>
                </Button>
             </children>
             <BorderPane.margin>
-               <Insets top="10.0" />
+               <Insets />
             </BorderPane.margin>
          </Pane>
       </top>
       <bottom>
          <Pane fx:id="paneBottom" prefHeight="103.0" prefWidth="2000.0" BorderPane.alignment="CENTER">
             <children>
-               <Label fx:id="date" alignment="CENTER" layoutX="582.0" layoutY="7.0" prefHeight="67.0" prefWidth="837.0" text="date" textAlignment="CENTER" textFill="WHITE">
+               <Label fx:id="date" alignment="CENTER" layoutX="582.0" layoutY="7.0" prefHeight="67.0" prefWidth="837.0" styleClass="button" text="date" textAlignment="CENTER" textFill="WHITE">
                   <font>
-                     <Font size="48.0" />
+                     <Font size="30.0" />
                   </font></Label>
                <ImageView fx:id="suivant" fitHeight="90.0" fitWidth="90.0" layoutX="1896.0" layoutY="-24.0" onMouseClicked="#suivant" pickOnBounds="true" preserveRatio="true" styleClass="button" />
                <ImageView fx:id="precedent" fitHeight="90.0" fitWidth="90.0" layoutX="14.0" layoutY="-24.0" onMouseClicked="#precedent" pickOnBounds="true" preserveRatio="true" styleClass="button" />
@@ -104,27 +107,27 @@
          </Pane>
       </bottom>
       <left>
-         <Pane prefHeight="1056.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+         <Pane prefHeight="976.0" prefWidth="601.0" BorderPane.alignment="CENTER">
             <BorderPane.margin>
                <Insets left="150.0" />
             </BorderPane.margin>
             <children>
-               <ImageView fx:id="image" fitHeight="600.0" fitWidth="600.0" layoutX="-2.0" layoutY="145.0" onMouseClicked="#chercheImage" pickOnBounds="true" preserveRatio="true" />
+               <ImageView fx:id="image" fitHeight="600.0" fitWidth="600.0" layoutX="-2.0" layoutY="145.0" onMouseClicked="#chercheImage" pickOnBounds="true" preserveRatio="true" styleClass="image" />
             </children>
          </Pane>
       </left>
    </BorderPane>
    <fill>
-      <LinearGradient endX="1.0" endY="1.0">
+      <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
          <stops>
             <Stop>
                <color>
-                  <Color />
+                  <Color red="0.3486842215061188" green="0.33092713356018066" blue="0.33092713356018066" />
                </color>
             </Stop>
             <Stop offset="1.0">
                <color>
-                  <Color red="1.0" green="1.0" blue="1.0" />
+                  <Color red="0.13559941947460175" green="0.31021565198898315" blue="0.3684210479259491" />
                </color>
             </Stop>
          </stops>

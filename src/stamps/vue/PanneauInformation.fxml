@@ -2,10 +2,17 @@
 
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox minHeight="300" minWidth="300" prefHeight="200.0" prefWidth="990.0" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauInformation">
    <children>
-      <TextArea fx:id="titre" prefHeight="50.0" prefWidth="400.0" promptText="titre de l'information" />
-      <TextArea fx:id="info" prefHeight="650.0" prefWidth="700.0" promptText="zone d'information" />
+      <TextArea fx:id="titre" prefHeight="50.0" prefWidth="400.0" promptText="titre de l'information" styleClass="textArea">
+         <font>
+            <Font size="30.0" />
+         </font></TextArea>
+      <TextArea fx:id="info" prefHeight="650.0" prefWidth="700.0" promptText="zone d'information" styleClass="textArea">
+         <font>
+            <Font size="30.0" />
+         </font></TextArea>
    </children>
 </VBox>

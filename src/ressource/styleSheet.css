@@ -1,18 +1,17 @@
 /*FOND D ERCAN GRIS DANS LA VUE GLOBALE ET DETAIL*/
 .background {
-    -fx-background-color: #323232;
+    -fx-background: #323232;
 }
 
 /*ZONE APPLIQUER A L APPARENCE DES BOUTONS*/
 .button {
     -fx-background-radius: 20px;
-    -fx-background-color: #323232;
+    -fx-background-color: transparent;
     -fx-text-color: white;
 }
 
 .button:hover {
     -fx-background-radius: 20px;
-    -fx-background-color: #323232;
     -fx-text-color: white;
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
@@ -30,6 +29,15 @@
 .table-row-cell {
     /* Couleur de fond de la ligne */
     -fx-background-color: #3d9dca;
+}
+
+/*ZONE POUR LE MENU*/
+
+.menuBar {
+    -fx-background-color: #474747;
+    -fx-border-width: 1px; -fx-border-color: #474747;
+    -fx-border-style: solid;
+    -fx-effect: dropshadow(three-pass-box, grey, 0, 0, 0, 2);
 }
 
 .context-menu {
@@ -61,14 +69,14 @@
 /*ZONE APPLIQUER POUR LES ZONES DE TEXTE ET LES BOUTONS MENU*/
 .textArea{
     -fx-background-radius: 20px;
-    -fx-background-color: #323232;
+    -fx-background-color: transparent;
     -fx-border-radius: 20px;
     -fx-padding: 5px;
     -fx-text-fill: white;
 }
 
 .textArea .content {
-    -fx-background-color: #323232;
+    -fx-background-color: #70848e;
 }
 
 .textArea .text {
@@ -78,7 +86,7 @@
 
 /*ZONE OU SE TROUVE UNE LISTE D ELEMENTS*/
 .listView {
-    -fx-border-color: #3d9dca;
+    -fx-border-color: #5d9cab;
     -fx-border-width: 7px;
     /*-fx-background-image: url("/image/background1.jpeg");*/
     -fx-background-color: #444f58;
@@ -93,7 +101,7 @@
 /* ZONE DE CSS POUR LES ELEMENTS DE LA VUE GLOBALE DANS LA LISTE (LES CELLULES)*/
 .vueSatellite {
     -fx-background-radius : 30px;
-    -fx-background-color: #181818;
+    -fx-background-color: #323232;
     -fx-transition: scale 0.2s;
     -fx-cursor: pointer;
 }
@@ -105,7 +113,7 @@
 .vueSatellite:hover,
  .vueSatellite:selected{
     -fx-background-radius : 30px;
-    -fx-background-color: #3d9dca;
+    -fx-background-color: #5d9cab;
     -fx-scale-x: 1.02;
     -fx-scale-y: 1.02;
     -fx-translate-x: 3.8px;
@@ -123,4 +131,10 @@
     -fx-background-color: #181818;
     -fx-transition: scale 0.2s;
     -fx-cursor: pointer;
+}
+
+.image:hover {
+    -fx-transition-scale: 3s;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
 }

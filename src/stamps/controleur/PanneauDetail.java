@@ -178,6 +178,7 @@ public class PanneauDetail extends Controleur{
         }else{
             applicationInformationsConsultation();
         }
+        ajouterTags();
         vbox.setPrefHeight(scrollPane.getPrefHeight());
     }
 
@@ -370,33 +371,38 @@ public class PanneauDetail extends Controleur{
         nouvelleFenetre.show();
     }
 
+    /**
+     * méthode qui permet d'ajouter les tags du satellite dans l'affichage
+     */
+    private void ajouterTags(){
+        Satellite satellite = collectionSatellites.getSatellite(posSatellite);
+        Iterator<String> iteratorTags = satellite.iteratorTags();
+        listeTags.getItems().clear();
+
+        while (iteratorTags.hasNext()) {
+            String tag = iteratorTags.next();
+            Label label = new Label(tag);
+            label.setStyle("-fx-text-fill: white");
+            listeTags.getItems().add(label);
+        }
+    }
+
 
     /**
      * méthode réagir qui sera activée à chaque action
      */
     @Override
     public void reagir() {
-        boolean change = collectionSatellites.isEstConsulte();
-        boutonTags.setVisible(!change);
-        titre.setDisable(change);
+        boolean isConsulted = collectionSatellites.isEstConsulte();
+        boutonTags.setVisible(!isConsulted);
+        titre.setDisable(isConsulted);
         titre.setStyle("-fx-opacity: 1");
         precedent.setVisible(posSatellite != 0);
         suivant.setVisible(posSatellite != collectionSatellites.nbSatellites() - 1);
-        Satellite satellite = collectionSatellites.getSatellite(posSatellite);
-        Iterator<String> iteratorTags = satellite.iteratorTags();
-        listeTags.getItems().clear();
-        while (iteratorTags.hasNext()){
-            String val = iteratorTags.next();
-            Label label = new Label(val);
-            label.setStyle("-fx-text-fill: white");
-            listeTags.getItems().add(label);
-        }
-        if(change){
-            sauvegarder.setText("édition");
-        }else{
-            sauvegarder.setText("sauvegarde");
-            titre.setText(collectionSatellites.getSatellite(posSatellite).getNom());
-        }
+        titre.setText(collectionSatellites.getSatellite(posSatellite).getNom());
+
+        sauvegarder.setText(isConsulted?"Édition":"Sauvegarde");
+
         appliquerInformation();
         vbox.setPrefHeight(scrollPane.getPrefHeight());
     }

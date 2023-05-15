@@ -7,7 +7,7 @@
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.text.Font?>
 
-<ButtonBar fx:id="buttonBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="91.0" prefWidth="2000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauMenu">
+<ButtonBar fx:id="buttonBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="91.0" prefWidth="2000.0" styleClass="menuBar" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauMenu">
   <buttons>
       <MenuButton fx:id="trierMenu" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" styleClass="button" text="Trier" textFill="WHITE">
         <items>
@@ -15,6 +15,23 @@
             <MenuItem mnemonicParsing="false" onAction="#trierDate" styleClass="menuItem" text="date" />
             <MenuItem mnemonicParsing="false" onAction="#trierApparition" styleClass="menuItem" text="apparition" />
         </items>
+         <font>
+            <Font size="33.0" />
+         </font>
+      </MenuButton>
+      <MenuButton alignment="CENTER" contentDisplay="CENTER" layoutX="1805.0" layoutY="19.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" styleClass="button" stylesheets="@../../ressource/styleSheet.css" text="Données" textFill="WHITE">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#sauvegarder" styleClass="menuItem" text="sauvegarder">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="S" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#chercheDonnee" styleClass="menuItem" text="récupDonnée">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="N" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator>
+            </MenuItem>
+         </items>
          <font>
             <Font size="33.0" />
          </font>
@@ -30,14 +47,6 @@
                   <KeyCodeCombination alt="UP" code="C" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                </accelerator></MenuItem>
             <MenuItem fx:id="ajout" mnemonicParsing="false" onAction="#ajouter" styleClass="menuItem" text="ajouter" />
-            <MenuItem mnemonicParsing="false" onAction="#sauvegarder" styleClass="menuItem" text="sauvegarder">
-               <accelerator>
-                  <KeyCodeCombination alt="UP" code="S" control="ANY" meta="UP" shift="UP" shortcut="UP" />
-               </accelerator></MenuItem>
-            <MenuItem mnemonicParsing="false" onAction="#chercheDonnee" styleClass="menuItem" text="récupDonnée">
-               <accelerator>
-                  <KeyCodeCombination alt="UP" code="N" control="ANY" meta="UP" shift="UP" shortcut="UP" />
-               </accelerator></MenuItem>
         </items>
          <font>
             <Font size="33.0" />

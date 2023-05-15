@@ -33,8 +33,6 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         super();
         satellites = new ArrayList<>(10);
         motsClefs = new ArrayList<>(10);
-        motsClefs.add("aaaa");
-        motsClefs.add("bbbb");
         estConsulte=true;
     }
 
