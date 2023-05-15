@@ -129,6 +129,11 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         notifierObservateurs();
     }
 
+    /**
+     * iterator qui permet d'itérer sur les satellites de la collection
+     *
+     * @return un iterator de satellite
+     */
     @Override
     public Iterator<Satellite> iterator() {
         return satellites.iterator();

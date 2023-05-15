@@ -13,7 +13,6 @@ import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import stamps.exception.CollectionExceptionDate;
 import stamps.model.CollectionSatellites;
 import stamps.model.Compteur;
 import stamps.model.Information;
@@ -23,9 +22,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Objects;
 
+
+/**
+ * classe qui permet de manipuler et gérer le panneau FXML de la vue détaillée
+ *
+ * @author baptistedie
+ */
 public class PanneauDetail extends Controleur{
 
     /**
@@ -33,6 +37,9 @@ public class PanneauDetail extends Controleur{
      */
     public ScrollPane scrollPane;
 
+    /**
+     * bouton pour manipuler les tags
+     */
     public Button boutonTags;
 
     /**
@@ -55,6 +62,10 @@ public class PanneauDetail extends Controleur{
      * zone de texte où l'on rentre le nom du satellite
      */
     public TextField titre;
+
+    /**
+     * listView de label affichant les tags du satellites
+     */
     public ListView<Label> listeTags;
 
     /**
@@ -96,6 +107,7 @@ public class PanneauDetail extends Controleur{
      * arrayListe des informations du satellite
      */
     private final ArrayList<PanneauInformation> informations;
+
 
     /**
      * constructeur principal de la classe
@@ -334,6 +346,9 @@ public class PanneauDetail extends Controleur{
         }
     }
 
+    /**
+     * méthode privée qui permet d'afficher les tags du satellite
+     */
     @FXML
     private void afficherTags(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../vue/PanneauListeTags.fxml"));
