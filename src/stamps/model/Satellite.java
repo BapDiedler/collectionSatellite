@@ -151,7 +151,7 @@ public class Satellite implements Iterable<Information>{
      * @return la date du satellite
      */
     public String getDateString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE-MMMM-yyyy"); // Format de date souhaité
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMMM-yyyy  HH:mm", Locale.FRANCE); // Format de date souhaité
         return sdf.format(date);
     }
 

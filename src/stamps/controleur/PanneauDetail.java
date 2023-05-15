@@ -363,6 +363,8 @@ public class PanneauDetail extends Controleur{
     public void reagir() {
         boolean change = collectionSatellites.isEstConsulte();
         boutonTags.setVisible(!change);
+        titre.setDisable(change);
+        titre.setStyle("-fx-opacity: 1");
         precedent.setVisible(posSatellite != 0);
         suivant.setVisible(posSatellite != collectionSatellites.nbSatellites() - 1);
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
