@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauListeTags">
+    <AnchorPane>
+      <children>
+         <VBox>
+            <children>
+               <ListView fx:id="listView" prefHeight="500.0" prefWidth="500.0" styleClass="listView" stylesheets="@../../ressource/styleSheet.css" />
+               <TextField fx:id="nouveauTag" alignment="CENTER" onAction="#ajoutTag" prefHeight="60.0" promptText="tags à ajouter">
+                  <font>
+                     <Font size="24.0" />
+                  </font>
+               </TextField>
+               <Button mnemonicParsing="false" onAction="#ajouter" prefHeight="50.0" prefWidth="500.0" text="ajouter">
+                  <font>
+                     <Font size="24.0" />
+                  </font>
+               </Button>
+            </children>
+         </VBox>
+      </children>
+    </AnchorPane>
+</Scene>

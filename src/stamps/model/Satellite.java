@@ -80,7 +80,7 @@ public class Satellite implements Iterable<Information>{
      * @param motsClefs mots clefs ajoutés
      */
     public void setMotsClefs(String... motsClefs){
-        this.motsClefs.addAll(List.of(motsClefs));
+            this.motsClefs.addAll(List.of(motsClefs));
     }
 
     /**
@@ -169,6 +169,9 @@ public class Satellite implements Iterable<Information>{
         return cpt;
     }
 
+    public Iterator<String> iteratorTags(){
+        return motsClefs.iterator();
+    }
 
     /**
      * méthode qui permet d'obtenir une information sur le satellite
@@ -223,6 +226,10 @@ public class Satellite implements Iterable<Information>{
     @Override
     public Iterator<Information> iterator() {
         return informations.iterator();
+    }
+
+    public boolean containeTag(String val){
+        return motsClefs.contains(val);
     }
 
 }

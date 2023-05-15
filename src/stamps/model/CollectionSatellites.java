@@ -101,7 +101,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      * @param motClef nouveau mot clef
      */
     public void setMotsClefs(String... motClef) {
-        this.motsClefs.addAll(List.of(motClef));
+        if(!motsClefs.contains(motClef[0]))
+            this.motsClefs.addAll(List.of(motClef));
     }
 
     /**

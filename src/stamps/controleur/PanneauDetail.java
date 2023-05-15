@@ -22,6 +22,8 @@ import stamps.model.Satellite;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 
 public class PanneauDetail extends Controleur{
@@ -30,6 +32,8 @@ public class PanneauDetail extends Controleur{
      * scrollPane où se trouve les informations
      */
     public ScrollPane scrollPane;
+
+    public Button boutonTags;
 
     /**
      * pane contenant les éléments du bottom
@@ -50,17 +54,8 @@ public class PanneauDetail extends Controleur{
     /**
      * zone de texte où l'on rentre le nom du satellite
      */
-    public TextArea titre;
-
-    /**
-     * listeView de mots clefs afficher quand l'utilisateur choisit de rentrer les mots clefs
-     */
-    public ListView<Label> listMotsClefs;
-
-    /**
-     * label contenant tous les mots clefs du satellite
-     */
-    public Label labelMotClef;
+    public TextField titre;
+    public ListView<Label> listeTags;
 
     /**
      * vbox contenant les informations du satellite
@@ -339,42 +334,47 @@ public class PanneauDetail extends Controleur{
         }
     }
 
-    /**
-     * méthode qui permet d'ajouter des mots clefs dans au satellite
-     */
-    private void appliquerMotsClefs(){
-        for(String mot: collectionSatellites.getMotsClefs("b")) {
-            listMotsClefs.getItems().add(new Label(mot));
+    @FXML
+    private void afficherTags(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../vue/PanneauListeTags.fxml"));
+        Stage nouvelleFenetre = new Stage();
+        PanneauListeTags tags = new PanneauListeTags(collectionSatellites,posSatellite,nouvelleFenetre);
+        loader.setControllerFactory(ic -> tags);
+        Scene root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+
+        // Créer une nouvelle fenêtre
+        nouvelleFenetre.setTitle("Tags");
+        nouvelleFenetre.setScene(root);
+
+        // Afficher la nouvelle fenêtre
+        nouvelleFenetre.show();
     }
 
-    /**
-     * méthode qui permet d'ajouter des éléments dans la liste de mots clefs du satellite
-     *
-     * @return liste de mots clefs sous forme de string
-     */
-    private String ajouterMotsClefs(){
-        StringBuilder builder = new StringBuilder(10);
-        for(Label label: listMotsClefs.getItems()){
-            builder.append(label.getText());
-        }
-        return builder.toString();
-    }
 
     /**
      * méthode réagir qui sera activée à chaque action
      */
     @Override
     public void reagir() {
-        listMotsClefs.getItems().clear();
         boolean change = collectionSatellites.isEstConsulte();
-        appliquerMotsClefs();
-        labelMotClef.setVisible(change);
-        listMotsClefs.setVisible(!change);
+        boutonTags.setVisible(!change);
         precedent.setVisible(posSatellite != 0);
         suivant.setVisible(posSatellite != collectionSatellites.nbSatellites() - 1);
+        Satellite satellite = collectionSatellites.getSatellite(posSatellite);
+        Iterator<String> iteratorTags = satellite.iteratorTags();
+        listeTags.getItems().clear();
+        while (iteratorTags.hasNext()){
+            String val = iteratorTags.next();
+            Label label = new Label(val);
+            label.setStyle("-fx-text-fill: white");
+            listeTags.getItems().add(label);
+        }
         if(change){
-            labelMotClef.setText(ajouterMotsClefs());
             sauvegarder.setText("édition");
         }else{
             sauvegarder.setText("sauvegarde");
