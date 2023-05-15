@@ -229,7 +229,7 @@ public class PanneauDetail extends Controleur{
         Image im = new Image(Objects.requireNonNull(getClass().getResourceAsStream(satellite.getUrl())),
                 700, 700, true, true) ;
         image.setImage(im);
-        image.setLayoutY(150);
+        //image.setLayoutY(150);
     }
 
 

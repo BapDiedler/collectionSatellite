@@ -72,20 +72,15 @@
                      </MenuItem>
                   </items>
                   <font>
-                     <Font size="40.0" />
+                     <Font size="33.0" />
                   </font>
                   <cursor>
                      <Cursor fx:constant="DEFAULT" />
                   </cursor>
                </MenuButton>
-               <TextField fx:id="titre" alignment="CENTER" layoutX="719.0" layoutY="23.0" prefHeight="76.0" prefWidth="563.0" styleClass="textArea" text="nom">
-                  <font>
-                     <Font name="System Italic" size="45.0" />
-                  </font>
-               </TextField>
                <Button fx:id="boutonTags" alignment="CENTER" layoutX="338.0" layoutY="22.0" mnemonicParsing="false" onAction="#afficherTags" prefHeight="55.0" prefWidth="230.0" text="Tags" textAlignment="CENTER" textFill="WHITE">
                   <font>
-                     <Font size="40.0" />
+                     <Font size="33.0" />
                   </font>
                </Button>
             </children>
@@ -112,7 +107,12 @@
                <Insets left="150.0" />
             </BorderPane.margin>
             <children>
-               <ImageView fx:id="image" fitHeight="600.0" fitWidth="600.0" layoutX="-2.0" layoutY="145.0" onMouseClicked="#chercheImage" pickOnBounds="true" preserveRatio="true" styleClass="image" />
+               <TextField fx:id="titre" alignment="CENTER" layoutX="-5.0" layoutY="124.0" prefHeight="76.0" prefWidth="601.0" styleClass="textArea" text="nom">
+                  <font>
+                     <Font name="System Italic" size="48.0" />
+                  </font>
+               </TextField>
+               <ImageView fx:id="image" fitHeight="600.0" fitWidth="600.0" layoutX="4.0" layoutY="290.0" onMouseClicked="#chercheImage" pickOnBounds="true" preserveRatio="true" styleClass="image" />
             </children>
          </Pane>
       </left>

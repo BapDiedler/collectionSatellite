@@ -232,4 +232,12 @@ public class Satellite implements Iterable<Information>{
         return motsClefs.contains(val);
     }
 
+    /**
+     * méthode qui permet de supprimer un tag du satellite
+     *
+     * @param text tag à retirer
+     */
+    public void removeTag(String text) {
+        motsClefs.remove(text);
+    }
 }

@@ -18,7 +18,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
     /**
      * ensemble des mots clefs de la collection de satellites
      */
-    private ArrayList<String> motsClefs;
+    private HashMap<String, Integer> motsClefs;
 
     /**
      * champ qui nous permet de savoir si la vue est en mode consultation ou non
@@ -32,7 +32,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
     public CollectionSatellites(){
         super();
         satellites = new ArrayList<>(10);
-        motsClefs = new ArrayList<>(10);
+        motsClefs = new HashMap<>(10);
         estConsulte=true;
     }
 
@@ -41,6 +41,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      */
     public void copieCollectionSatellites(CollectionSatellites collectionSatellites){
         satellites = collectionSatellites.satellites;
+        motsClefs = collectionSatellites.motsClefs;
         estConsulte= true;
     }
 
@@ -99,8 +100,14 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      * @param motClef nouveau mot clef
      */
     public void setMotsClefs(String... motClef) {
-        if(!motsClefs.contains(motClef[0]))
-            this.motsClefs.addAll(List.of(motClef));
+        for(String newTag : motClef){
+            this.motsClefs.putIfAbsent(newTag,1);
+            for(String val : this.motsClefs.keySet()){
+                if(val.equals(newTag)){
+                    this.motsClefs.replace(val,this.motsClefs.get(val)+1);
+                }
+            }
+        }
     }
 
     /**
@@ -183,7 +190,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      */
     public ArrayList<String> getMotsClefs(String mot) {
         ArrayList<String> suggestions = new ArrayList<>();
-        for (String motClef : motsClefs) {
+        for (String motClef : motsClefs.keySet()) {
             if (motClef.toLowerCase().startsWith(mot.toLowerCase())) {
                 suggestions.add(motClef);
             }
@@ -244,5 +251,18 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
             affichage.append(satellite.getNom()).append("-");
         }
         return affichage.toString();
+    }
+
+    /**
+     * méthode qui permet de retirer les tags non utilisés par les satellites
+     *
+     * @param text tag à enlever
+     */
+    public void removeTags(String text) {
+        int val = motsClefs.get(text);
+        System.out.println(val);
+        if(val == 0){
+            motsClefs.remove(text);
+        }
     }
 }

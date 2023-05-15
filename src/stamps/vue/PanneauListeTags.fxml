@@ -24,6 +24,11 @@
                      <Font size="24.0" />
                   </font>
                </Button>
+               <Button layoutX="10.0" layoutY="570.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="50.0" prefWidth="500.0" text="supprimer">
+                  <font>
+                     <Font size="24.0" />
+                  </font>
+               </Button>
             </children>
          </VBox>
       </children>
