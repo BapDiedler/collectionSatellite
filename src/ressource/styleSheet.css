@@ -68,7 +68,6 @@
 
 /*ZONE OU SE TROUVE UNE LISTE D ELEMENTS*/
 .listView {
-    -fx-control-inner-background: transparent;
     -fx-border-color: #3d9dca;
     -fx-border-width: 7px;
     /*-fx-background-image: url("/image/background1.jpeg");*/

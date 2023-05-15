@@ -35,11 +35,6 @@
       <top>
          <Pane prefHeight="111.0" prefWidth="2000.0" BorderPane.alignment="CENTER">
             <children>
-               <Label fx:id="labelTitre" alignment="CENTER" layoutX="649.0" layoutY="7.0" prefHeight="48.0" prefWidth="702.0" text="Label" textFill="WHITE">
-                  <font>
-                     <Font name="System Italic" size="48.0" />
-                  </font>
-               </Label>
                <MenuButton contentDisplay="CENTER" layoutX="80.0" layoutY="-3.0" mnemonicParsing="false" styleClass="button" stylesheets="@../../ressource/styleSheet.css" text="Menu" textFill="WHITE">
                   <items>
                    <MenuItem mnemonicParsing="false" onAction="#changerGlobal" styleClass="menuItem" text="global">
@@ -78,14 +73,10 @@
       <bottom>
          <Pane fx:id="paneBottom" prefHeight="103.0" prefWidth="2000.0" BorderPane.alignment="CENTER">
             <children>
-               <Label fx:id="date" alignment="CENTER" layoutX="735.0" layoutY="7.0" prefHeight="67.0" prefWidth="531.0" text="date" textAlignment="CENTER" textFill="WHITE">
+               <Label fx:id="date" alignment="CENTER" layoutX="582.0" layoutY="7.0" prefHeight="67.0" prefWidth="837.0" text="date" textAlignment="CENTER" textFill="WHITE">
                   <font>
                      <Font size="48.0" />
                   </font></Label>
-               <TextArea fx:id="zoneDate" layoutX="585.0" layoutY="7.0" prefHeight="56.0" prefWidth="762.0" styleClass="textArea" visible="false">
-                  <font>
-                     <Font size="30.0" />
-                  </font></TextArea>
                <ImageView fx:id="suivant" fitHeight="90.0" fitWidth="90.0" layoutX="1896.0" layoutY="-24.0" onMouseClicked="#suivant" pickOnBounds="true" preserveRatio="true" styleClass="button" />
                <ImageView fx:id="precedent" fitHeight="90.0" fitWidth="90.0" layoutX="14.0" layoutY="-24.0" onMouseClicked="#precedent" pickOnBounds="true" preserveRatio="true" styleClass="button" />
             </children>

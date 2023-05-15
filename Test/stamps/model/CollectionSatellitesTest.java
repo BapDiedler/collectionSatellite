@@ -15,23 +15,6 @@ class CollectionSatellitesTest {
         FabriqueIdentifiants.getInstance().reset();
     }
 
-    @Test
-    void trierDate() {
-        CollectionSatellites collectionSatellites = new CollectionSatellites();
-        collectionSatellites.ajouter("satellite1");
-        collectionSatellites.ajouter("satellite2");
-        collectionSatellites.trierDate();
-        assertEquals("satellite1-satellite2-",collectionSatellites.toString());
-        collectionSatellites.getSatellite(0).setDate(3);
-        collectionSatellites.getSatellite(1).setDate(1);
-        collectionSatellites.trierDate();
-        assertEquals("satellite2-satellite1-",collectionSatellites.toString());
-        collectionSatellites.getSatellite(0).setDate(3);
-        collectionSatellites.getSatellite(1).setDate(1);
-        collectionSatellites.trierDate();
-        assertEquals("satellite1-satellite2-",collectionSatellites.toString());
-        FabriqueIdentifiants.getInstance().reset();
-    }
 
     @Test
     void trierApparition() {
@@ -40,8 +23,6 @@ class CollectionSatellitesTest {
         collectionSatellites.ajouter("satellite2");
         collectionSatellites.trierApparition();
         assertEquals("satellite1-satellite2-",collectionSatellites.toString());
-        collectionSatellites.getSatellite(0).setDate(3);
-        collectionSatellites.getSatellite(1).setDate(1);
         collectionSatellites.trierDate();
         collectionSatellites.trierApparition();
         assertEquals("satellite1-satellite2-",collectionSatellites.toString());

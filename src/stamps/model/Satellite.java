@@ -2,6 +2,7 @@ package stamps.model;
 
 import stamps.exception.CollectionExceptionDate;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -35,7 +36,7 @@ public class Satellite implements Iterable<Information>{
     /**
      * date de création du satellite
      */
-    private int date;
+    private Date date;
 
     /**
      * lien de l'image pour le satellite
@@ -61,7 +62,7 @@ public class Satellite implements Iterable<Information>{
         this.informations = new ArrayList<>(10);
         this.informations.add(new Information());
         this.url = Objects.requireNonNullElse(url, "/image/pasImage.jpeg");
-        this.date = 2000;
+        this.date = new Date();
     }
 
     /**
@@ -96,7 +97,7 @@ public class Satellite implements Iterable<Information>{
      *
      * @param date date de création du satellite
      */
-    public void setDate(int date){
+    public void setDate(Date date){
         this.date = date;
     }
 
@@ -140,8 +141,8 @@ public class Satellite implements Iterable<Information>{
      *
      * @return la date du satellite
      */
-    public int getDate() {
-        return date;
+    public String getDate() {
+        return date.toString();
     }
 
     /**
@@ -150,7 +151,8 @@ public class Satellite implements Iterable<Information>{
      * @return la date du satellite
      */
     public String getDateString() {
-        return String.valueOf(date);
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE-MMMM-yyyy"); // Format de date souhaité
+        return sdf.format(date);
     }
 
     /**
@@ -223,11 +225,4 @@ public class Satellite implements Iterable<Information>{
         return informations.iterator();
     }
 
-    public void setDateString(String text) throws CollectionExceptionDate {
-        try {
-            date = Integer.parseInt(text);
-        }catch (NumberFormatException ex){
-            throw new CollectionExceptionDate("La date "+text+" n'est pas valide.");
-        }
-    }
 }

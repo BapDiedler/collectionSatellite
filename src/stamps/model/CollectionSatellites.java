@@ -108,7 +108,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      * méthode qui permet de trier les satellites en fonction de leur date de création
      */
     public void trierDate(){
-        satellites.sort(Comparator.comparingInt(Satellite::getDate));
+        satellites.sort(Comparator.comparing(Satellite::getDateString));
         notifierObservateurs();
     }
 

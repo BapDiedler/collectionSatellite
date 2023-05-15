@@ -27,11 +27,6 @@ import java.util.Objects;
 public class PanneauDetail extends Controleur{
 
     /**
-     * label contenant le nom du satellite
-     */
-    public Label labelTitre;
-
-    /**
      * scrollPane où se trouve les informations
      */
     public ScrollPane scrollPane;
@@ -50,7 +45,7 @@ public class PanneauDetail extends Controleur{
     /**
      * zone de texte où rentrer la date
      */
-    public TextArea zoneDate;
+    public Label date;
 
     /**
      * zone de texte où l'on rentre le nom du satellite
@@ -72,12 +67,6 @@ public class PanneauDetail extends Controleur{
      */
     @FXML
     private VBox vbox;
-
-    /**
-     * label contenant la date du satellite
-     */
-    @FXML
-    private Label date;
 
     /**
      * image du satellite
@@ -162,7 +151,6 @@ public class PanneauDetail extends Controleur{
     void precedent(){
         if(posSatellite!=0) {
             posSatellite -= 1;
-            appliquerInformation();
             collectionSatellites.notifierObservateurs();
         }
     }
@@ -175,8 +163,8 @@ public class PanneauDetail extends Controleur{
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
         appliquerImage();
         vbox.getChildren().clear();
-        date.setText(String.valueOf(satellite.getDate()));
-        labelTitre.setText(satellite.getNom());
+        date.setText(String.valueOf(satellite.getDateString()));
+        titre.setText(satellite.getNom());
         ajout.setDisable(collectionSatellites.isEstConsulte());
         if(!collectionSatellites.isEstConsulte()) {
             appliquerInformationsEdition();
@@ -253,11 +241,6 @@ public class PanneauDetail extends Controleur{
         if(!collectionSatellites.isEstConsulte()){
             Satellite satellite = collectionSatellites.getSatellite(posSatellite);
             satellite.setNom(titre.getText());
-            try {
-                satellite.setDateString(zoneDate.getText());
-            } catch (CollectionExceptionDate e) {
-                lancerAlerte(e.getMessage());
-            }
             for(PanneauInformation information: informations){
                 information.sauvegardeInformation();
             }
@@ -285,7 +268,7 @@ public class PanneauDetail extends Controleur{
     @FXML
     void changerGlobal() {
         ProgressBar progressBar = new ProgressBar();
-        progressBar.setPrefWidth(vbox.getPrefWidth());
+        progressBar.setPrefWidth(vbox.getPrefWidth()+10);
         progressBar.setLayoutX(paneBottom.getPrefWidth()/2-progressBar.getPrefWidth()/2);
         // Ajouter la barre de chargement à la première scène
         paneBottom.getChildren().add(progressBar);
@@ -386,8 +369,6 @@ public class PanneauDetail extends Controleur{
         listMotsClefs.getItems().clear();
         boolean change = collectionSatellites.isEstConsulte();
         appliquerMotsClefs();
-        zoneDate.setVisible(!change);
-        titre.setVisible(!change);
         labelMotClef.setVisible(change);
         listMotsClefs.setVisible(!change);
         precedent.setVisible(posSatellite != 0);
@@ -398,7 +379,6 @@ public class PanneauDetail extends Controleur{
         }else{
             sauvegarder.setText("sauvegarde");
             titre.setText(collectionSatellites.getSatellite(posSatellite).getNom());
-            zoneDate.setText(collectionSatellites.getSatellite(posSatellite).getDateString());
         }
         appliquerInformation();
         vbox.setPrefHeight(scrollPane.getPrefHeight());
