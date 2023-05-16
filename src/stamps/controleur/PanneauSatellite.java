@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import stamps.model.CollectionSatellites;
+import stamps.model.Compteur;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,13 +27,19 @@ public class PanneauSatellite extends Controleur {
     public ContextMenu menuContext;
 
     /**
+     * compteur de satellite
+     */
+    private final Compteur compteur ;
+
+    /**
      * constructeur de la classe
      *
      * @param satellites satellites manipulés
      */
-    public PanneauSatellite(CollectionSatellites satellites, int pos){
+    public PanneauSatellite(CollectionSatellites satellites, int pos, Compteur compteur){
         super(satellites);
         posSatellite = pos;
+        this.compteur = compteur;
     }
 
     @FXML
@@ -77,6 +84,17 @@ public class PanneauSatellite extends Controleur {
     void supprimer(){
         collectionSatellites.supprimer(collectionSatellites.getSatellite(posSatellite));
         collectionSatellites.notifierObservateurs();
+        compteur.decrementer();
+    }
+
+    /**
+     * méthode qui permet de tout supprimer
+     */
+    @FXML
+    void supprimerAll(){
+        collectionSatellites.supprimerAll();
+        collectionSatellites.notifierObservateurs();
+        compteur.setValeur(0);
     }
 
 

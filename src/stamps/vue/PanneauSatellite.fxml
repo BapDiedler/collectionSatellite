@@ -17,6 +17,7 @@
             <ContextMenu fx:id="menuContext" styleClass="menuItem">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#supprimer" styleClass="menuItem" text="supprimer" />
+                  <MenuItem mnemonicParsing="false" onAction="#supprimerAll" styleClass="menuItem" text="tout supprimer" />
               </items>
             </ContextMenu>
          </contextMenu>

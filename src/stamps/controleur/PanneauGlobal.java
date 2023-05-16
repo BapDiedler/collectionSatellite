@@ -104,6 +104,7 @@ public class PanneauGlobal extends Controleur{
     void ajouter(){
         collectionSatellites.ajouter(new Satellite());
         collectionSatellites.notifierObservateurs();
+        compteur.incrementer();
     }
 
     /**
@@ -112,7 +113,7 @@ public class PanneauGlobal extends Controleur{
      * @param ind position du satellite
      */
     void ajouter(int ind){
-        PanneauSatellite panneauSat = new PanneauSatellite(collectionSatellites,ind);
+        PanneauSatellite panneauSat = new PanneauSatellite(collectionSatellites,ind,compteur);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../vue/PanneauSatellite.fxml"));
         loader.setControllerFactory(ic -> panneauSat);
@@ -132,10 +133,6 @@ public class PanneauGlobal extends Controleur{
         for(int i=0; i<collectionSatellites.nbSatellites(); i++){
             ajouter(i);
         }
-        if(nbSatellites()>compteur.getValue())
-            compteur.incrementer();
-        if(nbSatellites()<compteur.getValue())
-            compteur.decrementer();
         if(collectionSatellites.isEstConsulte())
             ajout.setVisible(false);
         else

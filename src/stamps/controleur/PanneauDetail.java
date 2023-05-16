@@ -196,7 +196,6 @@ public class PanneauDetail extends Controleur{
         vbox.setPrefHeight(scrollPane.getPrefHeight());
     }
 
-
     /**
      * méthode appliquant les informations dans le mode édition
      */
@@ -244,7 +243,6 @@ public class PanneauDetail extends Controleur{
                 700, 700, true, true) ;
         image.setImage(im);
     }
-
 
     /**
      * méthode qui permet d'ajouter des informations au satellite
@@ -314,7 +312,6 @@ public class PanneauDetail extends Controleur{
         });
         timeline.play();
     }
-
 
     /**
      * méthode qui permet de changer de vue

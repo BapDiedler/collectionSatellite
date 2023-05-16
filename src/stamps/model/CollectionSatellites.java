@@ -1,5 +1,7 @@
 package stamps.model;
 
+import javafx.fxml.FXML;
+
 import java.util.*;
 
 /**
@@ -86,6 +88,13 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      */
     public void supprimer(Satellite satellite){
         satellites.remove(satellite);
+    }
+
+    /**
+     * méthode qui permet de tout supprimer
+     */
+    public void supprimerAll(){
+        satellites.clear();
     }
 
     /**
