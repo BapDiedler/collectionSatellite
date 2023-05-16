@@ -108,6 +108,11 @@ public class PanneauDetail extends Controleur{
      */
     private final ArrayList<PanneauInformation> informations;
 
+    /**
+     * attribut qui permet de savoir
+     */
+    private boolean estSauvegarde;
+
 
     /**
      * constructeur principal de la classe
@@ -119,6 +124,7 @@ public class PanneauDetail extends Controleur{
         super(collectionSatellites);
         this.posSatellite = posSatellite;
         this.informations = new ArrayList<>(10);
+        estSauvegarde = true;
     }
 
     /**
@@ -146,8 +152,12 @@ public class PanneauDetail extends Controleur{
     @FXML
     void suivant(){
         if(posSatellite!=collectionSatellites.nbSatellites()-1) {
-            posSatellite += 1;
-            collectionSatellites.notifierObservateurs();
+            if(estSauvegarde) {
+                posSatellite += 1;
+                collectionSatellites.notifierObservateurs();
+            }else{
+                lancerAlerte("Les données ne sont pas sauvegardées");
+            }
         }
     }
 
@@ -157,8 +167,12 @@ public class PanneauDetail extends Controleur{
     @FXML
     void precedent(){
         if(posSatellite!=0) {
-            posSatellite -= 1;
-            collectionSatellites.notifierObservateurs();
+            if(estSauvegarde) {
+                posSatellite -= 1;
+                collectionSatellites.notifierObservateurs();
+            }else{
+                lancerAlerte("Les données ne sont pas sauvegardées");
+            }
         }
     }
 
@@ -246,14 +260,19 @@ public class PanneauDetail extends Controleur{
     @FXML
     void sauvegarde(){
         if(!collectionSatellites.isEstConsulte()){
+            estSauvegarde = true;
             Satellite satellite = collectionSatellites.getSatellite(posSatellite);
             if(titre.getText().length() != 0)
                 satellite.setNom(titre.getText());
-            else
+            else {
+                estSauvegarde = false;
                 lancerAlerte("le nom n'a pas été rentré");
+            }
             for(PanneauInformation information: informations){
                 information.sauvegardeInformation();
             }
+        }else{
+            estSauvegarde = false;
         }
         collectionSatellites.setEstConsulte();
         collectionSatellites.notifierObservateurs();

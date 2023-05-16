@@ -90,12 +90,9 @@ public class PanneauListeTags extends Controleur {
         }else{
             lancerAlerte("aucun tag ne vient d'être ajouté");
         }
-        Label label = new Label(nouveauTag.getText());
-        label.setPrefWidth(listView.getPrefWidth()-35);
-        collectionSatellites.setMotsClefs(label.getText());
+        collectionSatellites.setMotsClefs(nouveauTag.getText());
         if(posSatellite != collectionSatellites.nbSatellites()+1)
-            collectionSatellites.getSatellite(posSatellite).setMotsClefs(label.getText());
-        listView.getItems().add(label);
+            collectionSatellites.getSatellite(posSatellite).setMotsClefs(nouveauTag.getText());
         nouveauTag.setText("");
         collectionSatellites.notifierObservateurs();
     }
@@ -124,7 +121,6 @@ public class PanneauListeTags extends Controleur {
             collectionSatellites.removeTags(label.getText());
         }
         collectionSatellites.notifierObservateurs();
-        stage.close();
     }
 
     /**
@@ -138,7 +134,6 @@ public class PanneauListeTags extends Controleur {
                 collectionSatellites.getSatellite(posSatellite).setMotsClefs(label.getText());
         }
         collectionSatellites.notifierObservateurs();
-        stage.close();
     }
 
 
@@ -152,9 +147,8 @@ public class PanneauListeTags extends Controleur {
             listView.getItems().clear();
             for (String val : tags) {
                 Label label = new Label(val);
-                if (satellite.containeTag(val)) label.setStyle("-fx-text-fill: red");
-                else label.setStyle("-fx-text-fill: white;" +
-                        "-fx-background-color: #323232;");
+                if (satellite.containeTag(val)) label.setStyle("-fx-text-fill: #5d9cab; -fx-font-size: 30px");
+                else label.setStyle("-fx-text-fill: white; -fx-font-size: 30px");
                 label.setAlignment(Pos.CENTER);
                 label.setPrefWidth(listView.getPrefWidth() - 35);
                 listView.getItems().add(label);
@@ -164,7 +158,7 @@ public class PanneauListeTags extends Controleur {
             for (String val : tags) {
                 Label label = new Label(val);
                 label.setStyle("-fx-text-fill: white;" +
-                        "-fx-background-color: #323232;");
+                        "-fx-font-size: 30px");
                 label.setAlignment(Pos.CENTER);
                 label.setPrefWidth(listView.getPrefWidth() - 35);
                 listView.getItems().add(label);
