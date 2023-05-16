@@ -3,6 +3,7 @@ package stamps.controleur;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import stamps.model.CollectionSatellites;
 import stamps.model.Satellite;
@@ -57,6 +58,7 @@ public class PanneauListeTags extends Controleur {
         this.tags = satellites.getMotsClefs("");
         this.posSatellite = posSatellite;
         this.stage = stage;
+        this.stage.initModality(Modality.APPLICATION_MODAL);
     }
 
     /**

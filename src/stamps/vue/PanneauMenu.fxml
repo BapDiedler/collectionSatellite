@@ -12,7 +12,6 @@
       <MenuButton fx:id="trierMenu" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" styleClass="button" text="Trier" textFill="WHITE">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#trierNom" styleClass="menuItem" text="nom" />
-            <MenuItem mnemonicParsing="false" onAction="#trierDate" styleClass="menuItem" text="date" />
             <MenuItem mnemonicParsing="false" onAction="#trierApparition" styleClass="menuItem" text="apparition" />
         </items>
          <font>

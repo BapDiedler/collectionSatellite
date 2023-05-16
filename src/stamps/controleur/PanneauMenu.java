@@ -122,7 +122,7 @@ public class PanneauMenu extends Controleur{
         }
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(collectionSatellites,CollectionSatellites.class);
-        try (FileWriter writer = new FileWriter("src/ressource/sauvegarde/collection"+(nombreElements)+".json")) {
+        try (FileWriter writer = new FileWriter("src/ressource/sauvegarde/collection"+nombreElements+".json")) {
             writer.write(json);
         } catch (IOException e) {
             e.printStackTrace();

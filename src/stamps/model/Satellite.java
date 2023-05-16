@@ -99,10 +99,17 @@ public class Satellite implements Iterable<Information>{
         this.date = date;
     }
 
+    /**
+     * méthode qui permet d'appliquer un nouveau lien pour l'image
+     * @param url nouveau lien de l'image
+     */
     public void setUrl(String url){
         this.url = url;
     }
 
+    /**
+     * méthode qui permet d'ajouter une info
+     */
     public void ajoutInfo(){
         informations.add(new Information());
     }
@@ -202,11 +209,21 @@ public class Satellite implements Iterable<Information>{
         return url;
     }
 
+    /**
+     * toString de la classe
+     * @return le satellite suivit de son identifiant
+     */
     @Override
     public String toString() {
-        return nom+identifiant;
+        return nom+identifiant.toUpperCase();
     }
 
+    /**
+     * méthode qui permet de savoir si deux satellites sont identiques
+     *
+     * @param obj objet que l'on compare
+     * @return true si identique
+     */
     @Override
     public boolean equals(Object obj) {
         if(!(obj instanceof Satellite)){
@@ -221,6 +238,10 @@ public class Satellite implements Iterable<Information>{
         return false;
     }
 
+    /**
+     * méthode qui permet d'itérer sur les informations
+     * @return un iterator d'informations
+     */
     @Override
     public Iterator<Information> iterator() {
         return informations.iterator();
