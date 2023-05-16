@@ -229,7 +229,6 @@ public class PanneauDetail extends Controleur{
         Image im = new Image(Objects.requireNonNull(getClass().getResourceAsStream(satellite.getUrl())),
                 700, 700, true, true) ;
         image.setImage(im);
-        //image.setLayoutY(150);
     }
 
 
@@ -248,7 +247,10 @@ public class PanneauDetail extends Controleur{
     void sauvegarde(){
         if(!collectionSatellites.isEstConsulte()){
             Satellite satellite = collectionSatellites.getSatellite(posSatellite);
-            satellite.setNom(titre.getText());
+            if(titre.getText().length() != 0)
+                satellite.setNom(titre.getText());
+            else
+                lancerAlerte("le nom n'a pas été rentré");
             for(PanneauInformation information: informations){
                 information.sauvegardeInformation();
             }
