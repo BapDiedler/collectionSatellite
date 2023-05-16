@@ -108,12 +108,14 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      * setter de mot clef dans le monde
      * @param motClef nouveau mot clef
      */
-    public void setMotsClefs(String... motClef) {
+    public void setMotsClefs(int i,String... motClef) {
         for(String newTag : motClef){
-            this.motsClefs.putIfAbsent(newTag,1);
-            for(String val : this.motsClefs.keySet()){
-                if(val.equals(newTag)){
-                    this.motsClefs.replace(val,this.motsClefs.get(val)+1);
+            this.motsClefs.putIfAbsent(newTag,i);
+            if(i == 1) {
+                for (String val : this.motsClefs.keySet()) {
+                    if (val.equals(newTag)) {
+                        this.motsClefs.replace(val, this.motsClefs.get(val) + 1);
+                    }
                 }
             }
         }
@@ -269,7 +271,6 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      */
     public void removeTags(String text) {
         int val = motsClefs.get(text);
-        System.out.println(val);
         if(val == 0){
             motsClefs.remove(text);
         }

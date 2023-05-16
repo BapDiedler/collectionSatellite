@@ -1,16 +1,16 @@
 package stamps;
 
-import com.google.gson.Gson;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import stamps.controleur.*;
 import stamps.model.CollectionSatellites;
 import stamps.model.Compteur;
 
+/**
+ * classe permettant de lancer la collection
+ */
 public class Main extends Application {
 
     @Override

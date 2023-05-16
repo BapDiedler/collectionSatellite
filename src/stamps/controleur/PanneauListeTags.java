@@ -90,7 +90,7 @@ public class PanneauListeTags extends Controleur {
         }else{
             lancerAlerte("aucun tag ne vient d'être ajouté");
         }
-        collectionSatellites.setMotsClefs(nouveauTag.getText());
+        collectionSatellites.setMotsClefs(1,nouveauTag.getText());
         if(posSatellite != collectionSatellites.nbSatellites()+1)
             collectionSatellites.getSatellite(posSatellite).setMotsClefs(nouveauTag.getText());
         nouveauTag.setText("");
@@ -129,7 +129,7 @@ public class PanneauListeTags extends Controleur {
     @FXML
     void ajouter(){
         for(Label label: listView.getSelectionModel().getSelectedItems()){
-            collectionSatellites.setMotsClefs(label.getText());
+            collectionSatellites.setMotsClefs(-1,label.getText());
             if(posSatellite != collectionSatellites.nbSatellites()+1)
                 collectionSatellites.getSatellite(posSatellite).setMotsClefs(label.getText());
         }
