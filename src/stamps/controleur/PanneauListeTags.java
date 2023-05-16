@@ -2,10 +2,7 @@ package stamps.controleur;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import stamps.model.CollectionSatellites;
 import stamps.model.Satellite;
@@ -19,19 +16,57 @@ import java.util.ArrayList;
  */
 public class PanneauListeTags extends Controleur {
 
+    /**
+     * liste de labels contenant tous les tags
+     */
     public ListView<Label> listView;
+
+    /**
+     * liste de string contenant les tags
+     */
     private final ArrayList<String> tags;
+
+    /**
+     * textField permettant de rentrer une nouvelle donnée
+     */
     public TextField nouveauTag;
 
+    /**
+     * position du satellite que l'on manipule
+     *          (satellites.nbSatellites()+1 si on est dans la vue globale)
+     */
     private final int posSatellite;
 
-    private Stage stage;
+    /**
+     * élément principal pour afficher la fenêtre
+     */
+    private final Stage stage;
+    public Button ajout;
+    public Button supprime;
 
+    /**
+     * constructeur principal
+     *
+     * @param satellites collection de satellite à manipuler
+     * @param posSatellite position du satellite que l'on manipule
+     *                     (satellites.nbSatellites()+1 si on est dans la vue globale)
+     * @param stage élément principal pour afficher la fenêtre
+     */
     public PanneauListeTags(CollectionSatellites satellites, int posSatellite, Stage stage){
         super(satellites);
         this.tags = satellites.getMotsClefs("");
         this.posSatellite = posSatellite;
         this.stage = stage;
+    }
+
+    /**
+     * constructeur utilisé dans la vue globale
+     *
+     * @param satellites collection de satellite que l'on observe
+     * @param stage élément principal pour afficher la fenêtre
+     */
+    public PanneauListeTags(CollectionSatellites satellites, Stage stage){
+        this(satellites, satellites.nbSatellites()+1, stage);
     }
 
     /**
@@ -54,7 +89,8 @@ public class PanneauListeTags extends Controleur {
         Label label = new Label(nouveauTag.getText());
         label.setPrefWidth(listView.getPrefWidth()-35);
         collectionSatellites.setMotsClefs(label.getText());
-        collectionSatellites.getSatellite(posSatellite).setMotsClefs(label.getText());
+        if(posSatellite != collectionSatellites.nbSatellites()+1)
+            collectionSatellites.getSatellite(posSatellite).setMotsClefs(label.getText());
         listView.getItems().add(label);
         nouveauTag.setText("");
         collectionSatellites.notifierObservateurs();
@@ -66,7 +102,8 @@ public class PanneauListeTags extends Controleur {
     @FXML
     void supprimer(){
         for(Label label: listView.getSelectionModel().getSelectedItems()){
-            collectionSatellites.getSatellite(posSatellite).removeTag(label.getText());
+            if(posSatellite != collectionSatellites.nbSatellites()+1)
+                collectionSatellites.getSatellite(posSatellite).removeTag(label.getText());
             collectionSatellites.removeTags(label.getText());
         }
         collectionSatellites.notifierObservateurs();
@@ -80,7 +117,8 @@ public class PanneauListeTags extends Controleur {
     void ajouter(){
         for(Label label: listView.getSelectionModel().getSelectedItems()){
             collectionSatellites.setMotsClefs(label.getText());
-            collectionSatellites.getSatellite(posSatellite).setMotsClefs(label.getText());
+            if(posSatellite != collectionSatellites.nbSatellites()+1)
+                collectionSatellites.getSatellite(posSatellite).setMotsClefs(label.getText());
         }
         collectionSatellites.notifierObservateurs();
         stage.close();
@@ -92,16 +130,28 @@ public class PanneauListeTags extends Controleur {
      */
     @Override
     public void reagir() {
-        Satellite satellite = collectionSatellites.getSatellite(posSatellite);
-        listView.getItems().clear();
-        for(String val: tags){
-            Label label = new Label(val);
-            if(satellite.containeTag(val)) label.setStyle("-fx-text-fill: red");
-            else label.setStyle("-fx-text-fill: white;" +
-                    "-fx-background-color: #323232;");
-            label.setAlignment(Pos.CENTER);
-            label.setPrefWidth(listView.getPrefWidth()-35);
-            listView.getItems().add(label);
+        if(posSatellite != collectionSatellites.nbSatellites()+1) {
+            Satellite satellite = collectionSatellites.getSatellite(posSatellite);
+            listView.getItems().clear();
+            for (String val : tags) {
+                Label label = new Label(val);
+                if (satellite.containeTag(val)) label.setStyle("-fx-text-fill: red");
+                else label.setStyle("-fx-text-fill: white;" +
+                        "-fx-background-color: #323232;");
+                label.setAlignment(Pos.CENTER);
+                label.setPrefWidth(listView.getPrefWidth() - 35);
+                listView.getItems().add(label);
+            }
+        }else{
+            listView.getItems().clear();
+            for (String val : tags) {
+                Label label = new Label(val);
+                label.setStyle("-fx-text-fill: white;" +
+                        "-fx-background-color: #323232;");
+                label.setAlignment(Pos.CENTER);
+                label.setPrefWidth(listView.getPrefWidth() - 35);
+                listView.getItems().add(label);
+            }
         }
     }
 }

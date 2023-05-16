@@ -160,6 +160,36 @@ public class PanneauMenu extends Controleur{
         collectionSatellites.notifierObservateurs();
     }
 
+
+    /**
+     * méthode qui permet d'afficher les tags se trouvant dans la collection de satellites
+     */
+    @FXML
+    private void afficherTags(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../vue/PanneauListeTags.fxml"));
+        Stage nouvelleFenetre = new Stage();
+        PanneauListeTags tags = new PanneauListeTags(collectionSatellites,nouvelleFenetre);
+        loader.setControllerFactory(ic -> tags);
+        Scene root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Créer une nouvelle fenêtre
+        nouvelleFenetre.setTitle("Tags");
+        nouvelleFenetre.setScene(root);
+
+        // Afficher la nouvelle fenêtre
+        nouvelleFenetre.show();
+    }
+
+    @FXML
+    private void recherche(){
+
+    }
+
     /**
      * méthode réagir qui sera activée à chaque action
      */

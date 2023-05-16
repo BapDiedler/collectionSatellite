@@ -63,6 +63,9 @@ public class PanneauGlobal extends Controleur{
         this.compteur.setValeur(collectionSatellites.nbSatellites());
     }
 
+    /**
+     * méthode qui permet d'initialiser les éléments de la fenêtre
+     */
     @FXML
     void initialize(){
         listView.setCellFactory(listView-> new CustomListCell());
@@ -72,11 +75,19 @@ public class PanneauGlobal extends Controleur{
         reagir();
     }
 
+    /**
+     * getter sur le nombre de satellites
+     *
+     * @return retourne la valeur sous forme d'entier
+     */
     @FXML
     int nbSatellites(){
         return collectionSatellites.nbSatellites();
     }
 
+    /**
+     * méthode qui permet d'ajouter un nouveau satellite
+     */
     @FXML
     void ajouter(){
         collectionSatellites.ajouter(new Satellite());

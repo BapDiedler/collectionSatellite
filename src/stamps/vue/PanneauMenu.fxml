@@ -19,6 +19,15 @@
             <Font size="33.0" />
          </font>
       </MenuButton>
+      <MenuButton fx:id="trierMenu1" alignment="CENTER" contentDisplay="CENTER" layoutX="1218.0" layoutY="19.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" styleClass="button" text="Tags" textFill="WHITE">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#afficherTags" styleClass="menuItem" text="Liste" />
+            <MenuItem mnemonicParsing="false" onAction="#recherche" styleClass="menuItem" text="recherche" />
+         </items>
+         <font>
+            <Font size="33.0" />
+         </font>
+      </MenuButton>
       <MenuButton alignment="CENTER" contentDisplay="CENTER" layoutX="1805.0" layoutY="19.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" styleClass="button" stylesheets="@../../ressource/styleSheet.css" text="Données" textFill="WHITE">
          <items>
             <MenuItem mnemonicParsing="false" onAction="#sauvegarder" styleClass="menuItem" text="sauvegarder">

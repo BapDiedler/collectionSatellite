@@ -19,12 +19,12 @@
                      <Font size="24.0" />
                   </font>
                </TextField>
-               <Button mnemonicParsing="false" onAction="#ajouter" prefHeight="50.0" prefWidth="500.0" text="ajouter">
+               <Button fx:id="ajout" mnemonicParsing="false" onAction="#ajouter" prefHeight="50.0" prefWidth="500.0" text="ajouter">
                   <font>
                      <Font size="24.0" />
                   </font>
                </Button>
-               <Button layoutX="10.0" layoutY="570.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="50.0" prefWidth="500.0" text="supprimer">
+               <Button fx:id="supprime" layoutX="10.0" layoutY="570.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="50.0" prefWidth="500.0" text="supprimer">
                   <font>
                      <Font size="24.0" />
                   </font>
