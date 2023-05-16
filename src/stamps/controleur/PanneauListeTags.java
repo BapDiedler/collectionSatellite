@@ -136,12 +136,16 @@ public class PanneauListeTags extends Controleur {
         collectionSatellites.notifierObservateurs();
     }
 
+    private void miseAJourTag(){
+    }
+
 
     /**
      * méthode réagir qui sera activée à chaque action
      */
     @Override
     public void reagir() {
+        miseAJourTag();
         if(posSatellite != collectionSatellites.nbSatellites()+1) {
             Satellite satellite = collectionSatellites.getSatellite(posSatellite);
             listView.getItems().clear();

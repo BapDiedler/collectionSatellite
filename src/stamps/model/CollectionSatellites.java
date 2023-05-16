@@ -271,8 +271,10 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      */
     public void removeTags(String text) {
         int val = motsClefs.get(text);
-        if(val == 0){
+        if(val == 1){
             motsClefs.remove(text);
+        }else{
+            motsClefs.replace(text,val,val-1);
         }
     }
 }
