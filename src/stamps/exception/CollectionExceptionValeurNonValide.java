@@ -5,14 +5,14 @@ package stamps.exception;
  *
  * @author baptistedie
  */
-public class CollectionExceptionDate extends Exception{
+public class CollectionExceptionValeurNonValide extends Exception{
 
     /**
      * constructeur de la classe
      *
      * @param message message d'erreur pour la date
      */
-    public CollectionExceptionDate(String message){
+    public CollectionExceptionValeurNonValide(String message){
         super(message);
     }
 }

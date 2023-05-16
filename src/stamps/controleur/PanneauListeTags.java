@@ -83,8 +83,10 @@ public class PanneauListeTags extends Controleur {
      */
     @FXML
     void ajoutTag(){
-        if(nouveauTag.getText() != null){
+        if(nouveauTag.getText().length() != 0){
             tags.add(nouveauTag.getText());
+        }else{
+            lancerAlerte("aucun tag ne vient d'être ajouté");
         }
         Label label = new Label(nouveauTag.getText());
         label.setPrefWidth(listView.getPrefWidth()-35);
@@ -94,6 +96,19 @@ public class PanneauListeTags extends Controleur {
         listView.getItems().add(label);
         nouveauTag.setText("");
         collectionSatellites.notifierObservateurs();
+    }
+
+    /**
+     * méthode qui permet d'afficher une alerte en cas d'erreur
+     *
+     * @param message message afficher dans l'alerte
+     */
+    private void lancerAlerte(String message){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur: ");
+        alert.setHeaderText("Une erreur vient de se produire.");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     /**

@@ -26,9 +26,15 @@ import java.util.Objects;
  */
 public class PanneauGlobal extends Controleur{
 
+    /**
+     * listView contenant les satellites
+     */
     @FXML
     private ListView<HBox> listView;
 
+    /**
+     * bouton qui permet l'ajout de satellite
+     */
     @FXML
     private Button ajout;
 
@@ -36,10 +42,12 @@ public class PanneauGlobal extends Controleur{
      * bouton des menus de la fenêtre
      */
     public ButtonBar PanneauMenu;
+
     /**
      * élément permettant d'ajouter des satellites dans la collection
      */
     public ButtonBar PanneauOutils;
+
     /**
      * élément central de la collection
      */
@@ -49,6 +57,10 @@ public class PanneauGlobal extends Controleur{
      * compteur de satellite
      */
     private final Compteur compteur ;
+
+    /**
+     * label permettant d'afficher le compteur
+     */
     public Label compte;
 
 

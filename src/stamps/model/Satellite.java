@@ -1,7 +1,5 @@
 package stamps.model;
 
-import stamps.exception.CollectionExceptionDate;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
 
