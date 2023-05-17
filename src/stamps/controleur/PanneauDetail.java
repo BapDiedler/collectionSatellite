@@ -5,6 +5,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -303,7 +304,7 @@ public class PanneauDetail extends Controleur{
         // Créer l'animation de la barre de chargement
         Timeline timeline = new Timeline();
         KeyFrame startFrame = new KeyFrame(Duration.ZERO, new KeyValue(progressBar.progressProperty(), 0));
-        KeyFrame endFrame = new KeyFrame(Duration.seconds(2), new KeyValue(progressBar.progressProperty(), 1));
+        KeyFrame endFrame = new KeyFrame(Duration.seconds(1.5), new KeyValue(progressBar.progressProperty(), 1));
         timeline.getKeyFrames().addAll(startFrame, endFrame);
         timeline.setOnFinished(e -> {
             changerVue();
@@ -400,7 +401,9 @@ public class PanneauDetail extends Controleur{
         while (iteratorTags.hasNext()) {
             String tag = iteratorTags.next();
             Label label = new Label(tag);
-            label.setStyle("-fx-text-fill: white");
+            label.setStyle("-fx-text-fill: white;" +
+                    "-fx-font-size: 30px");
+            label.setAlignment(Pos.CENTER);
             listeTags.getItems().add(label);
         }
     }

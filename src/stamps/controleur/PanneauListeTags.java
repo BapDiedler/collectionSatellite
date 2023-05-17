@@ -90,9 +90,12 @@ public class PanneauListeTags extends Controleur {
         }else{
             lancerAlerte("aucun tag ne vient d'être ajouté");
         }
-        collectionSatellites.setMotsClefs(1,nouveauTag.getText());
-        if(posSatellite != collectionSatellites.nbSatellites()+1)
+        if(collectionSatellites.nbSatellites()+1 != posSatellite) {
+            collectionSatellites.setMotsClefs(1, nouveauTag.getText());
             collectionSatellites.getSatellite(posSatellite).setMotsClefs(nouveauTag.getText());
+        }else{
+            collectionSatellites.setMotsClefs(-1,nouveauTag.getText());
+        }
         nouveauTag.setText("");
         collectionSatellites.notifierObservateurs();
     }
@@ -116,9 +119,10 @@ public class PanneauListeTags extends Controleur {
     @FXML
     void supprimer(){
         for(Label label: listView.getSelectionModel().getSelectedItems()){
-            if(posSatellite != collectionSatellites.nbSatellites()+1)
-                collectionSatellites.getSatellite(posSatellite).removeTag(label.getText());
             collectionSatellites.removeTags(label.getText());
+            if(collectionSatellites.nbSatellites()+1 != posSatellite)
+                collectionSatellites.getSatellite(posSatellite).removeTag(label.getText());
+            tags.remove(label.getText());
         }
         collectionSatellites.notifierObservateurs();
     }
@@ -129,14 +133,21 @@ public class PanneauListeTags extends Controleur {
     @FXML
     void ajouter(){
         for(Label label: listView.getSelectionModel().getSelectedItems()){
-            collectionSatellites.setMotsClefs(-1,label.getText());
             if(posSatellite != collectionSatellites.nbSatellites()+1)
                 collectionSatellites.getSatellite(posSatellite).setMotsClefs(label.getText());
         }
-        collectionSatellites.notifierObservateurs();
-    }
+        if(nouveauTag.getText().length() != 0) {
+            tags.add(nouveauTag.getText());
 
-    private void miseAJourTag(){
+            if(posSatellite != collectionSatellites.nbSatellites()+1) {
+                collectionSatellites.getSatellite(posSatellite).setMotsClefs(nouveauTag.getText());
+                collectionSatellites.setMotsClefs(1, nouveauTag.getText());
+            }else{
+                collectionSatellites.setMotsClefs(-1, nouveauTag.getText());
+            }
+            nouveauTag.setText("");
+        }
+        collectionSatellites.notifierObservateurs();
     }
 
 
@@ -145,7 +156,6 @@ public class PanneauListeTags extends Controleur {
      */
     @Override
     public void reagir() {
-        miseAJourTag();
         if(posSatellite != collectionSatellites.nbSatellites()+1) {
             Satellite satellite = collectionSatellites.getSatellite(posSatellite);
             listView.getItems().clear();
