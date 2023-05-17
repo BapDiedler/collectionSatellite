@@ -315,7 +315,7 @@ public class PanneauDetail extends Controleur{
         // Récupérer la référence de la stage actuelle
         StackPane stage = (StackPane) image.getScene().getRoot();
 
-        root.translateXProperty().set(stage.getScene().getWidth());
+        root.translateYProperty().set(-stage.getScene().getHeight());
 
 
         stage.getChildren().clear();
@@ -326,7 +326,7 @@ public class PanneauDetail extends Controleur{
         //Create a timeline instance
         Timeline timeline = new Timeline();
         //Create a keyValue. We need to slide in -- We gradually decrement Y value to Zero
-        KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
         //Create keyframe of 1s with keyvalue kv
         KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
         //Add frame to timeline
