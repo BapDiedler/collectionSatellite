@@ -1,5 +1,6 @@
 package stamps.controleur;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 
@@ -12,6 +13,7 @@ public class CustomListCell extends ListCell<HBox> {
         if (empty || item == null) {
             setGraphic(null);
         } else {
+            this.setAlignment(Pos.CENTER);
             setGraphic(item);
         }
     }

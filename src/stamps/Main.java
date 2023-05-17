@@ -2,6 +2,7 @@ package stamps;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import stamps.controleur.*;
@@ -28,8 +29,8 @@ public class Main extends Application {
             if (ic.equals(stamps.controleur.PanneauMenu.class)) return menu;
             return global;
         });
-        Scene root = loader.load();
-        primaryStage.setScene(root);
+        Parent root = loader.load();
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 

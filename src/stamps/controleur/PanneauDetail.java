@@ -1,11 +1,13 @@
 package stamps.controleur;
 
+import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -113,6 +115,8 @@ public class PanneauDetail extends Controleur{
      * attribut qui permet de savoir
      */
     private boolean estSauvegarde;
+
+    public AnchorPane anchorPane;
 
 
     /**
@@ -267,9 +271,6 @@ public class PanneauDetail extends Controleur{
                 estSauvegarde = false;
                 lancerAlerte("le nom n'a pas été rentré");
             }
-            for(PanneauInformation information: informations){
-                information.sauvegardeInformation();
-            }
         }else{
             estSauvegarde = false;
         }
@@ -291,33 +292,10 @@ public class PanneauDetail extends Controleur{
     }
 
     /**
-     * méthode qui permet de faire la transition entre la vue détaillé et la vue global
-     */
-    @FXML
-    void changerGlobal() {
-        ProgressBar progressBar = new ProgressBar();
-        progressBar.setPrefWidth(vbox.getPrefWidth()+10);
-        progressBar.setLayoutX(paneBottom.getPrefWidth()/2-progressBar.getPrefWidth()/2);
-        // Ajouter la barre de chargement à la première scène
-        paneBottom.getChildren().add(progressBar);
-
-        // Créer l'animation de la barre de chargement
-        Timeline timeline = new Timeline();
-        KeyFrame startFrame = new KeyFrame(Duration.ZERO, new KeyValue(progressBar.progressProperty(), 0));
-        KeyFrame endFrame = new KeyFrame(Duration.seconds(1.5), new KeyValue(progressBar.progressProperty(), 1));
-        timeline.getKeyFrames().addAll(startFrame, endFrame);
-        timeline.setOnFinished(e -> {
-            changerVue();
-            // Supprimer la barre de chargement de la première scène
-            paneBottom.getChildren().remove(progressBar);
-        });
-        timeline.play();
-    }
-
-    /**
      * méthode qui permet de changer de vue
      */
-    private void changerVue(){
+    @FXML
+    private void changerGlobal(){
         collectionSatellites.clear();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../vue/PanneauGlobal.fxml"));
@@ -328,19 +306,32 @@ public class PanneauDetail extends Controleur{
             if (ic.equals(stamps.controleur.PanneauMenu.class)) return menu;
             return global;
         });
-        Scene root = null;
+        Parent root = null;
         try {
             root = loader.load();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         // Récupérer la référence de la stage actuelle
-        Stage stage = (Stage) vbox.getScene().getWindow();
+        StackPane stage = (StackPane) image.getScene().getRoot();
+
+        root.translateXProperty().set(stage.getScene().getWidth());
+
+
+        stage.getChildren().clear();
 
         // Changer la scène de la stage actuelle
-        stage.setScene(root);
-        stage.show();
-        collectionSatellites.notifierObservateurs();
+        stage.getChildren().add(root);
+
+        //Create a timeline instance
+        Timeline timeline = new Timeline();
+        //Create a keyValue. We need to slide in -- We gradually decrement Y value to Zero
+        KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+        //Create keyframe of 1s with keyvalue kv
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
+        //Add frame to timeline
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
     }
 
     /**

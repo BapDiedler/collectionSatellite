@@ -1,56 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<Scene stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauGlobal">
-          <BorderPane prefHeight="1200.0" prefWidth="2000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css">
-          <top>
-             <fx:include fx:id="PanneauMenu" source="PanneauMenu.fxml" />
-          </top>
-      <center>
-         <Pane styleClass="background" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER">
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="457.0" layoutY="24.0" prefHeight="94.0" prefWidth="723.0" text="Collection de satellites" textFill="WHITE" underline="true">
-               <font>
-                  <Font name="System Italic" size="56.0" />
-               </font>
-            </Label>
-            <ListView fx:id="listView" layoutX="192.0" layoutY="168.0" prefHeight="800.0" prefWidth="1280.0" styleClass="listView">
-               <padding>
-                  <Insets left="20.0" />
-               </padding></ListView>
-         </Pane>
-      </center>
-      <right>
-         <Pane prefHeight="1043.0" prefWidth="452.0" styleClass="background">
-            <children>
-               <Label fx:id="compte" alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="571.0" prefHeight="71.0" prefWidth="362.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" text="Label" textAlignment="CENTER" textFill="WHITE">
+
+<StackPane styleClass="background" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauGlobal">
+   <children>
+             <BorderPane fx:id="borderPane" prefHeight="1200.0" prefWidth="2000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css">
+             <top>
+                <fx:include fx:id="PanneauMenu" source="PanneauMenu.fxml" />
+             </top>
+         <center>
+            <Pane styleClass="background" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER">
+               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="457.0" layoutY="24.0" prefHeight="94.0" prefWidth="723.0" text="Collection de satellites" textFill="WHITE" underline="true">
                   <font>
-                     <Font name="System Italic" size="44.0" />
+                     <Font name="System Italic" size="56.0" />
                   </font>
                </Label>
-               <Label alignment="CENTER" layoutX="2.0" layoutY="414.0" prefHeight="54.0" prefWidth="371.0" text="Nombre de" textAlignment="JUSTIFY" textFill="WHITE">
-                  <font>
-                     <Font name="System Italic" size="44.0" />
-                  </font>
-               </Label>
-               <Label alignment="CENTER" layoutY="468.0" prefHeight="54.0" prefWidth="374.0" text="satellites :" textAlignment="CENTER" textFill="WHITE">
-                  <font>
-                     <Font name="System Italic" size="44.0" />
-                  </font>
-               </Label>
-               <Button fx:id="ajout" layoutX="142.0" layoutY="969.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="90.0" prefWidth="90.0" text="Button" />
-            </children>
-         </Pane>
-      </right>
-      <bottom>
-         <Pane prefHeight="69.0" prefWidth="2000.0" BorderPane.alignment="CENTER" />
-      </bottom>
-      </BorderPane>
-</Scene>
+               <ListView fx:id="listView" layoutX="192.0" layoutY="168.0" prefHeight="800.0" prefWidth="1280.0" styleClass="listView">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </ListView>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </Pane>
+         </center>
+         <right>
+            <Pane prefHeight="1043.0" prefWidth="452.0" styleClass="background">
+               <children>
+                  <Label fx:id="compte" alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="571.0" prefHeight="71.0" prefWidth="362.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" text="Label" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Italic" size="44.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="2.0" layoutY="414.0" prefHeight="54.0" prefWidth="371.0" text="Nombre de" textAlignment="JUSTIFY" textFill="WHITE">
+                     <font>
+                        <Font name="System Italic" size="44.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutY="468.0" prefHeight="54.0" prefWidth="374.0" text="satellites :" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Italic" size="44.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="ajout" layoutX="142.0" layoutY="969.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="90.0" prefWidth="90.0" text="Button" />
+               </children>
+            </Pane>
+         </right>
+         <bottom>
+            <Pane prefHeight="69.0" prefWidth="2000.0" BorderPane.alignment="CENTER" />
+         </bottom>
+         </BorderPane>
+   </children>
+</StackPane>

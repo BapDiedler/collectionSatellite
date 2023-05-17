@@ -35,9 +35,6 @@
 
 .menuBar {
     -fx-background-color: #474747;
-    -fx-border-width: 1px; -fx-border-color: #474747;
-    -fx-border-style: solid;
-    -fx-effect: dropshadow(three-pass-box, grey, 0, 0, 0, 2);
 }
 
 .context-menu {
@@ -69,7 +66,7 @@
 /*ZONE APPLIQUER POUR LES ZONES DE TEXTE ET LES BOUTONS MENU*/
 .textArea{
     -fx-background-radius: 20px;
-    -fx-background-color: transparent;
+    -fx-background-color: #444f58;
     -fx-border-radius: 20px;
     -fx-padding: 5px;
     -fx-text-fill: white;
@@ -94,20 +91,12 @@
     background-repeat: no-repeat;
 }
 
-.infoBack {
-    -fx-background : transparent;
-}
-
 /* ZONE DE CSS POUR LES ELEMENTS DE LA VUE GLOBALE DANS LA LISTE (LES CELLULES)*/
 .vueSatellite {
     -fx-background-radius : 30px;
     -fx-background-color: #323232;
     -fx-transition: scale 0.2s;
     -fx-cursor: pointer;
-}
-
-.nomSatellite {
-    -fx-background-color: transparent;
 }
 
 .vueSatellite:hover,
@@ -121,7 +110,7 @@
 
 .list-cell {
     /* Styles personnalisés pour les cellules de la liste */
-    -fx-background-color: transparent;
+    -fx-background-color: #444f58;
     -fx-text-fill: transparent;
 }
 

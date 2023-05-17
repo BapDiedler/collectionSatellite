@@ -1,17 +1,22 @@
 package stamps.controleur;
 
-import javafx.animation.ScaleTransition;
+import javafx.animation.*;
 import javafx.collections.ObservableArray;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import stamps.model.CollectionSatellites;
 import stamps.model.Compteur;
 
@@ -25,7 +30,6 @@ public class PanneauSatellite extends Controleur {
     public HBox hbox;
     private final int posSatellite;
     public ContextMenu menuContext;
-
     /**
      * compteur de satellite
      */
@@ -68,12 +72,28 @@ public class PanneauSatellite extends Controleur {
             loader.setControllerFactory(ic ->
                     detail
             );
-            Scene root = loader.load();
-            // Récupérer la référence de la stage actuelle
-            Stage stage = (Stage) image.getScene().getWindow();
-            // Changer la scène de la stage actuelle
-            stage.setScene(root);
-            stage.show();
+            Parent root = loader.load();
+            // Récupérer la référence de la stackPane actuelle
+            StackPane stackPane = (StackPane) image.getScene().getRoot();
+
+            root.translateYProperty().set(image.getScene().getHeight());
+
+            stackPane.getChildren().clear();
+
+            // Changer la scène de la stackPane actuelle
+            stackPane.getChildren().add(root);
+
+//Create a timeline instance
+            Timeline timeline = new Timeline();
+//Create a keyValue. We need to slide in -- We gradually decrement Y value to Zero
+            KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+//Create keyframe of 1s with keyvalue kv
+            KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
+//Add frame to timeline
+            timeline.getKeyFrames().add(kf);
+
+//Start animation
+            timeline.play();
         }
     }
 

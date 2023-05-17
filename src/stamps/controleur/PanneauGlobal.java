@@ -7,9 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.util.Callback;
 import stamps.model.CollectionSatellites;
 import stamps.model.Compteur;
@@ -62,7 +60,6 @@ public class PanneauGlobal extends Controleur{
      * label permettant d'afficher le compteur
      */
     public Label compte;
-
 
     /**
      * constructeur principal de la classe
