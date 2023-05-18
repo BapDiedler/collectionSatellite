@@ -1,26 +1,20 @@
 package stamps.controleur;
 
 import javafx.animation.*;
-import javafx.collections.ObservableArray;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import stamps.model.CollectionSatellites;
 import stamps.model.Compteur;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -68,7 +62,7 @@ public class PanneauSatellite extends Controleur {
             collectionSatellites.clear();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../vue/PanneauDetail.fxml"));
-            PanneauDetail detail = new PanneauDetail(collectionSatellites,posSatellite);
+            ControleurDetail detail = new ControleurDetail(collectionSatellites,posSatellite);
             loader.setControllerFactory(ic ->
                     detail
             );

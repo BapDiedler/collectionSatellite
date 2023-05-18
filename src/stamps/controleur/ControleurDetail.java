@@ -29,11 +29,12 @@ import java.util.Objects;
 
 
 /**
- * classe qui permet de manipuler et gérer le panneau FXML de la vue détaillée
+ * classe qui permet de manipuler et gérer le panneau FXML de la vue détaillée de chaque satellite
+ * il va permettre la sauvegarde des éléments de chaque satellite.
  *
  * @author baptistedie
  */
-public class PanneauDetail extends Controleur{
+public class ControleurDetail extends Controleur{
 
     /**
      * scrollPane où se trouve les informations
@@ -116,8 +117,6 @@ public class PanneauDetail extends Controleur{
      */
     private boolean estSauvegarde;
 
-    public AnchorPane anchorPane;
-
 
     /**
      * constructeur principal de la classe
@@ -125,7 +124,7 @@ public class PanneauDetail extends Controleur{
      * @param posSatellite position du satellite
      * @param collectionSatellites collection manipulée par la classe
      */
-    public PanneauDetail(CollectionSatellites collectionSatellites, int posSatellite) {
+    public ControleurDetail(CollectionSatellites collectionSatellites, int posSatellite) {
         super(collectionSatellites);
         this.posSatellite = posSatellite;
         this.informations = new ArrayList<>(10);
@@ -138,6 +137,7 @@ public class PanneauDetail extends Controleur{
     @FXML
     void initialize(){
         appliquerImageFleche();
+        appliquerImage();
         reagir();
     }
 
@@ -152,51 +152,56 @@ public class PanneauDetail extends Controleur{
     }
 
     /**
-     * passage au satellite suivant
+     * Passage au satellite suivant avec vérification de la validité du passage. Le passage
+     * n'est pas valide s'il n'y a pas de satellite à côté ou si la fenêtre n'a pas été sauvegardée.
      */
     @FXML
     void suivant(){
-        if(posSatellite!=collectionSatellites.nbSatellites()-1) {
-            if(estSauvegarde) {
+        if(posSatellite!=collectionSatellites.nbSatellites()-1) { // il n'y a pas de suivant
+            if(estSauvegarde) { // le fichier n'a pas été sauvegardé
                 posSatellite += 1;
                 collectionSatellites.notifierObservateurs();
             }else{
-                lancerAlerte("Les données ne sont pas sauvegardées");
+                lancerAlerte("Les données ne sont pas sauvegardées.\nElle risque d'être supprimer");
             }
         }
     }
 
     /**
-     * passage au satellite precedent
+     * Passage au satellite suivant avec vérification de la validité du passage. Le passage
+     * n'est pas valide s'il n'y a pas de satellite à côté ou si la fenêtre n'a pas été sauvegardée.
      */
     @FXML
     void precedent(){
-        if(posSatellite!=0) {
-            if(estSauvegarde) {
+        if(posSatellite!=0) { // il n'y a pas de suivant
+            if(estSauvegarde) { // le fichier n'a pas été sauvegardé
                 posSatellite -= 1;
                 collectionSatellites.notifierObservateurs();
             }else{
-                lancerAlerte("Les données ne sont pas sauvegardées");
+                lancerAlerte("Les données ne sont pas sauvegardées.\nElle risque d'être supprimer");
             }
         }
     }
 
     /**
      * méthode qui permet de placer les éléments sur la fenêtre en fonction du mode de lecture
+     * mise à jour de tous les éléments
      */
     @FXML
     private void appliquerInformation(){
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
-        appliquerImage();
-        vbox.getChildren().clear();
+        vbox.getChildren().clear(); // on retire tous les éléments de la vbox pour les mettre à jour
+
         date.setText(String.valueOf(satellite.getDateString()));
         titre.setText(satellite.getNom());
         ajout.setDisable(collectionSatellites.isEstConsulte());
-        if(!collectionSatellites.isEstConsulte()) {
+
+        if(!collectionSatellites.isEstConsulte()) { // les informations changent en fonction du mode de lecture
             appliquerInformationsEdition();
         }else{
             applicationInformationsConsultation();
         }
+
         ajouterTags();
         vbox.setPrefHeight(scrollPane.getPrefHeight());
     }
@@ -207,8 +212,11 @@ public class PanneauDetail extends Controleur{
     private void applicationInformationsConsultation(){
         informations.clear();
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
-        for(Information information : satellite) {
+
+        for(Information information : satellite) { // création des vues consultations pour les information
             PanneauInformationConsultation informationConsultation = new PanneauInformationConsultation(information);
+
+            //chargement du FXML
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../vue/PanneauInformationConsultation.fxml"));
             loader.setControllerFactory(ic -> informationConsultation);
@@ -228,6 +236,8 @@ public class PanneauDetail extends Controleur{
         for (Information information : satellite) {
             PanneauInformation panneauInformation = new PanneauInformation(collectionSatellites, information);
             informations.add(panneauInformation);
+
+            //chargement du FXML
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
             loader.setControllerFactory(ic -> panneauInformation);
@@ -240,7 +250,7 @@ public class PanneauDetail extends Controleur{
     }
 
     /**
-     * méthode qui ajout l'image sur l'affichage
+     * méthode qui ajout l'image du satellite sur l'affichage
      */
     private void appliquerImage(){
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
@@ -270,6 +280,10 @@ public class PanneauDetail extends Controleur{
             else {
                 estSauvegarde = false;
                 lancerAlerte("le nom n'a pas été rentré");
+            }
+
+            for(PanneauInformation info: informations){ // sauvegarde des informations
+                info.sauvegardeInformation();
             }
         }else{
             estSauvegarde = false;
@@ -344,15 +358,16 @@ public class PanneauDetail extends Controleur{
             fileChooser.setTitle("Sélectionner une image");
             fileChooser.getExtensionFilters().add(
                     new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg"));
-            File initialDirectory = new File("src/ressource/image/");
+            File initialDirectory = new File("src/ressource/image/utilisateur/");
             fileChooser.setInitialDirectory(initialDirectory);
 
             Stage stage = (Stage) vbox.getScene().getWindow();
             File selectedFile = fileChooser.showOpenDialog(stage);
             if (selectedFile != null) {
-                String imagePath = "/image/"+selectedFile.getName();
+                String imagePath = "/image/utilisateur/"+selectedFile.getName();
                 collectionSatellites.getSatellite(posSatellite).setUrl(imagePath);
             }
+            appliquerImage();
             collectionSatellites.notifierObservateurs();
         }
     }
