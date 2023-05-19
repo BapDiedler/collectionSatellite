@@ -259,4 +259,14 @@ public class Satellite implements Iterable<Information>{
     public void removeTag(String text) {
         motsClefs.remove(text);
     }
+
+    /**
+     * méthode qui permet de supprimer une information du satellite
+     *
+     * @param informationSatellite information du satellite
+     */
+    public void supprimerInfo(Information informationSatellite) {
+        informations.remove(informationSatellite);
+        System.out.println(informations.size());
+    }
 }

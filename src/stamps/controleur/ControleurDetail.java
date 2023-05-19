@@ -243,7 +243,7 @@ public class ControleurDetail extends Controleur {
     private void appliquerInformationsEdition() {
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
         for (Information information : satellite) { // un chargement  par information
-            ControleurInformation controleurInformation = new ControleurInformation(information);
+            ControleurInformation controleurInformation = new ControleurInformation(this,satellite,information);
             informations.add(controleurInformation);
 
             FXMLLoader loader = new FXMLLoader();
@@ -272,7 +272,8 @@ public class ControleurDetail extends Controleur {
      */
     @FXML
     private void ajouterInfo() {
-        appliquerInformationsEdition();
+        collectionSatellites.getSatellite(posSatellite).ajoutInfo();
+        reagir();
     }
 
 
@@ -391,7 +392,6 @@ public class ControleurDetail extends Controleur {
                 collectionSatellites.getSatellite(posSatellite).setUrl(imagePath);
             }
             appliquerImage();
-            collectionSatellites.notifierObservateurs();
         }
     }
 
@@ -439,5 +439,15 @@ public class ControleurDetail extends Controleur {
 
         appliquerInformation();
         vbox.setPrefHeight(scrollPane.getPrefHeight());
+    }
+
+    /**
+     * méthode qui permet de supprimer une information
+     *
+     * @param obj information supprimé
+     */
+    public void supprimerInfo(ControleurInformation obj) {
+        informations.remove(obj);
+        collectionSatellites.notifierObservateurs();
     }
 }

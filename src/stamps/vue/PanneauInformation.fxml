@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -9,10 +11,24 @@
       <TextArea fx:id="titre" prefHeight="50.0" prefWidth="400.0" promptText="titre de l'information" styleClass="textArea" wrapText="true">
          <font>
             <Font size="30.0" />
-         </font></TextArea>
+         </font>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
+              </items>
+            </ContextMenu>
+         </contextMenu></TextArea>
       <TextArea fx:id="info" prefHeight="650.0" prefWidth="700.0" promptText="zone d'information" styleClass="textArea" wrapText="true">
          <font>
             <Font size="30.0" />
-         </font></TextArea>
+         </font>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#supprimer" text="supprimer" />
+              </items>
+            </ContextMenu>
+         </contextMenu></TextArea>
    </children>
 </VBox>

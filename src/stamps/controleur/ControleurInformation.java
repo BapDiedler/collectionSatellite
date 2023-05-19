@@ -2,14 +2,16 @@ package stamps.controleur;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import stamps.model.CollectionSatellites;
 import stamps.model.Information;
+import stamps.model.Satellite;
 
 
 /**
  * Classe qui gère le panneau d'information pour chaque satellite.
  * Il permet d'afficher et de modifier les informations d'un satellite.
  */
-public class ControleurInformation {
+public class ControleurInformation{
 
     /**
      * espace où se trouve le titre de l'information
@@ -28,14 +30,26 @@ public class ControleurInformation {
      */
     private final Information informationSatellite;
 
+    /**
+     * satellite contenant l'information
+     */
+    private Satellite satellite;
+
+    /**
+     * controleur où se trouve l'information
+     */
+    private ControleurDetail controleurDetail;
+
 
     /**
      * constructeur principal de la classe
      *
      * @param information information manipulée
      */
-    public ControleurInformation(Information information) {
+    public ControleurInformation(ControleurDetail controleur,Satellite satellite, Information information) {
         this.informationSatellite = information;
+        this.satellite = satellite;
+        this.controleurDetail = controleur;
     }
 
     /**
@@ -51,7 +65,7 @@ public class ControleurInformation {
      * méthode qui permet de changer le titre de l'information
      */
     @FXML
-    void changerTitre(){
+    private void changerTitre(){
         titre.setText(informationSatellite.getTitre());
     }
 
@@ -59,8 +73,18 @@ public class ControleurInformation {
      * méthode qui permet de changer l'information
      */
     @FXML
-    void changerInfo(){
+    private void changerInfo(){
         info.setText(informationSatellite.getTexte());
+    }
+
+    /**
+     * méthode qui permet de supprimer l'information
+     */
+    @FXML
+    private void supprimer(){
+        System.out.println("coucou");
+        satellite.supprimerInfo(informationSatellite);
+        controleurDetail.supprimerInfo(this);
     }
 
     /**
