@@ -28,11 +28,18 @@
     },
     {
       "identifiant": "1",
-      "motsClefs": [],
+      "motsClefs": [
+        "1957",
+        "URSS"
+      ],
       "informations": [
         {
-          "titre": "titre",
-          "texte": "zone de texte"
+          "titre": "Objectif",
+          "texte": "Spoutnik 1 est le tout premier satellite envoyé dans l\u0027espace. Son but était de montrer la supériorité de l\u0027URSS face au Américains."
+        },
+        {
+          "titre": "Données",
+          "texte": "poid: 83.6 kg"
         }
       ],
       "nom": "Spoutnik 1",
@@ -56,7 +63,9 @@
   "motsClefs": {
     "1963": 2,
     "1962": 2,
+    "URSS": 2,
     "communication": 2,
+    "1957": 2,
     "US": 2
   },
   "estConsulte": true

@@ -76,10 +76,6 @@
     -fx-background-color: #70848e;
 }
 
-.textArea .text {
-    -fx-underline: true;
-}
-
 
 /*ZONE OU SE TROUVE UNE LISTE D ELEMENTS*/
 .listView {
