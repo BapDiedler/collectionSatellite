@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<StackPane styleClass="background" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauGlobal">
+<StackPane styleClass="background" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.ControleurGlobal">
    <children>
              <BorderPane fx:id="borderPane" prefHeight="1200.0" prefWidth="2000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css">
              <top>

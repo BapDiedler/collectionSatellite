@@ -2,44 +2,62 @@ package stamps.controleur;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import stamps.model.CollectionSatellites;
 import stamps.model.Information;
 
 
-public class PanneauInformation extends Controleur{
+/**
+ * Classe qui gère le panneau d'information pour chaque satellite.
+ * Il permet d'afficher et de modifier les informations d'un satellite.
+ */
+public class ControleurInformation {
 
+    /**
+     * espace où se trouve le titre de l'information
+     */
     @FXML
     private TextArea titre;
 
+    /**
+     * espace où se trouve les informations en correspondance avec le titre
+     */
     @FXML
     private TextArea info;
 
+    /**
+     * information représentée
+     */
     private final Information informationSatellite;
 
 
     /**
      * constructeur principal de la classe
      *
-     * @param collectionSatellites collection manipulée par la classe
+     * @param information information manipulée
      */
-    public PanneauInformation(CollectionSatellites collectionSatellites, Information information) {
-        super(collectionSatellites);
+    public ControleurInformation(Information information) {
         this.informationSatellite = information;
     }
 
+    /**
+     * méthode pour initialiser les éléments de la fenêtre
+     */
     @FXML
     void initialize(){
         changerTitre();
         changerInfo();
     }
 
+    /**
+     * méthode qui permet de changer le titre de l'information
+     */
     @FXML
     void changerTitre(){
         titre.setText(informationSatellite.getTitre());
     }
 
+    /**
+     * méthode qui permet de changer l'information
+     */
     @FXML
     void changerInfo(){
         info.setText(informationSatellite.getTexte());
@@ -51,12 +69,5 @@ public class PanneauInformation extends Controleur{
     public void sauvegardeInformation(){
         informationSatellite.setTexte(info.getText());
         informationSatellite.setTitre(titre.getText());
-    }
-
-    /**
-     * méthode réagir qui sera activée à chaque action
-     */
-    @Override
-    public void reagir() {
     }
 }

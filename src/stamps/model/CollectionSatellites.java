@@ -1,7 +1,5 @@
 package stamps.model;
 
-import javafx.fxml.FXML;
-
 import java.util.*;
 
 /**
@@ -74,7 +72,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      */
     public void ajouter(String nom, String url){
         if(url == null){
-            url = "/image/pasImage.jpeg";
+            url = "/image/utilisateur/pasImage.jpeg";
         }
         Satellite satellite = new Satellite(nom,url);
         satellites.add(satellite);

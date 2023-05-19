@@ -11,111 +11,106 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.input.KeyCodeCombination?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane fx:id="anchorPane" styleClass="background" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.ControleurDetail">
-   <children>
-      <BorderPane prefHeight="1200.0" prefWidth="2000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css">
-         <center>
-            <VBox alignment="CENTER" maxHeight="1000.0" maxWidth="1000.0" prefHeight="1000.0" styleClass="background" BorderPane.alignment="CENTER_RIGHT">
-               <BorderPane.margin>
-                  <Insets right="100.0" />
-               </BorderPane.margin>
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="654.0" prefHeight="50.0" text="Informations" textAlignment="CENTER" textFill="WHITE" underline="true">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-                  <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="492.0" maxWidth="1000.0" prefHeight="492.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" vbarPolicy="NEVER">
-                     <content>
-                     <VBox fx:id="vbox" alignment="CENTER" maxHeight="490.0" maxWidth="1000.0" prefHeight="490.0" prefWidth="998.0" styleClass="listView" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER" />
-                     </content>
-                     <VBox.margin>
-                        <Insets bottom="40.0" />
-                     </VBox.margin>
-                  </ScrollPane>
-                  <Label alignment="CENTER" prefHeight="50.0" text="Tags" textFill="WHITE" underline="true">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-                  <ListView fx:id="listeTags" prefHeight="184.0" prefWidth="1000.0" styleClass="listView" />
-               </children>
-            </VBox>
-         </center>
-         <top>
-            <Pane prefHeight="111.0" prefWidth="2000.0" styleClass="menuBar" BorderPane.alignment="CENTER">
-               <children>
-                  <MenuButton alignment="CENTER" contentDisplay="CENTER" layoutX="79.0" layoutY="21.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="260.0" styleClass="button" stylesheets="@../../ressource/styleSheet.css" text="Menu" textFill="WHITE">
-                     <items>
-                      <MenuItem mnemonicParsing="false" onAction="#changerGlobal" styleClass="menuItem" text="global">
-                           <accelerator>
-                              <KeyCodeCombination alt="UP" code="G" control="ANY" meta="UP" shift="UP" shortcut="UP" />
-                           </accelerator>
-                        </MenuItem>
-                      <MenuItem fx:id="sauvegarder" mnemonicParsing="false" onAction="#sauvegarde" styleClass="menuItem" text="sauvegarder">
-                           <accelerator>
-                              <KeyCodeCombination alt="UP" code="S" control="ANY" meta="UP" shift="UP" shortcut="UP" />
-                           </accelerator>
-                        </MenuItem>
-                        <MenuItem fx:id="ajout" mnemonicParsing="false" onAction="#ajouterInfo" styleClass="menuItem" text="ajout info">
-                           <accelerator>
-                              <KeyCodeCombination alt="UP" code="N" control="ANY" meta="UP" shift="UP" shortcut="UP" />
-                           </accelerator>
-                        </MenuItem>
-                     </items>
-                     <font>
-                        <Font size="33.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </MenuButton>
-                  <Button fx:id="boutonTags" alignment="CENTER" layoutX="338.0" layoutY="22.0" mnemonicParsing="false" onAction="#afficherTags" prefHeight="55.0" prefWidth="230.0" text="Tags" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font size="33.0" />
-                     </font>
-                  </Button>
-               </children>
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
-            </Pane>
-         </top>
-         <bottom>
-            <Pane fx:id="paneBottom" prefHeight="103.0" prefWidth="2000.0" styleClass="background" BorderPane.alignment="CENTER">
-               <children>
-                  <Label fx:id="date" alignment="CENTER" layoutX="582.0" layoutY="7.0" prefHeight="67.0" prefWidth="837.0" styleClass="button" text="date" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="suivant" fitHeight="90.0" fitWidth="90.0" layoutX="1896.0" layoutY="-24.0" onMouseClicked="#suivant" pickOnBounds="true" preserveRatio="true" styleClass="button" />
-                  <ImageView fx:id="precedent" fitHeight="90.0" fitWidth="90.0" layoutX="14.0" layoutY="-24.0" onMouseClicked="#precedent" pickOnBounds="true" preserveRatio="true" styleClass="button" />
-               </children>
-            </Pane>
-         </bottom>
-         <left>
-            <Pane prefHeight="976.0" prefWidth="601.0" styleClass="background" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets left="150.0" />
-               </BorderPane.margin>
-               <children>
-                  <TextField fx:id="titre" alignment="CENTER" layoutX="-5.0" layoutY="124.0" prefHeight="76.0" prefWidth="601.0" styleClass="textArea" text="nom">
-                     <font>
-                        <Font name="System Italic" size="48.0" />
-                     </font>
-                  </TextField>
-                  <ImageView fx:id="image" fitHeight="600.0" fitWidth="600.0" layoutX="4.0" layoutY="290.0" onMouseClicked="#chercheImage" pickOnBounds="true" preserveRatio="true" styleClass="image" />
-               </children>
-            </Pane>
-         </left>
-      </BorderPane>
-   </children>
-</AnchorPane>
+<BorderPane fx:id="borderPane" prefHeight="1200.0" prefWidth="2000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.ControleurDetail">
+   <center>
+      <VBox alignment="CENTER" maxHeight="1000.0" maxWidth="1000.0" prefHeight="1000.0" styleClass="background" BorderPane.alignment="CENTER_RIGHT">
+         <BorderPane.margin>
+            <Insets right="100.0" />
+         </BorderPane.margin>
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="654.0" prefHeight="50.0" text="Informations" textAlignment="CENTER" textFill="WHITE" underline="true">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="492.0" maxWidth="1000.0" prefHeight="492.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" vbarPolicy="NEVER">
+               <content>
+               <VBox fx:id="vbox" alignment="CENTER" maxHeight="490.0" maxWidth="1000.0" prefHeight="490.0" prefWidth="998.0" styleClass="listView" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER" />
+               </content>
+               <VBox.margin>
+                  <Insets bottom="40.0" />
+               </VBox.margin>
+            </ScrollPane>
+            <Label alignment="CENTER" prefHeight="50.0" text="Tags" textFill="WHITE" underline="true">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <ListView fx:id="listeTags" prefHeight="184.0" prefWidth="1000.0" styleClass="listView" />
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <Pane prefHeight="111.0" prefWidth="2000.0" styleClass="menuBar" BorderPane.alignment="CENTER">
+         <children>
+            <MenuButton alignment="CENTER" contentDisplay="CENTER" layoutX="79.0" layoutY="21.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="260.0" styleClass="button" stylesheets="@../../ressource/styleSheet.css" text="Menu" textFill="WHITE">
+               <items>
+                <MenuItem mnemonicParsing="false" onAction="#changerGlobal" styleClass="menuItem" text="global">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="G" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                <MenuItem fx:id="sauvegarder" mnemonicParsing="false" onAction="#sauvegarde" styleClass="menuItem" text="sauvegarder">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="ajout" mnemonicParsing="false" onAction="#ajouterInfo" styleClass="menuItem" text="ajout info">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+               </items>
+               <font>
+                  <Font size="33.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </MenuButton>
+            <Button fx:id="boutonTags" alignment="CENTER" layoutX="338.0" layoutY="22.0" mnemonicParsing="false" onAction="#afficherTags" prefHeight="55.0" prefWidth="230.0" text="Tags" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </Pane>
+   </top>
+   <bottom>
+      <Pane fx:id="paneBottom" prefHeight="103.0" prefWidth="2000.0" styleClass="background" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="date" alignment="CENTER" layoutX="582.0" layoutY="7.0" prefHeight="67.0" prefWidth="837.0" styleClass="button" text="date" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="suivant" fitHeight="90.0" fitWidth="90.0" layoutX="1896.0" layoutY="-24.0" onMouseClicked="#suivant" pickOnBounds="true" preserveRatio="true" styleClass="button" />
+            <ImageView fx:id="precedent" fitHeight="90.0" fitWidth="90.0" layoutX="14.0" layoutY="-24.0" onMouseClicked="#precedent" pickOnBounds="true" preserveRatio="true" styleClass="button" />
+         </children>
+      </Pane>
+   </bottom>
+   <left>
+      <Pane prefHeight="976.0" prefWidth="601.0" styleClass="background" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="150.0" />
+         </BorderPane.margin>
+         <children>
+            <TextField fx:id="titre" alignment="CENTER" layoutX="-5.0" layoutY="124.0" prefHeight="76.0" prefWidth="601.0" styleClass="textArea" text="nom">
+               <font>
+                  <Font name="System Italic" size="48.0" />
+               </font>
+            </TextField>
+            <ImageView fx:id="image" fitHeight="600.0" fitWidth="600.0" layoutX="4.0" layoutY="290.0" onMouseClicked="#chercheImage" pickOnBounds="true" preserveRatio="true" styleClass="image" />
+         </children>
+      </Pane>
+   </left>
+</BorderPane>

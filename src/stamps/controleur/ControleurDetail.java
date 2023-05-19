@@ -113,7 +113,7 @@ public class ControleurDetail extends Controleur {
     /**
      * ArrayList contenant les informations du satellite, utilisée pour la sauvegarde des éléments.
      */
-    private final ArrayList<PanneauInformation> informations;
+    private final ArrayList<ControleurInformation> informations;
 
     /**
      * Attribut permettant de savoir si le satellite a été sauvegardé lors du changement de satellite.
@@ -151,7 +151,7 @@ public class ControleurDetail extends Controleur {
      * Applique l'image de la flèche pour passer au satellite suivant ou précédent.
      */
     private void appliquerImageFleche() {
-        Image image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/fleche.png")), 90, 90, true, true);
+        Image image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/developpeur/fleche.png")), 90, 90, true, true);
         precedent.setImage(image1);
         suivant.setImage(image1);
         suivant.setRotate(180);
@@ -244,12 +244,12 @@ public class ControleurDetail extends Controleur {
     private void appliquerInformationsEdition() {
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
         for (Information information : satellite) { // un chargement  par information
-            PanneauInformation panneauInformation = new PanneauInformation(collectionSatellites, information);
-            informations.add(panneauInformation);
+            ControleurInformation controleurInformation = new ControleurInformation(information);
+            informations.add(controleurInformation);
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
-            loader.setControllerFactory(ic -> panneauInformation);
+            loader.setControllerFactory(ic -> controleurInformation);
             try {
                 vbox.getChildren().add(loader.load());
             } catch (IOException e) {
@@ -288,7 +288,7 @@ public class ControleurDetail extends Controleur {
             if (titre.getText().length() != 0) { // le nom doit posséder au moins un caractère
                 satellite.setNom(titre.getText());
 
-                for (PanneauInformation info : informations) { // sauvegarde de chaque information
+                for (ControleurInformation info : informations) { // sauvegarde de chaque information
                     info.sauvegardeInformation();
                 }
 
@@ -342,10 +342,10 @@ public class ControleurDetail extends Controleur {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../vue/PanneauGlobal.fxml"));
             Compteur compteur = new Compteur();
-            PanneauGlobal global = new PanneauGlobal(collectionSatellites, compteur);
-            PanneauMenu menu = new PanneauMenu(collectionSatellites);
+            ControleurGlobal global = new ControleurGlobal(collectionSatellites, compteur);
+            ControleurMenu menu = new ControleurMenu(collectionSatellites);
             loader.setControllerFactory(ic -> {
-                if (ic.equals(stamps.controleur.PanneauMenu.class)) return menu;
+                if (ic.equals(ControleurMenu.class)) return menu;
                 return global;
             });
             Parent root = null;

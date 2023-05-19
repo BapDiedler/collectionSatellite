@@ -7,21 +7,21 @@
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.text.Font?>
 
-<ButtonBar fx:id="buttonBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="91.0" prefWidth="2000.0" styleClass="menuBar" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauMenu">
+<ButtonBar fx:id="buttonBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="91.0" prefWidth="2000.0" styleClass="menuBar" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.ControleurMenu">
   <buttons>
       <MenuButton fx:id="trierMenu" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" styleClass="button" text="Trier" textFill="WHITE">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#trierNom" styleClass="menuItem" text="nom" />
             <MenuItem mnemonicParsing="false" onAction="#trierApparition" styleClass="menuItem" text="apparition" />
+            <MenuItem mnemonicParsing="false" onAction="#trierDate" styleClass="menuItem" text="date" />
         </items>
          <font>
             <Font size="33.0" />
          </font>
       </MenuButton>
-      <MenuButton fx:id="trierMenu1" alignment="CENTER" contentDisplay="CENTER" layoutX="1218.0" layoutY="19.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" styleClass="button" text="Tags" textFill="WHITE">
+      <MenuButton alignment="CENTER" contentDisplay="CENTER" layoutX="1218.0" layoutY="19.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" styleClass="button" text="Tags" textFill="WHITE">
          <items>
             <MenuItem mnemonicParsing="false" onAction="#afficherTags" styleClass="menuItem" text="Liste" />
-            <MenuItem mnemonicParsing="false" onAction="#recherche" styleClass="menuItem" text="recherche" />
          </items>
          <font>
             <Font size="33.0" />

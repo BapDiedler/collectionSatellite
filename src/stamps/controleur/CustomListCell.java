@@ -4,7 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 
-// Classe d'implémentation de cellule personnalisée
+// Classe d'implémentation de cellule personnalisée pour centrer les éléments
 public class CustomListCell extends ListCell<HBox> {
     @Override
     protected void updateItem(HBox item, boolean empty) {
@@ -14,7 +14,7 @@ public class CustomListCell extends ListCell<HBox> {
             setGraphic(null);
         } else {
             this.setAlignment(Pos.CENTER);
-            setGraphic(item);
+            this.setGraphic(item);
         }
     }
 }

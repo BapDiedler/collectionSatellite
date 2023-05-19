@@ -1,14 +1,11 @@
 package stamps.controleur;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.util.Callback;
 import stamps.model.CollectionSatellites;
 import stamps.model.Compteur;
 import stamps.model.Satellite;
@@ -18,55 +15,45 @@ import java.util.Objects;
 
 
 /**
- * classe qui permet de gérer la vue globale de la collection
+ * Classe qui permet de gérer la vue globale de la collection de satellites.
+ * Cette classe étend la classe Controleur.
+ * Elle contient les éléments de la vue globale et les méthodes associées.
+ * Elle utilise également un compteur de satellites.
  *
- * @author baptistedie
+ * @author  baptistedie
  */
-public class PanneauGlobal extends Controleur{
+public class ControleurGlobal extends Controleur {
 
     /**
-     * listView contenant les satellites
+     * ListView contenant les HBox représentant les satellites
      */
     @FXML
     private ListView<HBox> listView;
 
     /**
-     * bouton qui permet l'ajout de satellite
+     * Bouton permettant l'ajout d'un satellite
      */
     @FXML
     private Button ajout;
 
     /**
-     * bouton des menus de la fenêtre
+     * Compteur de satellites
      */
-    public ButtonBar PanneauMenu;
+    private final Compteur compteur;
 
     /**
-     * élément permettant d'ajouter des satellites dans la collection
+     * Label permettant d'afficher le compteur de satellites
      */
-    public ButtonBar PanneauOutils;
+    @FXML
+    private Label compte;
 
-    /**
-     * élément central de la collection
-     */
-    public ListView<PanneauSatellite> PanneauCentre;
-
-    /**
-     * compteur de satellite
-     */
-    private final Compteur compteur ;
-
-    /**
-     * label permettant d'afficher le compteur
-     */
-    public Label compte;
 
     /**
      * constructeur principal de la classe
      *
      * @param collectionSatellites collection manipulée par la classe
      */
-    public PanneauGlobal(CollectionSatellites collectionSatellites, Compteur compteur) {
+    public ControleurGlobal(CollectionSatellites collectionSatellites, Compteur compteur) {
         super(collectionSatellites);
         this.compteur = compteur;
         this.compteur.setValeur(collectionSatellites.nbSatellites());
@@ -79,19 +66,10 @@ public class PanneauGlobal extends Controleur{
     void initialize(){
         listView.setCellFactory(listView-> new CustomListCell());
         compte.textProperty().bind(compteur.getPropertyValue().asString());
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/ajouter.png")),90,90,true,true);
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/developpeur/ajouter.png")),
+                90,90,true,true);
         ajout.setGraphic(new ImageView(image));
         reagir();
-    }
-
-    /**
-     * getter sur le nombre de satellites
-     *
-     * @return retourne la valeur sous forme d'entier
-     */
-    @FXML
-    int nbSatellites(){
-        return collectionSatellites.nbSatellites();
     }
 
     /**
@@ -111,6 +89,7 @@ public class PanneauGlobal extends Controleur{
      */
     void ajouter(int ind){
         PanneauSatellite panneauSat = new PanneauSatellite(collectionSatellites,ind,compteur);
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../vue/PanneauSatellite.fxml"));
         loader.setControllerFactory(ic -> panneauSat);
@@ -130,9 +109,6 @@ public class PanneauGlobal extends Controleur{
         for(int i=0; i<collectionSatellites.nbSatellites(); i++){
             ajouter(i);
         }
-        if(collectionSatellites.isEstConsulte())
-            ajout.setVisible(false);
-        else
-            ajout.setVisible(true);
+        ajout.setVisible(!collectionSatellites.isEstConsulte());
     }
 }

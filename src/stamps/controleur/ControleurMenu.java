@@ -11,18 +11,15 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import stamps.model.CollectionSatellites;
-import stamps.model.Satellite;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 /**
  * classe qui permet de manipuler les composants de menu dans la vue principale
  *
  * @author baptistedie
  */
-public class PanneauMenu extends Controleur{
+public class ControleurMenu extends Controleur{
 
     /**
      * bouton qui permet d'ajouter un élément
@@ -35,9 +32,13 @@ public class PanneauMenu extends Controleur{
     public ButtonBar buttonBar;
 
     /**
-     *
+     * menu permettant de changer de mode
      */
     public MenuItem edition;
+
+    /**
+     * menu permettant de trier les éléments de la collection
+     */
     public MenuButton trierMenu;
 
     /**
@@ -45,10 +46,13 @@ public class PanneauMenu extends Controleur{
      *
      * @param collectionSatellites collection manipulée par la classe
      */
-    public PanneauMenu(CollectionSatellites collectionSatellites) {
+    public ControleurMenu(CollectionSatellites collectionSatellites) {
         super(collectionSatellites);
     }
 
+    /**
+     * méthode qui permet l'initialisation des éléments FXML
+     */
     @FXML
     void initialize(){
         reagir();
@@ -111,23 +115,38 @@ public class PanneauMenu extends Controleur{
      * méthode qui permet de sauvegarder la collection de satellites en format Json
      */
     @FXML
-    void sauvegarder(){
-        File selectedDirectory = new File("src/ressource/sauvegarde/");
-        Path directoryPath = selectedDirectory.toPath();
-        long nombreElements = 0;
+    void sauvegarder() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(collectionSatellites, CollectionSatellites.class);
+
         try {
-            nombreElements = Files.list(directoryPath).count();
+            // Utiliser le FileChooser pour obtenir le fichier de sauvegarde
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Sauvegarder la collection");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichiers JSON (*.json)", "*.json"));
+            File file = fileChooser.showSaveDialog(buttonBar.getScene().getWindow());
+
+            if (file != null) {
+
+                // Vérifier si l'extension .json est déjà présente
+                if (!file.getName().endsWith(".json")) {
+                    // Ajouter l'extension .json au nom de fichier
+                    String filePath = file.getAbsolutePath() + ".json";
+                    file = new File(filePath);
+                }
+
+                // Écrire le JSON dans le fichier
+                FileWriter fileWriter = new FileWriter(file);
+                fileWriter.write(json);
+                fileWriter.close();
+
+                System.out.println("Collection sauvegardée avec succès.");
+            }
+
+            collectionSatellites.notifierObservateurs();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(collectionSatellites,CollectionSatellites.class);
-        try (FileWriter writer = new FileWriter("src/ressource/sauvegarde/collection"+nombreElements+".json")) {
-            writer.write(json);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        collectionSatellites.notifierObservateurs();
     }
 
     /**
@@ -136,7 +155,7 @@ public class PanneauMenu extends Controleur{
     @FXML
     void chercheDonnee(){
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Sélectionner une image");
+        fileChooser.setTitle("Sélectionner une collection");
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("fichier", "*.json"));
 
@@ -183,11 +202,6 @@ public class PanneauMenu extends Controleur{
 
         // Afficher la nouvelle fenêtre
         nouvelleFenetre.show();
-    }
-
-    @FXML
-    private void recherche(){
-
     }
 
     /**

@@ -23,10 +23,10 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("vue/PanneauGlobal.fxml"));
         Compteur compteur = new Compteur();
-        PanneauGlobal global = new PanneauGlobal(collectionSatellites,compteur);
-        PanneauMenu menu = new PanneauMenu(collectionSatellites);
+        ControleurGlobal global = new ControleurGlobal(collectionSatellites,compteur);
+        ControleurMenu menu = new ControleurMenu(collectionSatellites);
         loader.setControllerFactory(ic -> {
-            if (ic.equals(stamps.controleur.PanneauMenu.class)) return menu;
+            if (ic.equals(ControleurMenu.class)) return menu;
             return global;
         });
         Parent root = loader.load();
