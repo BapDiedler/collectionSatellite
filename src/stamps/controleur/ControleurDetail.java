@@ -26,179 +26,190 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.Optional;
 
 
 /**
- * classe qui permet de manipuler et gérer le panneau FXML de la vue détaillée de chaque satellite
- * il va permettre la sauvegarde des éléments de chaque satellite.
+ * Classe qui permet de manipuler et gérer le panneau FXML de la vue détaillée de chaque satellite.
+ * Elle permet la sauvegarde des éléments de chaque satellite.
  *
  * @author baptistedie
  */
-public class ControleurDetail extends Controleur{
+public class ControleurDetail extends Controleur {
 
     /**
-     * scrollPane où se trouve les informations
+     * ScrollPane contenant les informations en mode édition et consultation.
      */
-    public ScrollPane scrollPane;
+    @FXML
+    private ScrollPane scrollPane;
 
     /**
-     * bouton pour manipuler les tags
+     * Bouton pour manipuler les tags d'un satellite.
      */
-    public Button boutonTags;
+    @FXML
+    private Button boutonTags;
 
     /**
-     * pane contenant les éléments du bottom
+     * Élément du menu permettant de faire le lien entre le mode consultation et édition
+     * et sauvegarde lors du passage de l'édition à la consultation.
      */
-    public Pane paneBottom;
+    @FXML
+    private MenuItem sauvegarder;
 
     /**
-     * élément du menu qui permet de faire le lien entre le mode consultation et édition
-     * et sauvegarde sur le passage de l'édition à consultation
+     * Zone se trouvant dans le bas du BorderPane et affichant la date de création.
      */
-    public MenuItem sauvegarder;
+    @FXML
+    private Label date;
 
     /**
-     * zone de texte où rentrer la date
+     * Zone de texte où l'on rentre le nom du satellite. Il peut être modifié en mode édition,
+     * contrairement au mode consultation.
      */
-    public Label date;
+    @FXML
+    private TextField titre;
 
     /**
-     * zone de texte où l'on rentre le nom du satellite
+     * ListView de labels affichant les tags du satellite.
      */
-    public TextField titre;
+    @FXML
+    private ListView<Label> listeTags;
 
     /**
-     * listView de label affichant les tags du satellites
-     */
-    public ListView<Label> listeTags;
-
-    /**
-     * vbox contenant les informations du satellite
+     * VBox contenant les informations du satellite.
      */
     @FXML
     private VBox vbox;
 
     /**
-     * image du satellite
+     * Image du satellite.
      */
     @FXML
     private ImageView image;
 
     /**
-     * élément du menu permettant d'ajouter une information
+     * Élément du menu permettant d'ajouter une information en mode édition.
      */
     @FXML
     private MenuItem ajout;
 
     /**
-     * passage à l'élément précédent
+     * Permet de passer à l'élément précédent s'il existe.
      */
     @FXML
     private ImageView precedent;
 
     /**
-     * passage à l'élément suivant
+     * Permet de passer à l'élément suivant s'il existe.
      */
     @FXML
     private ImageView suivant;
 
     /**
-     * position du satellite observé
+     * Position du satellite observé (correspondant à sa position dans la ArrayList de la collection).
      */
     private int posSatellite;
 
     /**
-     * arrayListe des informations du satellite
+     * ArrayList contenant les informations du satellite, utilisée pour la sauvegarde des éléments.
      */
     private final ArrayList<PanneauInformation> informations;
 
     /**
-     * attribut qui permet de savoir
+     * Attribut permettant de savoir si le satellite a été sauvegardé lors du changement de satellite.
      */
     private boolean estSauvegarde;
 
 
     /**
-     * constructeur principal de la classe
+     * Constructeur principal de la classe.
      *
-     * @param posSatellite position du satellite
-     * @param collectionSatellites collection manipulée par la classe
+     * @param posSatellite Position du satellite dans la collection.
+     * @param collectionSatellites Collection manipulée par la classe.
      */
     public ControleurDetail(CollectionSatellites collectionSatellites, int posSatellite) {
         super(collectionSatellites);
         this.posSatellite = posSatellite;
         this.informations = new ArrayList<>(10);
-        estSauvegarde = true;
+        estSauvegarde = collectionSatellites.isEstConsulte();
     }
 
     /**
-     * initialisation des éléments sur l'affichage
+     * Initialise les éléments de l'affichage.
      */
     @FXML
-    void initialize(){
+    void initialize() {
+        Satellite satellite = collectionSatellites.getSatellite(posSatellite);
+        date.setText(String.valueOf(satellite.getDateString()));
+
         appliquerImageFleche();
         appliquerImage();
         reagir();
     }
 
     /**
-     * méthode qui permet de mettre sur les flèches pour passer au suivant ou au précédent
+     * Applique l'image de la flèche pour passer au satellite suivant ou précédent.
      */
-    private void appliquerImageFleche(){
-        Image image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/fleche.png")),90,90,true,true);
+    private void appliquerImageFleche() {
+        Image image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/fleche.png")), 90, 90, true, true);
         precedent.setImage(image1);
         suivant.setImage(image1);
         suivant.setRotate(180);
     }
 
     /**
-     * Passage au satellite suivant avec vérification de la validité du passage. Le passage
-     * n'est pas valide s'il n'y a pas de satellite à côté ou si la fenêtre n'a pas été sauvegardée.
+     * Passe au satellite suivant avec vérification de la validité du passage.
+     * Le passage n'est valide que s'il y a un satellite disponible et si la fenêtre a été sauvegardée.
      */
     @FXML
-    void suivant(){
-        if(posSatellite!=collectionSatellites.nbSatellites()-1) { // il n'y a pas de suivant
-            if(estSauvegarde) { // le fichier n'a pas été sauvegardé
+    void suivant() {
+        if (posSatellite != collectionSatellites.nbSatellites() - 1) {
+            if (estSauvegarde) {
                 posSatellite += 1;
                 collectionSatellites.notifierObservateurs();
-            }else{
-                lancerAlerte("Les données ne sont pas sauvegardées.\nElle risque d'être supprimer");
+            } else {
+                if(lancerAlerte("Les données ne sont pas sauvegardées.\nElles risquent d'être supprimées.")) {
+                    sauvegarde();
+                    suivant();
+                }
             }
         }
     }
 
     /**
-     * Passage au satellite suivant avec vérification de la validité du passage. Le passage
-     * n'est pas valide s'il n'y a pas de satellite à côté ou si la fenêtre n'a pas été sauvegardée.
+     * Passe au satellite précédent avec vérification de la validité du passage.
+     * Le passage n'est valide que s'il y a un satellite disponible et si la fenêtre a été sauvegardée.
      */
     @FXML
-    void precedent(){
-        if(posSatellite!=0) { // il n'y a pas de suivant
-            if(estSauvegarde) { // le fichier n'a pas été sauvegardé
+    void precedent() {
+        if (posSatellite != 0) {
+            if (estSauvegarde) {
                 posSatellite -= 1;
                 collectionSatellites.notifierObservateurs();
-            }else{
-                lancerAlerte("Les données ne sont pas sauvegardées.\nElle risque d'être supprimer");
+            } else {
+                if(lancerAlerte("Les données ne sont pas sauvegardées.\nElles risquent d'être supprimées.")) {
+                    sauvegarde();
+                    precedent();
+                }
             }
         }
     }
 
     /**
-     * méthode qui permet de placer les éléments sur la fenêtre en fonction du mode de lecture
-     * mise à jour de tous les éléments
+     * Applique les éléments sur la fenêtre en fonction du mode de lecture et met à jour tous les éléments.
+     * Il y a aussi une mise à jour pour la dimension des éléments
      */
     @FXML
-    private void appliquerInformation(){
+    private void appliquerInformation() {
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
-        vbox.getChildren().clear(); // on retire tous les éléments de la vbox pour les mettre à jour
+        vbox.getChildren().clear();
 
-        date.setText(String.valueOf(satellite.getDateString()));
         titre.setText(satellite.getNom());
         ajout.setDisable(collectionSatellites.isEstConsulte());
 
-        if(!collectionSatellites.isEstConsulte()) { // les informations changent en fonction du mode de lecture
+        if (!collectionSatellites.isEstConsulte()) {
             appliquerInformationsEdition();
-        }else{
+        } else {
             applicationInformationsConsultation();
         }
 
@@ -207,16 +218,15 @@ public class ControleurDetail extends Controleur{
     }
 
     /**
-     * méthode appliquant les informations dans le mode édition
+     * Applique les informations dans le mode Consultation.
      */
-    private void applicationInformationsConsultation(){
+    private void applicationInformationsConsultation() {
         informations.clear();
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
 
-        for(Information information : satellite) { // création des vues consultations pour les information
+        for (Information information : satellite) {
             PanneauInformationConsultation informationConsultation = new PanneauInformationConsultation(information);
 
-            //chargement du FXML
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../vue/PanneauInformationConsultation.fxml"));
             loader.setControllerFactory(ic -> informationConsultation);
@@ -229,15 +239,14 @@ public class ControleurDetail extends Controleur{
     }
 
     /**
-     * méthode appliquant les informations dans le mode Consultation
+     * Applique les informations dans le mode Édition.
      */
-    private void appliquerInformationsEdition(){
+    private void appliquerInformationsEdition() {
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
-        for (Information information : satellite) {
+        for (Information information : satellite) { // un chargement  par information
             PanneauInformation panneauInformation = new PanneauInformation(collectionSatellites, information);
             informations.add(panneauInformation);
 
-            //chargement du FXML
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
             loader.setControllerFactory(ic -> panneauInformation);
@@ -250,103 +259,118 @@ public class ControleurDetail extends Controleur{
     }
 
     /**
-     * méthode qui ajout l'image du satellite sur l'affichage
+     * Applique l'image du satellite sur l'affichage.
      */
-    private void appliquerImage(){
+    private void appliquerImage() {
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
         Image im = new Image(Objects.requireNonNull(getClass().getResourceAsStream(satellite.getUrl())),
-                700, 700, true, true) ;
+                700, 700, true, true);
         image.setImage(im);
     }
 
     /**
-     * méthode qui permet d'ajouter des informations au satellite
+     * Ajoute des informations au satellite.
      */
     @FXML
-    private void ajouterInfo(){
+    private void ajouterInfo() {
         appliquerInformationsEdition();
     }
 
+
     /**
-     * méthode qui permet de sauvegarder les données
+     * Sauvegarde les données du satellite. Ou passage en mode consultation
      */
     @FXML
-    void sauvegarde(){
-        if(!collectionSatellites.isEstConsulte()){
+    void sauvegarde() {
+        if (!collectionSatellites.isEstConsulte()) {
             estSauvegarde = true;
             Satellite satellite = collectionSatellites.getSatellite(posSatellite);
-            if(titre.getText().length() != 0)
+            if (titre.getText().length() != 0) { // le nom doit posséder au moins un caractère
                 satellite.setNom(titre.getText());
-            else {
+
+                for (PanneauInformation info : informations) { // sauvegarde de chaque information
+                    info.sauvegardeInformation();
+                }
+
+                collectionSatellites.setEstConsulte();
+                collectionSatellites.notifierObservateurs();
+            } else {
                 estSauvegarde = false;
-                lancerAlerte("le nom n'a pas été rentré");
+                lancerAlerte("Le nom n'a pas été saisi.");
             }
-
-            for(PanneauInformation info: informations){ // sauvegarde des informations
-                info.sauvegardeInformation();
-            }
-        }else{
+        } else {
             estSauvegarde = false;
+            collectionSatellites.setEstConsulte();
+            collectionSatellites.notifierObservateurs();
         }
-        collectionSatellites.setEstConsulte();
-        collectionSatellites.notifierObservateurs();
     }
 
     /**
-     * méthode qui permet d'afficher une alerte en cas d'erreur
+     * Affiche une alerte avec deux boutons.
      *
-     * @param message message afficher dans l'alerte
+     * @param message le message à afficher dans l'alerte
+     * @return true si le bouton "Sauvegarder" est cliqué, false si le bouton "Annuler" est cliqué
      */
-    private void lancerAlerte(String message){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Erreur: ");
-        alert.setHeaderText("Une erreur vient de se produire.");
+    private boolean lancerAlerte(String message) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Veuillez confirmer");
         alert.setContentText(message);
-        alert.showAndWait();
+
+        // Création des boutons personnalisés
+        ButtonType boutonSauvegarder = new ButtonType("Sauvegarder");
+        ButtonType boutonAnnuler = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        // Ajout des boutons à l'alerte
+        alert.getButtonTypes().setAll(boutonSauvegarder, boutonAnnuler);
+
+        // Affichage de l'alerte et attente de la réponse de l'utilisateur
+        Optional<ButtonType> resultat = alert.showAndWait();
+
+        // Vérification du bouton cliqué
+        // Bouton "Annuler" cliqué ou alerte fermée
+        return resultat.isPresent() && resultat.get() == boutonSauvegarder; // Bouton "Sauvegarder" cliqué
     }
 
     /**
-     * méthode qui permet de changer de vue
+     * Change de vue vers le panneau global.
      */
     @FXML
-    private void changerGlobal(){
-        collectionSatellites.clear();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../vue/PanneauGlobal.fxml"));
-        Compteur compteur = new Compteur();
-        PanneauGlobal global = new PanneauGlobal(collectionSatellites,compteur);
-        PanneauMenu menu = new PanneauMenu(collectionSatellites);
-        loader.setControllerFactory(ic -> {
-            if (ic.equals(stamps.controleur.PanneauMenu.class)) return menu;
-            return global;
-        });
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    private void changerGlobal() {
+        if(estSauvegarde) {
+            collectionSatellites.clear();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../vue/PanneauGlobal.fxml"));
+            Compteur compteur = new Compteur();
+            PanneauGlobal global = new PanneauGlobal(collectionSatellites, compteur);
+            PanneauMenu menu = new PanneauMenu(collectionSatellites);
+            loader.setControllerFactory(ic -> {
+                if (ic.equals(stamps.controleur.PanneauMenu.class)) return menu;
+                return global;
+            });
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            StackPane stage = (StackPane) image.getScene().getRoot();
+            root.translateYProperty().set(-stage.getScene().getHeight());
+            stage.getChildren().clear();
+            stage.getChildren().add(root);
+            Timeline timeline = new Timeline();
+            KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
+            timeline.getKeyFrames().add(kf);
+            timeline.play();
+        } else {
+            if(lancerAlerte("la sauvegarde n'a pas été effectué.")) {
+                sauvegarde();
+                changerGlobal();
+            }
         }
-        // Récupérer la référence de la stage actuelle
-        StackPane stage = (StackPane) image.getScene().getRoot();
-
-        root.translateYProperty().set(-stage.getScene().getHeight());
-
-
-        stage.getChildren().clear();
-
-        // Changer la scène de la stage actuelle
-        stage.getChildren().add(root);
-
-        //Create a timeline instance
-        Timeline timeline = new Timeline();
-        //Create a keyValue. We need to slide in -- We gradually decrement Y value to Zero
-        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
-        //Create keyframe of 1s with keyvalue kv
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
-        //Add frame to timeline
-        timeline.getKeyFrames().add(kf);
-        timeline.play();
     }
+
 
     /**
      * méthode qui permet de changer d'image
