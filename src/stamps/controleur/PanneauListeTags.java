@@ -11,7 +11,7 @@ import stamps.model.Satellite;
 import java.util.ArrayList;
 
 /**
- * classe permettant de gérer l'affichage des tags (mots clefs) des sattelites
+ * classe permettant de gérer l'affichage des tags (mots clefs) des satellites
  *
  * @author baptistedie
  */

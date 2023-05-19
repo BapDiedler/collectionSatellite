@@ -225,7 +225,7 @@ public class ControleurDetail extends Controleur {
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
 
         for (Information information : satellite) {
-            PanneauInformationConsultation informationConsultation = new PanneauInformationConsultation(information);
+            ControleurInformationConsultation informationConsultation = new ControleurInformationConsultation(information);
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../vue/PanneauInformationConsultation.fxml"));

@@ -18,6 +18,12 @@ import stamps.model.Compteur;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Le controleur permet de manipuler les satellites se trouvant dans la vue globale.
+ * À l'intérieur de la liste view
+ *
+ * @author baptistedie
+ */
 public class PanneauSatellite extends Controleur {
     public ImageView image;
     public Label nom;
@@ -77,16 +83,16 @@ public class PanneauSatellite extends Controleur {
             // Changer la scène de la stackPane actuelle
             stackPane.getChildren().add(root);
 
-//Create a timeline instance
+            //Create a timeline instance
             Timeline timeline = new Timeline();
-//Create a keyValue. We need to slide in -- We gradually decrement Y value to Zero
+            //Create a keyValue. We need to slide in -- We gradually decrement Y value to Zero
             KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
-//Create keyframe of 1s with keyvalue kv
+            //Create keyframe of 1s with keyvalue kv
             KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
-//Add frame to timeline
+            //Add frame to timeline
             timeline.getKeyFrames().add(kf);
 
-//Start animation
+            //Start animation
             timeline.play();
         }
     }
