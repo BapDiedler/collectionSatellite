@@ -41,21 +41,4 @@ class CollectionSatellitesTest {
         assertEquals("P-A-",collectionSatellites.toString());
         FabriqueIdentifiants.getInstance().reset();
     }
-
-    @Test
-    void getSatellites(){
-        CollectionSatellites collectionSatellites = new CollectionSatellites();
-        assertEquals(0,collectionSatellites.getSatellites("toto").size());
-        collectionSatellites.ajouter("A");
-        collectionSatellites.ajouter("B");
-        assertEquals(0,collectionSatellites.getSatellites("toto").size());
-        collectionSatellites.getSatellite(0).setMotsClefs("toto");
-        collectionSatellites.getSatellite(1).setMotsClefs("tata");
-        assertEquals(1,collectionSatellites.getSatellites("toto").size());
-        assertEquals(collectionSatellites.getSatellite(0),collectionSatellites.getSatellites("toto").get(0));
-        collectionSatellites.getSatellite(1).setMotsClefs("toto");
-        assertEquals(2,collectionSatellites.getSatellites("toto","tata").size());
-        assertEquals(collectionSatellites.getSatellite(1),collectionSatellites.getSatellites("toto","tata").get(0));
-        FabriqueIdentifiants.getInstance().reset();
-    }
 }

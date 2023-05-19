@@ -11,7 +11,7 @@ public class Compteur {
     /**
      * conteur de la classe
      */
-    private IntegerProperty valeur ;
+    private final IntegerProperty valeur ;
 
     /**
      * constructeur de la classe
@@ -30,10 +30,17 @@ public class Compteur {
     }
 
     /**
-     * setter de la classe
+     * setter de la classe permettant d'ajouter 1 au compteur
      */
     public void incrementer() {
         valeur.setValue(valeur.intValue()+1);
+    }
+
+    /**
+     * méthode qui permet de retirer 1 au compteur
+     */
+    public void decrementer() {
+        valeur.setValue(valeur.intValue()-1);
     }
 
     /**
@@ -43,20 +50,6 @@ public class Compteur {
      */
     public IntegerProperty getPropertyValue() {
         return valeur ;
-    }
-
-    /**
-     * getter de nombre de satellites
-     *
-     * @return le nombre de satellites
-     */
-    public int getValue() { return valeur.intValue();}
-
-    /**
-     * méthode qui permet de retirer 1 au compteur
-     */
-    public void decrementer() {
-        valeur.setValue(valeur.intValue()-1);
     }
 }
 

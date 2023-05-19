@@ -2,6 +2,7 @@ package stamps.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * classe qui permet la manipulation des Observateurs
@@ -44,5 +45,9 @@ public class SujetObserve {
 
     public void clear(){
         obervateurs.clear();
+    }
+
+    public void clear(Objects obj){
+        obervateurs.remove(obj);
     }
 }

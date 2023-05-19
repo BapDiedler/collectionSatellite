@@ -43,6 +43,7 @@ public class ControleurListeTags extends Controleur {
      */
     private final int posSatellite;
 
+    Stage nouvelleFenetre;
 
     /**
      * constructeur principal
@@ -55,7 +56,6 @@ public class ControleurListeTags extends Controleur {
         super(satellites);
         this.tags = satellites.getMotsClefs("");
         this.posSatellite = posSatellite;
-
         afficherFenetre();
     }
 
@@ -63,9 +63,9 @@ public class ControleurListeTags extends Controleur {
      * méthode qui permet d'afficher la fenêtre contenant les tags des satellites
      */
     private void afficherFenetre(){
-        Stage nouvelleFenetre = new Stage();
+        nouvelleFenetre = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../vue/PanneauListeTags.fxml"));
-        loader.setControllerFactory(ic -> tags);
+        loader.setControllerFactory(ic -> this);
         Scene root = null;
         try {
             root = loader.load();
@@ -81,6 +81,7 @@ public class ControleurListeTags extends Controleur {
 
         // Afficher la nouvelle fenêtre
         nouvelleFenetre.show();
+        reagir();
     }
 
     /**
@@ -177,10 +178,12 @@ public class ControleurListeTags extends Controleur {
      */
     @Override
     public void reagir() {
-        if(posSatellite != collectionSatellites.nbSatellites()+1) {
-            reagirDetail();
-        }else{
-            reagirGlobal();
+        if(nouvelleFenetre.isShowing()) {
+            if (posSatellite != collectionSatellites.nbSatellites() + 1) {
+                reagirDetail();
+            } else {
+                reagirGlobal();
+            }
         }
     }
 

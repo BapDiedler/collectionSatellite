@@ -71,9 +71,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      * @param url url de l'image du satellite
      */
     public void ajouter(String nom, String url){
-        if(url == null){
-            url = "/image/utilisateur/pasImage.jpeg";
-        }
+        if(url == null) url = "/image/utilisateur/pasImage.jpeg";
         Satellite satellite = new Satellite(nom,url);
         satellites.add(satellite);
         notifierObservateurs();
@@ -107,10 +105,12 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      * @param motClef nouveau mot clef
      */
     public void setMotsClefs(int i,String... motClef) {
+        int nbTags;
         for(String newTag : motClef){
             this.motsClefs.putIfAbsent(newTag,i);
             if(i == 1) {
-                this.motsClefs.replace(newTag,this.motsClefs.get(newTag)==-1?i:this.motsClefs.get(newTag)+1);
+                nbTags = this.motsClefs.get(newTag);
+                this.motsClefs.replace(newTag,nbTags==-1?i:nbTags+1);
             }
         }
     }
@@ -173,9 +173,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      * getter sur les satellites qui possèdent le mot clef
      *
      * @param motClef mot clef testé
-     * @return la collection de satellites valident
      */
-    public ArrayList<Satellite> getSatellites(String... motClef){
+    public void getSatellites(String motClef){
         HashMap<Integer,Satellite> satellitesValides = new HashMap<>(10);
         int val=0;
         for (Satellite satellite: satellites){
@@ -184,7 +183,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
                 satellitesValides.put(val,satellite);
             }
         }
-        return trierSatelliteMotClef(satellitesValides);
+        trierSatelliteMotClef(satellitesValides);
     }
 
     /**
@@ -207,9 +206,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
      * méthode qui permet de trier une hashMap de satellite
      *
      * @param satellitesValides la collection de satellites que l'on doit trier
-     * @return une ArrayList de satellites
      */
-    public ArrayList<Satellite> trierSatelliteMotClef(
+    private void trierSatelliteMotClef(
             HashMap<Integer,Satellite> satellitesValides){
         ArrayList<Map.Entry<Integer,Satellite>> arrayList = new ArrayList<>(satellitesValides.entrySet());
         arrayList.sort((o1, o2) -> o2.getKey().compareTo(o1.getKey()));
@@ -218,7 +216,18 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         for(Map.Entry<Integer,Satellite> sat : arrayList){
             newArray.add(sat.getValue());
         }
-        return newArray;
+
+        satellites.sort((s1, s2) -> {
+            if (newArray.contains(s1) && newArray.contains(s2)) {
+                return newArray.indexOf(s1) - newArray.indexOf(s2);
+            } else if (newArray.contains(s1)) {
+                return -1;
+            } else if (newArray.contains(s2)) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
     }
 
     /**

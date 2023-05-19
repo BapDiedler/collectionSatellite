@@ -186,6 +186,15 @@ public class ControleurMenu extends Controleur{
         new ControleurListeTags(collectionSatellites);
     }
 
+
+    /**
+     * méthode qui permet de rechercher des satellites en fonctions des mots clefs
+     */
+    @FXML
+    private void recherche(){
+        new ControleurRechercheTags(collectionSatellites);
+    }
+
     /**
      * méthode réagir qui sera activée à chaque action
      */

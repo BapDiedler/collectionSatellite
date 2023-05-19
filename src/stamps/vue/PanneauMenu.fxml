@@ -22,6 +22,7 @@
       <MenuButton alignment="CENTER" contentDisplay="CENTER" layoutX="1218.0" layoutY="19.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="183.0" styleClass="button" text="Tags" textFill="WHITE">
          <items>
             <MenuItem mnemonicParsing="false" onAction="#afficherTags" styleClass="menuItem" text="Liste" />
+            <MenuItem mnemonicParsing="false" onAction="#recherche" styleClass="menuItem" text="recherche" />
          </items>
          <font>
             <Font size="33.0" />
