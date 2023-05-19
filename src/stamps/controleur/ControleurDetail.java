@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -401,23 +400,7 @@ public class ControleurDetail extends Controleur {
      */
     @FXML
     private void afficherTags(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../vue/PanneauListeTags.fxml"));
-        Stage nouvelleFenetre = new Stage();
-        PanneauListeTags tags = new PanneauListeTags(collectionSatellites,posSatellite,nouvelleFenetre);
-        loader.setControllerFactory(ic -> tags);
-        Scene root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        // Créer une nouvelle fenêtre
-        nouvelleFenetre.setTitle("Tags");
-        nouvelleFenetre.setScene(root);
-
-        // Afficher la nouvelle fenêtre
-        nouvelleFenetre.show();
+        new ControleurListeTags(collectionSatellites,posSatellite);
     }
 
     /**

@@ -9,7 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import stamps.model.CollectionSatellites;
@@ -19,17 +18,36 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- * Le controleur permet de manipuler les satellites se trouvant dans la vue globale.
+ * Le contrôleur permet de manipuler les satellites se trouvant dans la vue globale.
  * À l'intérieur de la liste view
  *
  * @author baptistedie
  */
-public class PanneauSatellite extends Controleur {
-    public ImageView image;
-    public Label nom;
-    public HBox hbox;
+public class ControleurSatellite extends Controleur {
+
+    /**
+     * image où se trouve l'image du satellite
+     */
+    @FXML
+    private ImageView image;
+
+    /**
+     * label contenant le nom du satellite
+     */
+    @FXML
+    private Label nom;
+
+    /**
+     * position du satellite observé
+     */
     private final int posSatellite;
-    public ContextMenu menuContext;
+
+    /**
+     * menu permettant en outre de supprimer le satellite ou la totalité des satellites
+     */
+    @FXML
+    private ContextMenu menuContext;
+
     /**
      * compteur de satellite
      */
@@ -40,12 +58,15 @@ public class PanneauSatellite extends Controleur {
      *
      * @param satellites satellites manipulés
      */
-    public PanneauSatellite(CollectionSatellites satellites, int pos, Compteur compteur){
+    public ControleurSatellite(CollectionSatellites satellites, int pos, Compteur compteur){
         super(satellites);
         posSatellite = pos;
         this.compteur = compteur;
     }
 
+    /**
+     * méthode de qui permet d'initialiser les éléments de la page
+     */
     @FXML
     void initialize(){
         String url = collectionSatellites.getSatellite(posSatellite).getUrl();
@@ -73,28 +94,29 @@ public class PanneauSatellite extends Controleur {
                     detail
             );
             Parent root = loader.load();
-            // Récupérer la référence de la stackPane actuelle
-            StackPane stackPane = (StackPane) image.getScene().getRoot();
-
-            root.translateYProperty().set(image.getScene().getHeight());
-
-            stackPane.getChildren().clear();
-
-            // Changer la scène de la stackPane actuelle
-            stackPane.getChildren().add(root);
-
-            //Create a timeline instance
-            Timeline timeline = new Timeline();
-            //Create a keyValue. We need to slide in -- We gradually decrement Y value to Zero
-            KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
-            //Create keyframe of 1s with keyvalue kv
-            KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
-            //Add frame to timeline
-            timeline.getKeyFrames().add(kf);
-
-            //Start animation
-            timeline.play();
+            transition(root);
         }
+    }
+
+    /**
+     * méthode qui permet d'appliquer une transition lors du changement de vue
+     */
+    private void transition(Parent root){
+        // Récupérer la référence de la stackPane actuelle
+        StackPane stackPane = (StackPane) image.getScene().getRoot();
+        root.translateYProperty().set(image.getScene().getHeight());
+        stackPane.getChildren().clear();
+        // Changer la scène de la stackPane actuelle
+        stackPane.getChildren().add(root);
+
+
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
+        timeline.getKeyFrames().add(kf);
+
+        //lancement de l'animation
+        timeline.play();
     }
 
     /**
@@ -117,16 +139,9 @@ public class PanneauSatellite extends Controleur {
         compteur.setValeur(0);
     }
 
-
-    public String getNom() {
-        return collectionSatellites.getSatellite(posSatellite).getNom();
-    }
-
     /**
      * méthode réagir qui sera activée à chaque action
      */
     @Override
-    public void reagir() {
-
-    }
+    public void reagir() {}
 }

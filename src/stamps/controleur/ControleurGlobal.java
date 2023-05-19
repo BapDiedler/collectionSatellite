@@ -88,7 +88,7 @@ public class ControleurGlobal extends Controleur {
      * @param ind position du satellite
      */
     void ajouter(int ind){
-        PanneauSatellite panneauSat = new PanneauSatellite(collectionSatellites,ind,compteur);
+        ControleurSatellite panneauSat = new ControleurSatellite(collectionSatellites,ind,compteur);
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../vue/PanneauSatellite.fxml"));

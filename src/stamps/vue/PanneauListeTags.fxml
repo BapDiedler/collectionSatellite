@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauListeTags">
+<Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.ControleurListeTags">
    <VBox>
       <children>
          <ListView fx:id="listView" prefHeight="1000.0" prefWidth="1000.0" styleClass="listView" stylesheets="@../../ressource/styleSheet.css" />

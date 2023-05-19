@@ -3,8 +3,6 @@ package stamps.controleur;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -185,23 +183,7 @@ public class ControleurMenu extends Controleur{
      */
     @FXML
     private void afficherTags(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../vue/PanneauListeTags.fxml"));
-        Stage nouvelleFenetre = new Stage();
-        PanneauListeTags tags = new PanneauListeTags(collectionSatellites,nouvelleFenetre);
-        loader.setControllerFactory(ic -> tags);
-        Scene root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        // Créer une nouvelle fenêtre
-        nouvelleFenetre.setTitle("Tags");
-        nouvelleFenetre.setScene(root);
-
-        // Afficher la nouvelle fenêtre
-        nouvelleFenetre.show();
+        new ControleurListeTags(collectionSatellites);
     }
 
     /**

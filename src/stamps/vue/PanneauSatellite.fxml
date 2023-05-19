@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="hbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#changerDetail" prefHeight="200.0" prefWidth="1200.0" styleClass="vueSatellite" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.PanneauSatellite">
+<HBox fx:id="hbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#changerDetail" prefHeight="200.0" prefWidth="1200.0" styleClass="vueSatellite" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.ControleurSatellite">
    <children>
       <Label fx:id="nom" alignment="CENTER" contentDisplay="CENTER" prefHeight="200.0" prefWidth="960.0" styleClass="nomSatellite" stylesheets="@../../ressource/styleSheet.css" text="NOM" textFill="WHITE">
          <font>
