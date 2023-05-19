@@ -121,6 +121,8 @@ public class ControleurMenu extends Controleur{
             // Utiliser le FileChooser pour obtenir le fichier de sauvegarde
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Sauvegarder la collection");
+            File initialDirectory = new File("src/ressource/sauvegarde/");
+            fileChooser.setInitialDirectory(initialDirectory);
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichiers JSON (*.json)", "*.json"));
             File file = fileChooser.showSaveDialog(buttonBar.getScene().getWindow());
 

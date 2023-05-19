@@ -267,6 +267,5 @@ public class Satellite implements Iterable<Information>{
      */
     public void supprimerInfo(Information informationSatellite) {
         informations.remove(informationSatellite);
-        System.out.println(informations.size());
     }
 }

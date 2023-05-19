@@ -82,7 +82,6 @@ public class ControleurInformation{
      */
     @FXML
     private void supprimer(){
-        System.out.println("coucou");
         satellite.supprimerInfo(informationSatellite);
         controleurDetail.supprimerInfo(this);
     }

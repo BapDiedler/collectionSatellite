@@ -1,0 +1,63 @@
+{
+  "satellites": [
+    {
+      "identifiant": "0",
+      "motsClefs": [
+        "communication",
+        "1962",
+        "1963",
+        "US"
+      ],
+      "informations": [
+        {
+          "titre": "Objectif",
+          "texte": "Le satellite fut construit pour remédier à des problème de communication."
+        },
+        {
+          "titre": "Pays-Entreprise",
+          "texte": "Le satellite fut construit par des Américains à l\u0027aide des fonds de l\u0027entreprise AT\u0026T."
+        },
+        {
+          "titre": "Données",
+          "texte": "poid: 77 kg\nmission: 1962 - 1963\n"
+        }
+      ],
+      "nom": "Telstar 1",
+      "date": "May 19, 2023, 5:19:02 PM",
+      "url": "/image/utilisateur/Telstar.jpg"
+    },
+    {
+      "identifiant": "1",
+      "motsClefs": [],
+      "informations": [
+        {
+          "titre": "titre",
+          "texte": "zone de texte"
+        }
+      ],
+      "nom": "Spoutnik 1",
+      "date": "May 19, 2023, 5:56:33 PM",
+      "url": "/image/utilisateur/Sputnik_asm.jpg"
+    },
+    {
+      "identifiant": "2",
+      "motsClefs": [],
+      "informations": [
+        {
+          "titre": "titre",
+          "texte": "zone de texte"
+        }
+      ],
+      "nom": "Mariner",
+      "date": "May 19, 2023, 5:57:02 PM",
+      "url": "/image/utilisateur/Mariner09.jpg"
+    }
+  ],
+  "motsClefs": {
+    "1963": 2,
+    "1962": 2,
+    "communication": 2,
+    "US": 2
+  },
+  "estConsulte": true
+}
