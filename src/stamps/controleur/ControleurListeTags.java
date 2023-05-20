@@ -27,15 +27,15 @@ public class ControleurListeTags extends Controleur {
     private ListView<Label> listView;
 
     /**
-     * liste de string contenant les tags
-     */
-    private final ArrayList<String> tags;
-
-    /**
      * textField permettant de rentrer une nouvelle donnée
      */
     @FXML
     private TextField nouveauTag;
+
+    /**
+     * liste de string contenant les tags
+     */
+    private final ArrayList<String> tags;
 
     /**
      * position du satellite que l'on manipule
@@ -43,7 +43,12 @@ public class ControleurListeTags extends Controleur {
      */
     private final int posSatellite;
 
-    Stage nouvelleFenetre;
+    /**
+     * Stage de la fenêtre
+     */
+    private Stage nouvelleFenetre;
+
+
 
     /**
      * constructeur principal
@@ -54,10 +59,23 @@ public class ControleurListeTags extends Controleur {
      */
     public ControleurListeTags(CollectionSatellites satellites, int posSatellite){
         super(satellites);
-        this.tags = satellites.getMotsClefs("");
+        this.tags = satellites.getMotsClefs(""); // récupération de la totalité des mots
         this.posSatellite = posSatellite;
         afficherFenetre();
     }
+
+
+
+    /**
+     * constructeur utilisé dans la vue globale
+     *
+     * @param satellites collection de satellite que l'on observe
+     */
+    public ControleurListeTags(CollectionSatellites satellites){
+        this(satellites, satellites.nbSatellites()+1);
+    }
+
+
 
     /***
      * méthode qui permet d'afficher la fenêtre contenant les tags des satellites
@@ -74,7 +92,6 @@ public class ControleurListeTags extends Controleur {
         }
 
         nouvelleFenetre.initModality(Modality.APPLICATION_MODAL);
-
         // Créer une nouvelle fenêtre
         nouvelleFenetre.setTitle("Tags");
         nouvelleFenetre.setScene(root);
@@ -84,14 +101,7 @@ public class ControleurListeTags extends Controleur {
         reagir();
     }
 
-    /**
-     * constructeur utilisé dans la vue globale
-     *
-     * @param satellites collection de satellite que l'on observe
-     */
-    public ControleurListeTags(CollectionSatellites satellites){
-        this(satellites, satellites.nbSatellites()+1);
-    }
+
 
     /**
      * initialisation des éléments sur l'affichage
@@ -102,6 +112,8 @@ public class ControleurListeTags extends Controleur {
         reagir();
     }
 
+
+
     /**
      * méthode qui permet d'ajouter un tag au satellite manipulé
      */
@@ -110,7 +122,7 @@ public class ControleurListeTags extends Controleur {
         if(nouveauTag.getText().length() != 0){
             tags.add(nouveauTag.getText());
         }else{
-            lancerAlerte("aucun tag ne vient d'être ajouté");
+            lancerAlerte();
         }
         if(collectionSatellites.nbSatellites()+1 != posSatellite) {
             collectionSatellites.setMotsClefs(1, nouveauTag.getText());
@@ -122,18 +134,20 @@ public class ControleurListeTags extends Controleur {
         collectionSatellites.notifierObservateurs();
     }
 
+
+
     /**
      * méthode qui permet d'afficher une alerte en cas d'erreur
-     *
-     * @param message message afficher dans l'alerte
      */
-    private void lancerAlerte(String message){
+    private void lancerAlerte(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erreur: ");
         alert.setHeaderText("Une erreur vient de se produire.");
-        alert.setContentText(message);
+        alert.setContentText("aucun tag ne vient d'être ajouté");
         alert.showAndWait();
     }
+
+
 
     /**
      * méthode qui permet de supprimer un tag d'un satellite ainsi que dans la vue globale si besoin
@@ -149,6 +163,8 @@ public class ControleurListeTags extends Controleur {
         collectionSatellites.notifierObservateurs();
     }
 
+
+
     /**
      * méthode qui permet d'ajouter les tags d'un satellite manipulé
      */
@@ -158,19 +174,19 @@ public class ControleurListeTags extends Controleur {
             if(posSatellite != collectionSatellites.nbSatellites()+1)
                 collectionSatellites.getSatellite(posSatellite).setMotsClefs(label.getText());
         }
-        if(nouveauTag.getText().length() != 0) {
+        if(nouveauTag.getText().length() != 0) { // on regarde si le tags en valide
             tags.add(nouveauTag.getText());
 
             if(posSatellite != collectionSatellites.nbSatellites()+1) {
                 collectionSatellites.getSatellite(posSatellite).setMotsClefs(nouveauTag.getText());
                 collectionSatellites.setMotsClefs(1, nouveauTag.getText());
-            }else{
+            }else
                 collectionSatellites.setMotsClefs(-1, nouveauTag.getText());
-            }
-            nouveauTag.setText("");
+            nouveauTag.setText(""); // initialisation du tag
         }
         collectionSatellites.notifierObservateurs();
     }
+
 
 
     /**
@@ -179,13 +195,12 @@ public class ControleurListeTags extends Controleur {
     @Override
     public void reagir() {
         if(nouvelleFenetre.isShowing()) {
-            if (posSatellite != collectionSatellites.nbSatellites() + 1) {
-                reagirDetail();
-            } else {
-                reagirGlobal();
-            }
+            if (posSatellite != collectionSatellites.nbSatellites() + 1) reagirDetail();
+            else reagirGlobal();
         }
     }
+
+
 
     /**
      * méthode réagir pour la vue globale
@@ -201,6 +216,7 @@ public class ControleurListeTags extends Controleur {
             listView.getItems().add(label);
         }
     }
+
 
 
     /**

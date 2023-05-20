@@ -48,6 +48,7 @@ public class ControleurGlobal extends Controleur {
     private Label compte;
 
 
+
     /**
      * constructeur principal de la classe
      *
@@ -59,18 +60,21 @@ public class ControleurGlobal extends Controleur {
         this.compteur.setValeur(collectionSatellites.nbSatellites());
     }
 
+
+
     /**
      * méthode qui permet d'initialiser les éléments de la fenêtre
      */
     @FXML
     void initialize(){
-        listView.setCellFactory(listView-> new CustomListCell());
         compte.textProperty().bind(compteur.getPropertyValue().asString());
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/developpeur/ajouter.png")),
                 90,90,true,true);
         ajout.setGraphic(new ImageView(image));
         reagir();
     }
+
+
 
     /**
      * méthode qui permet d'ajouter un nouveau satellite
@@ -82,14 +86,17 @@ public class ControleurGlobal extends Controleur {
         compteur.incrementer();
     }
 
+
+
     /**
-     * méthode qui ajout un satellite
+     * méthode qui ajout un satellite à la collection
      *
      * @param ind position du satellite
      */
     void ajouter(int ind){
         ControleurSatellite panneauSat = new ControleurSatellite(collectionSatellites,ind,compteur);
 
+        // chargement du fichierFXML
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../vue/PanneauSatellite.fxml"));
         loader.setControllerFactory(ic -> panneauSat);
@@ -100,15 +107,19 @@ public class ControleurGlobal extends Controleur {
         }
     }
 
+
+
     /**
      * méthode réagir qui sera activée à chaque action
      */
     @Override
     public void reagir() {
         listView.getItems().clear();
-        for(int i=0; i<collectionSatellites.nbSatellites(); i++){
+
+        for(int i=0; i<collectionSatellites.nbSatellites(); i++){ // ajout des satellites dans la listView
             ajouter(i);
         }
+
         ajout.setVisible(!collectionSatellites.isEstConsulte());
     }
 }

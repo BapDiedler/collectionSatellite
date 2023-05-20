@@ -108,6 +108,7 @@
     /* Styles personnalisés pour les cellules de la liste */
     -fx-background-color: #444f58;
     -fx-text-fill: transparent;
+    -fx-alignment : center;
 }
 
 .vueSatellite:not(:hover),

@@ -38,20 +38,22 @@ public class ControleurSatellite extends Controleur {
     private Label nom;
 
     /**
-     * position du satellite observé
-     */
-    private final int posSatellite;
-
-    /**
      * menu permettant en outre de supprimer le satellite ou la totalité des satellites
      */
     @FXML
     private ContextMenu menuContext;
 
     /**
+     * position du satellite observé
+     */
+    private final int posSatellite;
+
+    /**
      * compteur de satellite
      */
     private final Compteur compteur ;
+
+
 
     /**
      * constructeur de la classe
@@ -63,6 +65,8 @@ public class ControleurSatellite extends Controleur {
         posSatellite = pos;
         this.compteur = compteur;
     }
+
+
 
     /**
      * méthode de qui permet d'initialiser les éléments de la page
@@ -76,6 +80,8 @@ public class ControleurSatellite extends Controleur {
         nom.setText(collectionSatellites.getSatellite(posSatellite).getNom());
     }
 
+
+
     /**
      * méthode qui permet d'aller sur la vue détaillée d'un satellite
      *
@@ -83,7 +89,7 @@ public class ControleurSatellite extends Controleur {
      */
     @FXML
     void changerDetail(MouseEvent event) throws IOException {
-        if(event.getButton() == MouseButton.SECONDARY) {
+        if(event.getButton() == MouseButton.SECONDARY) { // action pour faire apparaitre le menu contextuel
             menuContext.show(nom, event.getScreenX(), event.getScreenY());
         }else {
             collectionSatellites.clear();
@@ -98,8 +104,12 @@ public class ControleurSatellite extends Controleur {
         }
     }
 
+
+
     /**
      * méthode qui permet d'appliquer une transition lors du changement de vue
+     *
+     * @param root élément principal de la fenêtre à afficher lors de la transition
      */
     private void transition(Parent root){
         // Récupérer la référence de la stackPane actuelle
@@ -109,7 +119,6 @@ public class ControleurSatellite extends Controleur {
         // Changer la scène de la stackPane actuelle
         stackPane.getChildren().add(root);
 
-
         Timeline timeline = new Timeline();
         KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
         KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
@@ -118,6 +127,8 @@ public class ControleurSatellite extends Controleur {
         //lancement de l'animation
         timeline.play();
     }
+
+
 
     /**
      * méthode qui permet de supprimer définitivement un satellite
@@ -129,6 +140,8 @@ public class ControleurSatellite extends Controleur {
         compteur.decrementer();
     }
 
+
+
     /**
      * méthode qui permet de tout supprimer
      */
@@ -138,6 +151,8 @@ public class ControleurSatellite extends Controleur {
         collectionSatellites.notifierObservateurs();
         compteur.setValeur(0);
     }
+
+
 
     /**
      * méthode réagir qui sera activée à chaque action

@@ -13,18 +13,39 @@ import stamps.model.CollectionSatellites;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
+/**
+ * La classe permet de faire la recherche de satellites à l'aide des tags.
+ * En outre il trie les satellites en fonction de leur correspondance avec les tags choisis.
+ *
+ * @author baptistedie
+ */
 public class ControleurRechercheTags extends Controleur {
 
+    /**
+     * liste contenant les labels avec le nom des tags
+     */
     @FXML
     private ListView<Label> listView;
 
+    /**
+     * liste des tags manipulés
+     */
     private final ArrayList<String> tags;
 
+
+    /**
+     * constructeur de la classe
+     *
+     * @param collectionSatellites collection de satellites manipulée par les tags
+     */
     public ControleurRechercheTags(CollectionSatellites collectionSatellites){
         super(collectionSatellites);
-        tags = collectionSatellites.getMotsClefs("");
+        tags = collectionSatellites.getMotsClefs(""); // récupération de la totalité des tags
         afficherFenetre();
     }
+
+
 
     /***
      * méthode qui permet d'afficher la fenêtre contenant les tags des satellites
@@ -39,9 +60,7 @@ public class ControleurRechercheTags extends Controleur {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         nouvelleFenetre.initModality(Modality.APPLICATION_MODAL);
-
         // Créer une nouvelle fenêtre
         nouvelleFenetre.setTitle("Tags");
         nouvelleFenetre.setScene(root);
@@ -50,10 +69,20 @@ public class ControleurRechercheTags extends Controleur {
         nouvelleFenetre.show();
     }
 
+
+
+    /**
+     * méthode qui permet d'initialiser les éléments de la fenêtre FXML
+     */
     public void initialize(){
         reagir();
     }
 
+
+
+    /**
+     * méthode qui permet le tri en fonction du tag sélectionné
+     */
     @FXML
     private void handleKeywordSelection() {
         Label selectedLabel = listView.getSelectionModel().getSelectedItem();
@@ -62,6 +91,8 @@ public class ControleurRechercheTags extends Controleur {
         }
         collectionSatellites.notifierObservateurs();
     }
+
+
 
     /**
      * méthode réagir qui sera activée à chaque action

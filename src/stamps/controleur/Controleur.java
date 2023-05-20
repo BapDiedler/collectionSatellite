@@ -6,6 +6,8 @@ import stamps.model.Obervateur;
 
 /**
  * classe abstraite permettant de représenter les contrôleurs de notre collection
+ *
+ * @author baptistedie
  */
 public abstract class Controleur implements Obervateur {
 

@@ -48,14 +48,25 @@
     },
     {
       "identifiant": "2",
-      "motsClefs": [],
+      "motsClefs": [
+        "1962",
+        "US"
+      ],
       "informations": [
         {
-          "titre": "titre",
-          "texte": "zone de texte"
+          "titre": "Objectif",
+          "texte": "Le but de ce satellite était de faire de l\u0027étude d\u0027astre céleste"
+        },
+        {
+          "titre": "Pays",
+          "texte": "Le pays en charge de cette mission fut les Etats-Unis avec la NASA."
+        },
+        {
+          "titre": "Date",
+          "texte": "Le satellite fut lancer en 1962."
         }
       ],
-      "nom": "Mariner",
+      "nom": "Mariner 1",
       "date": "May 19, 2023, 5:57:02 PM",
       "url": "/image/utilisateur/Mariner09.jpg"
     }

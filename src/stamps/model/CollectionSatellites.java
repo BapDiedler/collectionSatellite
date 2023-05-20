@@ -26,6 +26,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
     private boolean estConsulte;
 
 
+
     /**
      * constructeur principal de la classe
      */
@@ -36,6 +37,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         estConsulte=true;
     }
 
+
+
     /**
      * constructeur principal de la classe
      */
@@ -44,6 +47,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         motsClefs = collectionSatellites.motsClefs;
         estConsulte= true;
     }
+
+
 
     /**
      * méthode qui permet l'ajout de satellite dans la collection
@@ -54,6 +59,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         ajouter(nom,null);
     }
 
+
+
     /**
      * méthode qui permet d'ajouter un satellite qui existe déjà
      *
@@ -62,6 +69,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
     public void ajouter(Satellite satellite){
         satellites.add(satellite);
     }
+
 
 
     /**
@@ -77,6 +85,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         notifierObservateurs();
     }
 
+
+
     /**
      * suppression d'un satellite
      *
@@ -86,6 +96,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         satellites.remove(satellite);
     }
 
+
+
     /**
      * méthode qui permet de tout supprimer
      */
@@ -93,12 +105,16 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         satellites.clear();
     }
 
+
+
     /**
      * méthode pour changer de mode de consultation
      */
     public void setEstConsulte() {
         estConsulte = !estConsulte;
     }
+
+
 
     /**
      * setter de mot clef dans le monde
@@ -115,6 +131,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         }
     }
 
+
+
     /**
      * méthode qui permet de trier les satellites en fonction de leur date de création
      */
@@ -122,6 +140,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         satellites.sort(Comparator.comparing(Satellite::getDateString));
         notifierObservateurs();
     }
+
+
 
     /**
      * méthode qui permet de trier les satellites en fonction de leur apparition dans la collection
@@ -131,6 +151,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         notifierObservateurs();
     }
 
+
+
     /**
      * méthode qui permet de trier les satellites en fonction de leur nom
      */
@@ -138,6 +160,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         satellites.sort(Comparator.comparing(Satellite::getNom));
         notifierObservateurs();
     }
+
+
 
     /**
      * iterator qui permet d'itérer sur les satellites de la collection
@@ -149,6 +173,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         return satellites.iterator();
     }
 
+
+
     /**
      * getter sur le nombre d'éléments dans la collection
      *
@@ -157,6 +183,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
     public int nbSatellites(){
         return satellites.size();
     }
+
+
 
     /**
      * getter sur la collection de satellites qui permet de récupérer le satellite en fonction de sa position dans arrayList
@@ -167,6 +195,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
     public Satellite getSatellite(int pos){
         return satellites.get(pos);
     }
+
 
 
     /**
@@ -186,6 +215,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         trierSatelliteMotClef(satellitesValides);
     }
 
+
+
     /**
      * getter de motsClefs en fonction du mot rentrée en paramètre
      *
@@ -201,6 +232,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         }
         return suggestions;
     }
+
+
 
     /**
      * méthode qui permet de trier une hashMap de satellite
@@ -230,20 +263,7 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         });
     }
 
-    /**
-     * méthode qui permet de savoir si le satellite est dans la collection ou non
-     *
-     * @param satellite satellite regarder
-     * @return true s'il est dans la collection
-     */
-    public boolean contains(Satellite satellite){
-        for(Satellite satellite1: satellites){
-            if(satellite1.equals(satellite)){
-                return true;
-            }
-        }
-        return false;
-    }
+
 
     /**
      * méthode pour connaitre le mode de vue
@@ -253,6 +273,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
     public boolean isEstConsulte() {
         return estConsulte;
     }
+
+
 
     /**
      * le toString de la classe permet de voir les satellites dans l'ordre de la collection
@@ -266,6 +288,8 @@ public class CollectionSatellites extends SujetObserve implements Iterable<Satel
         }
         return affichage.toString();
     }
+
+
 
     /**
      * méthode qui permet de retirer les tags non utilisés par les satellites

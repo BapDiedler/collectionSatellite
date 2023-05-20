@@ -81,7 +81,7 @@ public class ControleurDetail extends Controleur {
     private VBox vbox;
 
     /**
-     * Image du satellite.
+     * Image du satellite sur le côté droit
      */
     @FXML
     private ImageView image;
@@ -119,6 +119,12 @@ public class ControleurDetail extends Controleur {
      */
     private boolean estSauvegarde;
 
+    /**
+     * url de l'image pour faire la sauvegarde
+     */
+    private String urlImage;
+
+
 
     /**
      * Constructeur principal de la classe.
@@ -131,7 +137,10 @@ public class ControleurDetail extends Controleur {
         this.posSatellite = posSatellite;
         this.informations = new ArrayList<>(10);
         estSauvegarde = collectionSatellites.isEstConsulte();
+        urlImage = collectionSatellites.getSatellite(posSatellite).getUrl();
     }
+
+
 
     /**
      * Initialise les éléments de l'affichage.
@@ -142,19 +151,37 @@ public class ControleurDetail extends Controleur {
         date.setText(String.valueOf(satellite.getDateString()));
 
         appliquerImageFleche();
-        appliquerImage();
+        appliquerImageSatellite();
         reagir();
     }
+
+
 
     /**
      * Applique l'image de la flèche pour passer au satellite suivant ou précédent.
      */
     private void appliquerImageFleche() {
-        Image image1 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/developpeur/fleche.png")), 90, 90, true, true);
-        precedent.setImage(image1);
-        suivant.setImage(image1);
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/developpeur/fleche.png")),
+                90, 90, true, true);
+        precedent.setImage(image);
+        suivant.setImage(image);
         suivant.setRotate(180);
     }
+
+
+
+    /**
+     * Applique l'image du satellite sur l'affichage.
+     */
+    private void appliquerImageSatellite() {
+        Satellite satellite = collectionSatellites.getSatellite(posSatellite);
+
+        Image im = new Image(Objects.requireNonNull(getClass().getResourceAsStream(satellite.getUrl())),
+                700, 700, true, true);
+        image.setImage(im);
+    }
+
+
 
     /**
      * Passe au satellite suivant avec vérification de la validité du passage.
@@ -169,11 +196,14 @@ public class ControleurDetail extends Controleur {
             } else {
                 if(lancerAlerte("Les données ne sont pas sauvegardées.\nElles risquent d'être supprimées.")) {
                     sauvegarde();
-                    suivant();
                 }
+                estSauvegarde = true;
+                suivant();
             }
         }
     }
+
+
 
     /**
      * Passe au satellite précédent avec vérification de la validité du passage.
@@ -190,9 +220,13 @@ public class ControleurDetail extends Controleur {
                     sauvegarde();
                     precedent();
                 }
+                estSauvegarde = true;
+                precedent();
             }
         }
     }
+
+
 
     /**
      * Applique les éléments sur la fenêtre en fonction du mode de lecture et met à jour tous les éléments.
@@ -206,7 +240,7 @@ public class ControleurDetail extends Controleur {
         titre.setText(satellite.getNom());
         ajout.setDisable(collectionSatellites.isEstConsulte());
 
-        if (!collectionSatellites.isEstConsulte()) {
+        if (!collectionSatellites.isEstConsulte()) { // choix du type des informations
             appliquerInformationsEdition();
         } else {
             applicationInformationsConsultation();
@@ -216,6 +250,8 @@ public class ControleurDetail extends Controleur {
         vbox.setPrefHeight(scrollPane.getPrefHeight());
     }
 
+
+
     /**
      * Applique les informations dans le mode Consultation.
      */
@@ -223,12 +259,13 @@ public class ControleurDetail extends Controleur {
         informations.clear();
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
 
-        for (Information information : satellite) {
-            ControleurInformationConsultation informationConsultation = new ControleurInformationConsultation(information);
+        for (Information information : satellite) { // un chargement par information
+            ControleurInformationConsultation info = new ControleurInformationConsultation(information);
 
+            // chargement du fichier FXML
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../vue/PanneauInformationConsultation.fxml"));
-            loader.setControllerFactory(ic -> informationConsultation);
+            loader.setControllerFactory(ic -> info);
             try {
                 vbox.getChildren().add(loader.load());
             } catch (IOException e) {
@@ -236,19 +273,23 @@ public class ControleurDetail extends Controleur {
             }
         }
     }
+
+
 
     /**
      * Applique les informations dans le mode Édition.
      */
     private void appliquerInformationsEdition() {
         Satellite satellite = collectionSatellites.getSatellite(posSatellite);
-        for (Information information : satellite) { // un chargement  par information
-            ControleurInformation controleurInformation = new ControleurInformation(this,satellite,information);
-            informations.add(controleurInformation);
 
+        for (Information information : satellite) { // un chargement  par information
+            ControleurInformation info = new ControleurInformation(this,satellite,information);
+            informations.add(info);
+
+            // chargement du fichier FXML
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
-            loader.setControllerFactory(ic -> controleurInformation);
+            loader.setControllerFactory(ic -> info);
             try {
                 vbox.getChildren().add(loader.load());
             } catch (IOException e) {
@@ -257,15 +298,7 @@ public class ControleurDetail extends Controleur {
         }
     }
 
-    /**
-     * Applique l'image du satellite sur l'affichage.
-     */
-    private void appliquerImage() {
-        Satellite satellite = collectionSatellites.getSatellite(posSatellite);
-        Image im = new Image(Objects.requireNonNull(getClass().getResourceAsStream(satellite.getUrl())),
-                700, 700, true, true);
-        image.setImage(im);
-    }
+
 
     /**
      * Ajoute des informations au satellite.
@@ -277,60 +310,58 @@ public class ControleurDetail extends Controleur {
     }
 
 
+
     /**
      * Sauvegarde les données du satellite. Ou passage en mode consultation
      */
     @FXML
     void sauvegarde() {
         if (!collectionSatellites.isEstConsulte()) {
-            estSauvegarde = true;
-            Satellite satellite = collectionSatellites.getSatellite(posSatellite);
-            if (titre.getText().length() != 0) { // le nom doit posséder au moins un caractère
-                satellite.setNom(titre.getText());
-
-                for (ControleurInformation info : informations) { // sauvegarde de chaque information
-                    info.sauvegardeInformation();
-                }
-
-                collectionSatellites.setEstConsulte();
-                collectionSatellites.notifierObservateurs();
-            } else {
-                estSauvegarde = false;
-                lancerAlerte("Le nom n'a pas été saisi.");
-            }
+            sauvegardeEdition();
         } else {
-            estSauvegarde = false;
-            collectionSatellites.setEstConsulte();
-            collectionSatellites.notifierObservateurs();
+            sauvegardeConsultation();
         }
     }
 
+
+
     /**
-     * Affiche une alerte avec deux boutons.
-     *
-     * @param message le message à afficher dans l'alerte
-     * @return true si le bouton "Sauvegarder" est cliqué, false si le bouton "Annuler" est cliqué
+     * méthode qui fait la sauvegarde des données en mode édition
      */
-    private boolean lancerAlerte(String message) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation");
-        alert.setHeaderText("Veuillez confirmer");
-        alert.setContentText(message);
+    private void sauvegardeEdition(){
+        if (titre.getText().length() != 0) { // le nom doit posséder au moins un caractère
+            Satellite satellite = collectionSatellites.getSatellite(posSatellite);
 
-        // Création des boutons personnalisés
-        ButtonType boutonSauvegarder = new ButtonType("Sauvegarder");
-        ButtonType boutonAnnuler = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
+            estSauvegarde = true;
+            satellite.setNom(titre.getText());
+            satellite.setUrl(urlImage);
 
-        // Ajout des boutons à l'alerte
-        alert.getButtonTypes().setAll(boutonSauvegarder, boutonAnnuler);
+            for (ControleurInformation info : informations) { // sauvegarde de chaque information
+                info.sauvegardeInformation();
+            }
 
-        // Affichage de l'alerte et attente de la réponse de l'utilisateur
-        Optional<ButtonType> resultat = alert.showAndWait();
-
-        // Vérification du bouton cliqué
-        // Bouton "Annuler" cliqué ou alerte fermée
-        return resultat.isPresent() && resultat.get() == boutonSauvegarder; // Bouton "Sauvegarder" cliqué
+            collectionSatellites.setEstConsulte(); // changement du mode
+            collectionSatellites.notifierObservateurs();
+        } else {
+            if(lancerAlerte("Le nom n'a pas été saisi.")) { // si l'utilisateur veut quand même sauvegarder
+                estSauvegarde = true;
+                sauvegardeEdition();
+            }
+        }
     }
+
+
+
+    /**
+     * méthode qui fait la sauvegarde des données en mode consultation
+     */
+    private void sauvegardeConsultation(){
+        estSauvegarde = false;
+        collectionSatellites.setEstConsulte();
+        collectionSatellites.notifierObservateurs();
+    }
+
+
 
     /**
      * Change de vue vers le panneau global.
@@ -354,22 +385,36 @@ public class ControleurDetail extends Controleur {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            StackPane stage = (StackPane) image.getScene().getRoot();
-            root.translateYProperty().set(-stage.getScene().getHeight());
-            stage.getChildren().clear();
-            stage.getChildren().add(root);
-            Timeline timeline = new Timeline();
-            KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
-            KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
-            timeline.getKeyFrames().add(kf);
-            timeline.play();
+            transition(root);
         } else {
             if(lancerAlerte("la sauvegarde n'a pas été effectué.")) {
                 sauvegarde();
                 changerGlobal();
             }
+            estSauvegarde = true;
+            changerGlobal();
         }
     }
+
+
+
+    /**
+     * méthode qui permet de faire une transition lors du changement de vue
+     *
+     * @param root élément  principal de la nouvelle fenêtre
+     */
+    private void transition(Parent root){
+        StackPane stage = (StackPane) image.getScene().getRoot();
+        root.translateYProperty().set(-stage.getScene().getHeight());
+        stage.getChildren().clear();
+        stage.getChildren().add(root);
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
 
 
     /**
@@ -387,13 +432,18 @@ public class ControleurDetail extends Controleur {
 
             Stage stage = (Stage) vbox.getScene().getWindow();
             File selectedFile = fileChooser.showOpenDialog(stage);
-            if (selectedFile != null) {
-                String imagePath = "/image/utilisateur/"+selectedFile.getName();
-                collectionSatellites.getSatellite(posSatellite).setUrl(imagePath);
+
+            if (selectedFile != null) { // mise à jour du path de l'image
+                urlImage = "/image/utilisateur/"+selectedFile.getName();
+
+                Image im = new Image(Objects.requireNonNull(getClass().getResourceAsStream(urlImage)),
+                        700, 700, true, true);
+                image.setImage(im);
             }
-            appliquerImage();
         }
     }
+
+
 
     /**
      * méthode privée qui permet d'afficher les tags du satellite
@@ -402,6 +452,8 @@ public class ControleurDetail extends Controleur {
     private void afficherTags(){
         new ControleurListeTags(collectionSatellites,posSatellite);
     }
+
+
 
     /**
      * méthode qui permet d'ajouter les tags du satellite dans l'affichage
@@ -414,12 +466,24 @@ public class ControleurDetail extends Controleur {
         while (iteratorTags.hasNext()) {
             String tag = iteratorTags.next();
             Label label = new Label(tag);
-            label.setStyle("-fx-text-fill: white;" +
-                    "-fx-font-size: 30px");
+            label.setStyle("-fx-text-fill: white; -fx-font-size: 30px");
             label.setAlignment(Pos.CENTER);
             listeTags.getItems().add(label);
         }
     }
+
+
+
+    /**
+     * méthode qui permet de supprimer une information
+     *
+     * @param obj information supprimé
+     */
+    public void supprimerInfo(ControleurInformation obj) {
+        informations.remove(obj);
+        collectionSatellites.notifierObservateurs();
+    }
+
 
 
     /**
@@ -441,13 +505,31 @@ public class ControleurDetail extends Controleur {
         vbox.setPrefHeight(scrollPane.getPrefHeight());
     }
 
+
+
     /**
-     * méthode qui permet de supprimer une information
+     * Affiche une alerte avec deux boutons.
      *
-     * @param obj information supprimé
+     * @param message le message à afficher dans l'alerte
+     * @return true si le bouton "Sauvegarder" est cliqué, false si le bouton "Annuler" est cliqué
      */
-    public void supprimerInfo(ControleurInformation obj) {
-        informations.remove(obj);
-        collectionSatellites.notifierObservateurs();
+    private boolean lancerAlerte(String message) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Veuillez confirmer");
+        alert.setContentText(message);
+
+        // Création des boutons personnalisés
+        ButtonType boutonSauvegarder = new ButtonType("Sauvegarder");
+        ButtonType boutonAnnuler = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        // Ajout des boutons à l'alerte
+        alert.getButtonTypes().setAll(boutonSauvegarder, boutonAnnuler);
+
+        // Affichage de l'alerte et attente de la réponse de l'utilisateur
+        Optional<ButtonType> resultat = alert.showAndWait();
+
+        // Bouton "Annuler" cliqué ou alerte fermée
+        return resultat.isPresent() && resultat.get() == boutonSauvegarder; // Bouton "Sauvegarder" cliqué
     }
 }

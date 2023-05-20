@@ -22,22 +22,28 @@ public class ControleurMenu extends Controleur{
     /**
      * bouton qui permet d'ajouter un élément
      */
-    public MenuItem ajout;
+    @FXML
+    private MenuItem ajout;
 
     /**
      * bar contenant les boutons
      */
-    public ButtonBar buttonBar;
+    @FXML
+    private ButtonBar buttonBar;
 
     /**
      * menu permettant de changer de mode
      */
-    public MenuItem edition;
+    @FXML
+    private MenuItem edition;
 
     /**
      * menu permettant de trier les éléments de la collection
      */
-    public MenuButton trierMenu;
+    @FXML
+    private MenuButton trierMenu;
+
+
 
     /**
      * constructeur principal de la classe
@@ -48,6 +54,8 @@ public class ControleurMenu extends Controleur{
         super(collectionSatellites);
     }
 
+
+
     /**
      * méthode qui permet l'initialisation des éléments FXML
      */
@@ -56,6 +64,8 @@ public class ControleurMenu extends Controleur{
         reagir();
     }
 
+
+
     /**
      * méthode qui ferme la fenêtre
      */
@@ -63,6 +73,8 @@ public class ControleurMenu extends Controleur{
     void quitter(){
         System.exit(0);
     }
+
+
 
     /**
      * méthode qui permet de trier les satellites par leur nom
@@ -73,6 +85,8 @@ public class ControleurMenu extends Controleur{
         collectionSatellites.notifierObservateurs();
     }
 
+
+
     /**
      * méthode qui permet de trier les satellites par leur date
      */
@@ -81,6 +95,8 @@ public class ControleurMenu extends Controleur{
         collectionSatellites.trierDate();
         collectionSatellites.notifierObservateurs();
     }
+
+
 
     /**
      * méthode qui permet de trier par apparition dans la collection
@@ -91,6 +107,8 @@ public class ControleurMenu extends Controleur{
         collectionSatellites.notifierObservateurs();
     }
 
+
+
     /**
      * méthode qui change le mode de consultation
      */
@@ -99,6 +117,8 @@ public class ControleurMenu extends Controleur{
         collectionSatellites.setEstConsulte();
         collectionSatellites.notifierObservateurs();
     }
+
+
 
     /**
      * méthode qui permet d'ajouter des éléments à la collection
@@ -109,6 +129,7 @@ public class ControleurMenu extends Controleur{
     }
 
 
+
     /**
      * méthode qui permet de sauvegarder la collection de satellites en format Json
      */
@@ -116,51 +137,32 @@ public class ControleurMenu extends Controleur{
     void sauvegarder() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(collectionSatellites, CollectionSatellites.class);
-
         try {
-            // Utiliser le FileChooser pour obtenir le fichier de sauvegarde
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Sauvegarder la collection");
-            File initialDirectory = new File("src/ressource/sauvegarde/");
-            fileChooser.setInitialDirectory(initialDirectory);
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichiers JSON (*.json)", "*.json"));
+            FileChooser fileChooser = openFileChooser();
             File file = fileChooser.showSaveDialog(buttonBar.getScene().getWindow());
-
             if (file != null) {
-
-                // Vérifier si l'extension .json est déjà présente
-                if (!file.getName().endsWith(".json")) {
-                    // Ajouter l'extension .json au nom de fichier
+                if (!file.getName().endsWith(".json")) { // Ajouter l'extension .json au nom de fichier
                     String filePath = file.getAbsolutePath() + ".json";
                     file = new File(filePath);
                 }
-
-                // Écrire le JSON dans le fichier
                 FileWriter fileWriter = new FileWriter(file);
                 fileWriter.write(json);
                 fileWriter.close();
-
-                System.out.println("Collection sauvegardée avec succès.");
             }
-
             collectionSatellites.notifierObservateurs();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
+
+
     /**
      * méthode qui permet de récupérer des données de satellite dans le fichier de sauvegarde
      */
     @FXML
     void chercheDonnee(){
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Sélectionner une collection");
-        fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("fichier", "*.json"));
-
-        File initialDirectory = new File("src/ressource/sauvegarde/");
-        fileChooser.setInitialDirectory(initialDirectory);
+        FileChooser fileChooser = openFileChooser();
 
         Stage stage = (Stage) buttonBar.getScene().getWindow();
         File selectedFile = fileChooser.showOpenDialog(stage);
@@ -180,6 +182,25 @@ public class ControleurMenu extends Controleur{
     }
 
 
+
+    /**
+     * méthode qui permet d'ouvrir un fileChooser et pouvoir manipuler les éléments dans la ressource
+     *
+     * @return le fileChooser
+     */
+    private FileChooser openFileChooser(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Sélectionner une collection");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("fichier", "*.json"));
+
+        File initialDirectory = new File("src/ressource/sauvegarde/");
+        fileChooser.setInitialDirectory(initialDirectory);
+        return fileChooser;
+    }
+
+
+
     /**
      * méthode qui permet d'afficher les tags se trouvant dans la collection de satellites
      */
@@ -187,6 +208,7 @@ public class ControleurMenu extends Controleur{
     private void afficherTags(){
         new ControleurListeTags(collectionSatellites);
     }
+
 
 
     /**
@@ -197,19 +219,15 @@ public class ControleurMenu extends Controleur{
         new ControleurRechercheTags(collectionSatellites);
     }
 
+
+
     /**
      * méthode réagir qui sera activée à chaque action
      */
     @Override
     public void reagir() {
-        if(collectionSatellites.isEstConsulte()){
-            edition.setText("édition");
-            ajout.setDisable(true);
-            trierMenu.setVisible(false);
-        }else{
-            edition.setText("consultation");
-            ajout.setDisable(false);
-            trierMenu.setVisible(true);
-        }
+        boolean estConsult = collectionSatellites.isEstConsulte();
+        ajout.setDisable(estConsult);
+        edition.setText(estConsult?"édition":"consultation");
     }
 }

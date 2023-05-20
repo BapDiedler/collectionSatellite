@@ -28,6 +28,8 @@ public class ControleurInformationConsultation {
      */
     private final Information information;
 
+
+
     /**
      * constructeur de la classe
      *
@@ -36,6 +38,8 @@ public class ControleurInformationConsultation {
     public ControleurInformationConsultation(Information information){
         this.information = information;
     }
+
+
 
     /**
      * méthode permettant d'initialiser les composants de l'information
