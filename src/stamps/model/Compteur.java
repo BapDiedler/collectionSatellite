@@ -4,7 +4,9 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /**
- * la classe permet de compter les satellites de la collection
+ * la classe permet de compter le nombre de satellites de la collection
+ *
+ * @author baptistedie
  */
 public class Compteur {
 
@@ -13,12 +15,16 @@ public class Compteur {
      */
     private final IntegerProperty valeur ;
 
+
+
     /**
      * constructeur de la classe
      */
     public Compteur() {
         this.valeur = new SimpleIntegerProperty(0) ;
     }
+
+
 
     /**
      * setter sur la valeur du compteur
@@ -29,6 +35,8 @@ public class Compteur {
         this.valeur.set(valeur);
     }
 
+
+
     /**
      * setter de la classe permettant d'ajouter 1 au compteur
      */
@@ -36,12 +44,16 @@ public class Compteur {
         valeur.setValue(valeur.intValue()+1);
     }
 
+
+
     /**
      * méthode qui permet de retirer 1 au compteur
      */
     public void decrementer() {
         valeur.setValue(valeur.intValue()-1);
     }
+
+
 
     /**
      * getter de la classe

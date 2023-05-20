@@ -24,7 +24,7 @@ public class Satellite implements Iterable<Information>{
     /**
      * information sur le satellite
      */
-    private ArrayList<Information> informations;
+    private final ArrayList<Information> informations;
 
     /**
      * nom du satellite
@@ -41,12 +41,16 @@ public class Satellite implements Iterable<Information>{
      */
     private String url;
 
+
+
     /**
      * constructeur vide de la classe
      */
     public Satellite(){
         this("Satellite", "/image/utilisateur/pasImage.jpeg");
     }
+
+
 
     /**
      * constructeur principal de la classe
@@ -63,6 +67,8 @@ public class Satellite implements Iterable<Information>{
         this.date = new Date();
     }
 
+
+
     /**
      * méthode qui permet d'ajouter des informations
      *
@@ -71,6 +77,8 @@ public class Satellite implements Iterable<Information>{
     public void setInformations(Information... informations){
         this.informations.addAll(List.of(informations));
     }
+
+
 
     /**
      * setter de mots clefs dans notre satellite
@@ -81,6 +89,8 @@ public class Satellite implements Iterable<Information>{
             this.motsClefs.addAll(List.of(motsClefs));
     }
 
+
+
     /**
      * setter sur le nom du satellite
      *
@@ -89,6 +99,8 @@ public class Satellite implements Iterable<Information>{
     public void setNom(String nom){
         this.nom = nom;
     }
+
+
 
     /**
      * setter de la date du satellite
@@ -99,6 +111,8 @@ public class Satellite implements Iterable<Information>{
         this.date = date;
     }
 
+
+
     /**
      * méthode qui permet d'appliquer un nouveau lien pour l'image
      * @param url nouveau lien de l'image
@@ -107,12 +121,16 @@ public class Satellite implements Iterable<Information>{
         this.url = url;
     }
 
+
+
     /**
      * méthode qui permet d'ajouter une info
      */
     public void ajoutInfo(){
         informations.add(new Information());
     }
+
+
 
     /**
      * getter sur l'identifiant
@@ -123,6 +141,8 @@ public class Satellite implements Iterable<Information>{
         return identifiant;
     }
 
+
+
     /**
      * getter sur l'identifiant
      *
@@ -131,6 +151,8 @@ public class Satellite implements Iterable<Information>{
     public int getIdentifiantEntier() {
         return Integer.parseInt(identifiant);
     }
+
+
 
     /**
      * getter sur le nom du satellite
@@ -141,6 +163,8 @@ public class Satellite implements Iterable<Information>{
         return nom;
     }
 
+
+
     /**
      * getter sur la date de création du satellite
      *
@@ -149,6 +173,8 @@ public class Satellite implements Iterable<Information>{
     public String getDate() {
         return date.toString();
     }
+
+
 
     /**
      * getter sur la date de création du satellite
@@ -159,6 +185,8 @@ public class Satellite implements Iterable<Information>{
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MMMM-yyyy  HH:mm", Locale.FRANCE); // Format de date souhaité
         return sdf.format(date);
     }
+
+
 
     /**
      * méthode qui permet dde savoir si notre satellite contient le mot clef
@@ -173,6 +201,8 @@ public class Satellite implements Iterable<Information>{
         }
         return cpt;
     }
+
+
 
     public Iterator<String> iteratorTags(){
         return motsClefs.iterator();
@@ -191,6 +221,8 @@ public class Satellite implements Iterable<Information>{
         return new Information();
     }
 
+
+
     /**
      * méthode pour connaitre le nombre d'informations
      *
@@ -199,6 +231,8 @@ public class Satellite implements Iterable<Information>{
     public int nbInformations(){
         return informations.size();
     }
+
+
 
     /**
      * méthode qui permet de connaitre l'url pour l'image du satellite
@@ -209,6 +243,8 @@ public class Satellite implements Iterable<Information>{
         return url;
     }
 
+
+
     /**
      * toString de la classe
      * @return le satellite suivit de son identifiant
@@ -217,6 +253,8 @@ public class Satellite implements Iterable<Information>{
     public String toString() {
         return nom+identifiant.toUpperCase();
     }
+
+
 
     /**
      * méthode qui permet de savoir si deux satellites sont identiques
@@ -238,6 +276,8 @@ public class Satellite implements Iterable<Information>{
         return false;
     }
 
+
+
     /**
      * méthode qui permet d'itérer sur les informations
      * @return un iterator d'informations
@@ -247,9 +287,19 @@ public class Satellite implements Iterable<Information>{
         return informations.iterator();
     }
 
+
+
+    /**
+     * méthode qui permet de savoir si un satellite contient un tag ou non
+     *
+     * @param val tag à tester
+     * @return true si le tag est valide
+     */
     public boolean containeTag(String val){
         return motsClefs.contains(val);
     }
+
+
 
     /**
      * méthode qui permet de supprimer un tag du satellite
@@ -259,6 +309,8 @@ public class Satellite implements Iterable<Information>{
     public void removeTag(String text) {
         motsClefs.remove(text);
     }
+
+
 
     /**
      * méthode qui permet de supprimer une information du satellite

@@ -17,12 +17,16 @@ public class FabriqueIdentifiants {
      */
     private static final FabriqueIdentifiants instance = new FabriqueIdentifiants();
 
+
+
+
     /**
      * constructeur de la classe
      */
     private FabriqueIdentifiants(){
         identifiant=0;
     }
+
 
 
     /**
@@ -34,6 +38,8 @@ public class FabriqueIdentifiants {
         return instance;
     }
 
+
+
     /**
      * getter sur l'identifiant courant en passant au suivant
      *
@@ -42,6 +48,8 @@ public class FabriqueIdentifiants {
     public String getIdentifiant(){
         return String.valueOf(identifiant++);
     }
+
+
 
     /**
      * mise à zero des identifiants

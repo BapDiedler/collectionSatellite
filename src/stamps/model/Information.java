@@ -17,12 +17,16 @@ public class Information {
      */
     private String texte;
 
+
+
     /**
      * constructeur principal de la classe
      */
     public Information(){
         this("titre");
     }
+
+
 
     /**
      * constructeur principal de la classe
@@ -34,6 +38,8 @@ public class Information {
         this.texte = "zone de texte";
     }
 
+
+
     /**
      * méthode qui permet d'ajouter un texte à l'information
      *
@@ -42,6 +48,8 @@ public class Information {
     public void setTexte(String texte) {
         this.texte = texte;
     }
+
+
 
     /**
      * méthode qui permet d'ajouter un titre à l'information
@@ -52,6 +60,8 @@ public class Information {
         this.titre = titre;
     }
 
+
+
     /**
      * méthode qui permet de récupérer le texte de l'information
      * @return les informations
@@ -59,6 +69,8 @@ public class Information {
     public String getTexte() {
         return texte;
     }
+
+
 
     /**
      * méthode qui permet d'obtenir le titre de l'information

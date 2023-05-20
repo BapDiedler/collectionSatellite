@@ -2,7 +2,6 @@ package stamps.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * classe qui permet la manipulation des Observateurs
@@ -17,12 +16,15 @@ public class SujetObserve {
     private transient final ArrayList<Obervateur> obervateurs;
 
 
+
     /**
      * constructeur principal de la classe
      */
     public SujetObserve(){
         obervateurs = new ArrayList<>(10);
     }
+
+
 
     /**
      * méthode qui permet d'ajouter un observateur à la collection
@@ -34,6 +36,7 @@ public class SujetObserve {
     }
 
 
+
     /**
      * méthode qui fait réagir les observateurs
      */
@@ -43,11 +46,11 @@ public class SujetObserve {
         }
     }
 
+
+    /**
+     * méthode pour nettoyer les éléments
+     */
     public void clear(){
         obervateurs.clear();
-    }
-
-    public void clear(Objects obj){
-        obervateurs.remove(obj);
     }
 }
