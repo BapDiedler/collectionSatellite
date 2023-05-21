@@ -69,12 +69,38 @@
       "nom": "Mariner 1",
       "date": "May 19, 2023, 5:57:02 PM",
       "url": "/image/utilisateur/Mariner09.jpg"
+    },
+    {
+      "identifiant": "3",
+      "motsClefs": [
+        "2010",
+        "communication",
+        "US"
+      ],
+      "informations": [
+        {
+          "titre": "Objectif",
+          "texte": "Le but de ce satellite est la communication militaire."
+        },
+        {
+          "titre": "Pays",
+          "texte": "Le pays de construction de ce satellite sont les Etats-Unis."
+        },
+        {
+          "titre": "Date",
+          "texte": "Le satellite fut lancé le 14 août 2010"
+        }
+      ],
+      "nom": "AEHF 1",
+      "date": "May 21, 2023, 8:56:53 AM",
+      "url": "/image/utilisateur/AEHF_1.jpg"
     }
   ],
   "motsClefs": {
     "1963": 2,
     "1962": 2,
     "URSS": 2,
+    "2010": 2,
     "communication": 2,
     "1957": 2,
     "US": 2

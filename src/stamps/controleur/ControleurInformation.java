@@ -41,6 +41,11 @@ public class ControleurInformation{
      */
     private final ControleurDetail controleurDetail;
 
+    /**
+     * position de l'information dans le satellite
+     */
+    private int posInfo;
+
 
 
     /**
@@ -52,6 +57,20 @@ public class ControleurInformation{
         this.informationSatellite = information;
         this.satellite = satellite;
         this.controleurDetail = controleur;
+    }
+
+
+
+    /**
+     * constructeur principal de la classe
+     */
+    public ControleurInformation(ControleurDetail controleur, Satellite satellite, int posInfo, String titre, String info) {
+        this.informationSatellite = satellite.getInformations(posInfo);
+        this.satellite = satellite;
+        this.controleurDetail = controleur;
+        this.titre.setText(titre);
+        this.info.setText(info);
+        this.posInfo = posInfo;
     }
 
 

@@ -306,8 +306,45 @@ public class ControleurDetail extends Controleur {
      */
     @FXML
     private void ajouterInfo() {
-        collectionSatellites.getSatellite(posSatellite).ajoutInfo();
-        reagir();
+        Satellite satellite = collectionSatellites.getSatellite(posSatellite);
+        satellite.ajoutInfo();
+        int posInfo = satellite.nbInformations()-1;
+        Information newInfo = satellite.getInformations(posInfo);
+
+        ControleurInformation info = new ControleurInformation(this,satellite,newInfo);
+        informations.add(info);
+
+        // chargement du fichier FXML
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
+        loader.setControllerFactory(ic -> info);
+        try {
+            vbox.getChildren().add(loader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+    /**
+     * méthode qui permet de supprimer une information
+     *
+     * @param obj information supprimé
+     */
+    public void supprimerInfo(ControleurInformation obj) {
+        informations.remove(obj);
+        afficherAncienInfo();
+    }
+
+
+    /**
+     * méthode qui met à jour les informations sans les modifier
+     */
+    private void afficherAncienInfo(){
+        Satellite satellite = collectionSatellites.getSatellite(posSatellite);
+
+        collectionSatellites.notifierObservateurs();
     }
 
 
@@ -471,18 +508,6 @@ public class ControleurDetail extends Controleur {
             label.setAlignment(Pos.CENTER);
             listeTags.getItems().add(label);
         }
-    }
-
-
-
-    /**
-     * méthode qui permet de supprimer une information
-     *
-     * @param obj information supprimé
-     */
-    public void supprimerInfo(ControleurInformation obj) {
-        informations.remove(obj);
-        collectionSatellites.notifierObservateurs();
     }
 
 
