@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Compteur {
+    IntegerProperty valeur
+}
+
+class ControleurGlobal {
+}
+
+class ControleurSatellite {
+}
+
+ControleurGlobal --"1" Compteur
+ControleurSatellite --"1" Compteur
+
+@enduml

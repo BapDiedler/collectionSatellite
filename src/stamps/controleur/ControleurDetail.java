@@ -333,18 +333,9 @@ public class ControleurDetail extends Controleur {
      * @param obj information supprimé
      */
     public void supprimerInfo(ControleurInformation obj) {
+        int index = informations.indexOf(obj);
         informations.remove(obj);
-        afficherAncienInfo();
-    }
-
-
-    /**
-     * méthode qui met à jour les informations sans les modifier
-     */
-    private void afficherAncienInfo(){
-        Satellite satellite = collectionSatellites.getSatellite(posSatellite);
-
-        collectionSatellites.notifierObservateurs();
+        vbox.getChildren().remove(index);
     }
 
 

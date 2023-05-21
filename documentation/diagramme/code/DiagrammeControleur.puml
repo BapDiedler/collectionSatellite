@@ -2,6 +2,7 @@
 'https://plantuml.com/class-diagram
 
 package controleur{
+
     abstract Controleur implements Observateur{
         Controleur()
         setModel(Model model)
@@ -11,60 +12,37 @@ package controleur{
         void reagir()
     }
 
-
-    class PanneauGlobale extends Controleur{
-        void vueDetail(String identifiant)
+    class ControleurInformationConsultation{
     }
 
-    class Model
-    class PanneauDetail extends Controleur{
-        void ajouterInformation(PanneauInformations info)
+    class ControleurGlobal extends Controleur{
     }
 
-    class PanneauMenu extends Controleur{
-        void quitter()
-        void sauvegarder()
-        void importerDonnee(String dossier)
-        void recherche(String valeur)
+    class CollectionSatellite{
     }
 
-    class PanneauOutils extends Controleur{
-        void vueGlobale()
-        void sauvegarder()
-        void changerDonnee()
+    class ControleurDetail extends Controleur{
+        int posSatellite
     }
 
-    class PanneauBottom extends Controleur{
-        void panneauGauche()
-        void panneauDroite()
+    class ControleurMenu extends Controleur{
     }
 
+    class ControleurInformation extends Controleur{
+    }
 
-    class PanneauInformation extends Controleur{
-        void modifierTitre(String newTitre)
-        void modifierTexte(String newTexte)
-        String getTitre()
-        String getTexte()
+    class ControleurListeTags extends Controleur{
+        int posSatellite
+    }
+
+    class ControleurRechercheTags extends Controleur{
     }
 }
 
-class ImageView #aliceblue;line:blue;line.dotted;text:blue
-class TextArea #aliceblue;line:blue;line.dotted;text:blue
-class Menu #aliceblue;line:blue;line.dotted;text:blue
-class Button #aliceblue;line:blue;line.dotted;text:blue
-class TextField #aliceblue;line:blue;line.dotted;text:blue
-
-Model "1"--left Controleur
-PanneauDetail -right-"*" PanneauInformation
-PanneauDetail --"1" Satellite
-PanneauInformation --"1" Information
-PanneauInformation --"2" TextArea
-PanneauDetail --"1" ImageView
-PanneauGlobale -left-"*" ImageView
-PanneauOutils --"3" Button
-PanneauBottom --"2" Button
-PanneauMenu --"2" Menu
-PanneauMenu --"2" TextField
+CollectionSatellite "1"--left Controleur
+ControleurDetail "1"-right-"*" ControleurInformation
+ControleurInformation --"1" Information
+ControleurInformationConsultation --"1" Information
 
 
 @enduml
