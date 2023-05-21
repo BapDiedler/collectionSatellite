@@ -345,11 +345,10 @@ public class ControleurDetail extends Controleur {
      */
     @FXML
     void sauvegarde() {
-        if (!collectionSatellites.isEstConsulte()) {
+        if (!collectionSatellites.isEstConsulte())
             sauvegardeEdition();
-        } else {
+        else
             sauvegardeConsultation();
-        }
     }
 
 
@@ -365,9 +364,8 @@ public class ControleurDetail extends Controleur {
             satellite.setNom(titre.getText());
             satellite.setUrl(urlImage);
 
-            for (ControleurInformation info : informations) { // sauvegarde de chaque information
+            for (ControleurInformation info : informations) // sauvegarde de chaque information
                 info.sauvegardeInformation();
-            }
 
             collectionSatellites.setEstConsulte(); // changement du mode
             collectionSatellites.notifierObservateurs();
@@ -398,23 +396,7 @@ public class ControleurDetail extends Controleur {
     @FXML
     private void changerGlobal() {
         if(estSauvegarde) {
-            collectionSatellites.clear();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../vue/PanneauGlobal.fxml"));
-            Compteur compteur = new Compteur();
-            ControleurGlobal global = new ControleurGlobal(collectionSatellites, compteur);
-            ControleurMenu menu = new ControleurMenu(collectionSatellites);
-            loader.setControllerFactory(ic -> {
-                if (ic.equals(ControleurMenu.class)) return menu;
-                return global;
-            });
-            Parent root = null;
-            try {
-                root = loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            transition(root);
+            changerVueSiSauvegarder();
         } else {
             if(lancerAlerte("la sauvegarde n'a pas été effectué.")) {
                 sauvegarde();
@@ -423,6 +405,31 @@ public class ControleurDetail extends Controleur {
             estSauvegarde = true;
             changerGlobal();
         }
+    }
+
+
+    /**
+     * méthode qui permet de changer de vue si le fichier a été sauvegardé
+     */
+    private void changerVueSiSauvegarder(){
+        collectionSatellites.clear();
+
+        FXMLLoader loader = new FXMLLoader(); //chargement du Panneau FXML
+        loader.setLocation(getClass().getResource("../vue/PanneauGlobal.fxml"));
+        Compteur compteur = new Compteur();
+        ControleurGlobal global = new ControleurGlobal(collectionSatellites, compteur);
+        ControleurMenu menu = new ControleurMenu(collectionSatellites);
+        loader.setControllerFactory(ic -> {
+            if (ic.equals(ControleurMenu.class)) return menu;
+            return global;
+        });
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        transition(root);
     }
 
 

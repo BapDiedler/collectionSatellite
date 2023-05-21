@@ -103,7 +103,7 @@
             <Insets left="150.0" />
          </BorderPane.margin>
          <children>
-            <TextField fx:id="titre" alignment="CENTER" layoutX="-5.0" layoutY="124.0" prefHeight="76.0" prefWidth="601.0" styleClass="textArea" text="nom">
+            <TextField fx:id="titre" alignment="CENTER" layoutX="-5.0" layoutY="124.0" prefHeight="76.0" prefWidth="601.0" style="-fx-background-color: #323232;" styleClass="textArea" text="nom">
                <font>
                   <Font name="System Italic" size="48.0" />
                </font>

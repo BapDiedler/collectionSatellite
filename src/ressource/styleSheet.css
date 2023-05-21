@@ -66,14 +66,14 @@
 /*ZONE APPLIQUER POUR LES ZONES DE TEXTE ET LES BOUTONS MENU*/
 .textArea{
     -fx-background-radius: 20px;
-    -fx-background-color: #444f58;
+    -fx-background-color: transparent;
     -fx-border-radius: 20px;
     -fx-padding: 5px;
     -fx-text-fill: white;
 }
 
 .textArea .content {
-    -fx-background-color: #70848e;
+    -fx-background-color: transparent;
 }
 
 
