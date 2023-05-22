@@ -19,7 +19,7 @@
         },
         {
           "titre": "Données",
-          "texte": "poid: 77 kg\nmission: 1962 - 1963\n"
+          "texte": "poids: 77 kg\nmission: 1962 - 1963\n"
         }
       ],
       "nom": "Telstar 1",
@@ -39,7 +39,7 @@
         },
         {
           "titre": "Données",
-          "texte": "poid: 83.6 kg"
+          "texte": "poids: 83.6 kg"
         }
       ],
       "nom": "Spoutnik 1",

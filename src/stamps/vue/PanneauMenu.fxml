@@ -40,6 +40,7 @@
                   <KeyCodeCombination alt="UP" code="N" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                </accelerator>
             </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#supprimerDonnee" styleClass="menuItem" text="supprimer" />
          </items>
          <font>
             <Font size="33.0" />

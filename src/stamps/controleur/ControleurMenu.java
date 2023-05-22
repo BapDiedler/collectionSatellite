@@ -184,6 +184,22 @@ public class ControleurMenu extends Controleur{
 
 
     /**
+     * méthode qui supprimer une donnée chargée
+     */
+    @FXML
+    private void supprimerDonnee(){
+        FileChooser fileChooser = openFileChooser();
+
+        Stage stage = (Stage) buttonBar.getScene().getWindow();
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        if (selectedFile != null) {
+            selectedFile.delete();
+        }
+    }
+
+
+
+    /**
      * méthode qui permet d'ouvrir un fileChooser et pouvoir manipuler les éléments dans la ressource
      *
      * @return le fileChooser
