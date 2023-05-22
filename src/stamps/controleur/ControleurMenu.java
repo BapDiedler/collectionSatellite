@@ -210,7 +210,7 @@ public class ControleurMenu extends Controleur{
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("fichier", "*.json"));
 
-        File initialDirectory = new File("src/ressource/sauvegarde/");
+        File initialDirectory = new File("src/stamps/ressource/sauvegarde/");
         fileChooser.setInitialDirectory(initialDirectory);
         return fileChooser;
     }

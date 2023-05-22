@@ -463,7 +463,7 @@ public class ControleurDetail extends Controleur {
             fileChooser.setTitle("Sélectionner une image");
             fileChooser.getExtensionFilters().add(
                     new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg"));
-            File initialDirectory = new File("src/ressource/image/utilisateur/");
+            File initialDirectory = new File("src/stamps/ressource/image/utilisateur/");
             fileChooser.setInitialDirectory(initialDirectory);
 
             Stage stage = (Stage) vbox.getScene().getWindow();

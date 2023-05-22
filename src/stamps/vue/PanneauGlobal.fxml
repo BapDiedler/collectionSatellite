@@ -10,14 +10,14 @@
 <?import javafx.scene.text.Font?>
 
 
-<StackPane styleClass="background" stylesheets="@../../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.ControleurGlobal">
+<StackPane styleClass="background" stylesheets="@../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.ControleurGlobal">
    <children>
-             <BorderPane fx:id="borderPane" prefHeight="1200.0" prefWidth="2000.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css">
+             <BorderPane fx:id="borderPane" prefHeight="1200.0" prefWidth="2000.0" styleClass="background" stylesheets="@../ressource/styleSheet.css">
              <top>
                 <fx:include fx:id="PanneauMenu" source="PanneauMenu.fxml" />
              </top>
          <center>
-            <Pane styleClass="background" stylesheets="@../../ressource/styleSheet.css" BorderPane.alignment="CENTER">
+            <Pane styleClass="background" stylesheets="@../ressource/styleSheet.css" BorderPane.alignment="CENTER">
                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="457.0" layoutY="24.0" prefHeight="94.0" prefWidth="723.0" text="Collection de satellites" textFill="WHITE" underline="true">
                   <font>
                      <Font name="System Italic" size="56.0" />
@@ -36,7 +36,7 @@
          <right>
             <Pane prefHeight="1043.0" prefWidth="452.0" styleClass="background">
                <children>
-                  <Label fx:id="compte" alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="571.0" prefHeight="71.0" prefWidth="362.0" styleClass="background" stylesheets="@../../ressource/styleSheet.css" text="Label" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="compte" alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="571.0" prefHeight="71.0" prefWidth="362.0" styleClass="background" stylesheets="@../ressource/styleSheet.css" text="Label" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Italic" size="44.0" />
                      </font>
