@@ -4,8 +4,8 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.ControleurRechercheTags">
-    <VBox stylesheets="@../ressource/styleSheet.css">
+<Scene xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.ControleurRechercheTags">
+    <VBox stylesheets="@../styleSheet.css">
         <ListView fx:id="listView" onMouseClicked="#handleKeywordSelection" prefWidth="500.0" styleClass="listView" />
     </VBox>
 </Scene>

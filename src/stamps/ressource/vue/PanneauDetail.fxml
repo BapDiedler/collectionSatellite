@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1200.0" prefWidth="2000.0" styleClass="background" stylesheets="@../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.ControleurDetail">
+<BorderPane prefHeight="1200.0" prefWidth="2000.0" styleClass="background" stylesheets="@../styleSheet.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.ControleurDetail">
    <center>
       <VBox alignment="CENTER" maxHeight="1000.0" maxWidth="1000.0" prefHeight="1000.0" styleClass="background" BorderPane.alignment="CENTER_RIGHT">
          <BorderPane.margin>
@@ -28,9 +28,9 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="492.0" maxWidth="1000.0" prefHeight="492.0" prefWidth="1000.0" stylesheets="@../ressource/styleSheet.css" vbarPolicy="NEVER">
+            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="492.0" maxWidth="1000.0" prefHeight="492.0" prefWidth="1000.0" stylesheets="@../styleSheet.css" vbarPolicy="NEVER">
                <content>
-               <VBox fx:id="vbox" alignment="CENTER" maxWidth="1000.0" prefWidth="998.0" styleClass="listView" stylesheets="@../ressource/styleSheet.css" BorderPane.alignment="CENTER" />
+               <VBox fx:id="vbox" alignment="CENTER" maxWidth="1000.0" prefWidth="998.0" styleClass="listView" stylesheets="@../styleSheet.css" BorderPane.alignment="CENTER" />
                </content>
                <VBox.margin>
                   <Insets bottom="40.0" />
@@ -48,7 +48,7 @@
    <top>
       <Pane prefHeight="111.0" prefWidth="2000.0" styleClass="menuBar" BorderPane.alignment="CENTER">
          <children>
-            <MenuButton alignment="CENTER" contentDisplay="CENTER" layoutX="79.0" layoutY="21.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="260.0" styleClass="button" stylesheets="@../ressource/styleSheet.css" text="Menu" textFill="WHITE">
+            <MenuButton alignment="CENTER" contentDisplay="CENTER" layoutX="79.0" layoutY="21.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="260.0" styleClass="button" stylesheets="@../styleSheet.css" text="Menu" textFill="WHITE">
                <items>
                 <MenuItem mnemonicParsing="false" onAction="#changerGlobal" styleClass="menuItem" text="global">
                      <accelerator>

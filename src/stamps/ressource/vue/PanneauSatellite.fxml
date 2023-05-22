@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="hbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#changerDetail" prefHeight="200.0" prefWidth="1200.0" styleClass="vueSatellite" stylesheets="@../ressource/styleSheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.ControleurSatellite">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#changerDetail" prefHeight="200.0" prefWidth="1200.0" styleClass="vueSatellite" stylesheets="@../styleSheet.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stamps.controleur.ControleurSatellite">
    <children>
-      <Label fx:id="nom" alignment="CENTER" contentDisplay="CENTER" prefHeight="200.0" prefWidth="960.0" styleClass="nomSatellite" stylesheets="@../ressource/styleSheet.css" text="NOM" textFill="WHITE">
+      <Label fx:id="nom" alignment="CENTER" contentDisplay="CENTER" prefHeight="200.0" prefWidth="960.0" styleClass="nomSatellite" stylesheets="@../styleSheet.css" text="NOM" textFill="WHITE">
          <font>
             <Font size="40.0" />
          </font>
