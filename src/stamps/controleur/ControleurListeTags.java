@@ -82,7 +82,7 @@ public class ControleurListeTags extends Controleur {
      */
     private void afficherFenetre(){
         nouvelleFenetre = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../vue/PanneauListeTags.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vue/PanneauListeTags.fxml"));
         loader.setControllerFactory(ic -> this);
         Scene root = null;
         try {

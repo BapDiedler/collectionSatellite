@@ -52,7 +52,7 @@ public class ControleurRechercheTags extends Controleur {
      */
     private void afficherFenetre(){
         Stage nouvelleFenetre = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../vue/PanneauRechercheTags.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vue/PanneauRechercheTags.fxml"));
         loader.setControllerFactory(ic -> this);
         Scene root = null;
         try {

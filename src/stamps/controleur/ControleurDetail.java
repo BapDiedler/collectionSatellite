@@ -265,7 +265,7 @@ public class ControleurDetail extends Controleur {
 
             // chargement du fichier FXML
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../vue/PanneauInformationConsultation.fxml"));
+            loader.setLocation(getClass().getResource("/vue/PanneauInformationConsultation.fxml"));
             loader.setControllerFactory(ic -> info);
             try {
                 vbox.getChildren().add(loader.load());
@@ -289,7 +289,7 @@ public class ControleurDetail extends Controleur {
 
             // chargement du fichier FXML
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
+            loader.setLocation(getClass().getResource("/vue/PanneauInformation.fxml"));
             loader.setControllerFactory(ic -> info);
             try {
                 vbox.getChildren().add(loader.load());
@@ -316,7 +316,7 @@ public class ControleurDetail extends Controleur {
 
         // chargement du fichier FXML
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../vue/PanneauInformation.fxml"));
+        loader.setLocation(getClass().getResource("/vue/PanneauInformation.fxml"));
         loader.setControllerFactory(ic -> info);
         try {
             vbox.getChildren().add(loader.load());
@@ -415,7 +415,7 @@ public class ControleurDetail extends Controleur {
         collectionSatellites.clear();
 
         FXMLLoader loader = new FXMLLoader(); //chargement du Panneau FXML
-        loader.setLocation(getClass().getResource("../vue/PanneauGlobal.fxml"));
+        loader.setLocation(getClass().getResource("/vue/PanneauGlobal.fxml"));
         Compteur compteur = new Compteur();
         ControleurGlobal global = new ControleurGlobal(collectionSatellites, compteur);
         ControleurMenu menu = new ControleurMenu(collectionSatellites);

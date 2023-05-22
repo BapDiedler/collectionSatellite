@@ -98,7 +98,7 @@ public class ControleurGlobal extends Controleur {
 
         // chargement du fichierFXML
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../vue/PanneauSatellite.fxml"));
+        loader.setLocation(getClass().getResource("/vue/PanneauSatellite.fxml"));
         loader.setControllerFactory(ic -> panneauSat);
         try {
             listView.getItems().add(loader.load());

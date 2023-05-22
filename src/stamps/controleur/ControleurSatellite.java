@@ -94,7 +94,7 @@ public class ControleurSatellite extends Controleur {
         }else {
             collectionSatellites.clear();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../vue/PanneauDetail.fxml"));
+            loader.setLocation(getClass().getResource("/vue/PanneauDetail.fxml"));
             ControleurDetail detail = new ControleurDetail(collectionSatellites,posSatellite);
             loader.setControllerFactory(ic ->
                     detail
